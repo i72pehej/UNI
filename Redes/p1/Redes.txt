@@ -1,0 +1,37 @@
+SERVIDOR
+
+1º Abrir socket
+  socket()
+
+2º Asociar socket al puerto de X dirección IP / Asociar dirección IP + puerto de la APP
+  bind()
+
+3º Rellenar estructura sockaddr_in
+  sin.family
+  sin.port
+  sin.addr.s_addr
+
+4º Recibir el mensaje **
+  recvfrom()
+
+** Enviar = Recibir = 320 bytes
+
+5º Cerrar socket
+
+
+
+CLIENTE
+
+1º Abrir socket
+
+
+
+
+
+
+
+
+
+
+4º Envío del mensaje **
+sendto()
