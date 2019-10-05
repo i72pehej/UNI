@@ -30,6 +30,7 @@ Data Type: struct timespec
 
 #include "sistemaEcuaciones.cpp"
 
+
 #define MAX 10000
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -213,11 +214,15 @@ Data Type: struct timespec
 ////////////////////////////////////////////////////////////////////////////////
 
   // Se almacenan en un fichero de texto los valores de N y Tiempos correspondientes
-  void guardaEnFichero(double times, int nEle) {
+  void guardaEnFichero(std::vector<double> &nEle, std::vector<double> &times, std::vector<double> &timesEst) {
     // Abre el fichero para añadir al final
     std::fstream ficheroTiempos("tiempos.txt", std::ios::app);
 
-    if (ficheroTiempos.is_open()) {ficheroTiempos << nEle << " " << times << '\n';}
+    if (ficheroTiempos.is_open()) {
+      for (size_t i = 0; i < nEle.size(); ++i) {
+        ficheroTiempos << nEle.at(i) << " " << times.at(i) << " " << timesEst.at(i) << '\n';
+      }
+    }
     else {std::cout << "\n\n\nERROR al abrir el fichero." << '\n';}
 
     ficheroTiempos.close();
@@ -376,10 +381,7 @@ Data Type: struct timespec
 
   // Funcion que calcula el tiempo estimado a partir de un tamaño dado
   double calcularTiempoEstimadoNlogN(const double &n, const double &a0, const double &a1) {
-
-
-
-    return 0;
+    return (a0 + (a1 * n * log10(n)));
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -403,10 +405,9 @@ Data Type: struct timespec
   }
 
 ////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
 
   // Funcion que realiza las pruebas
-  void realizarExperimento(std::vector<int> &vector, int minimo, int maximo, int incremento, int repeticiones) {
+  void realizarExperimento(std::vector<int> &vector, std::vector<double> &n, std::vector<double> &tiemposReales, int minimo, int maximo, int incremento, int repeticiones) {
     Clock time;
     // Comienza a contar el contador
     time.start();
@@ -463,20 +464,46 @@ Data Type: struct timespec
       // else {std::cout << "\n\nEl vector está ordenado." << "\n\n";}
 
       // Almacenar numero de elementos y tiempo medio en un fichero de texto
-      guardaEnFichero(tiempos.back(), minimo);
+      // guardaEnFichero(tiempos.back(), minimo);
+      std::cout << '\n' << minimo;
+      n.push_back(minimo);
+      std::cout << " " << tiempos.back() << '\n';
+      tiemposReales.push_back(tiempos.back());
 
       // Incremento del tamaño del vector.
       minimo += incremento;
     }
   }
 
+////////////////////////////////////////////////////////////////////////////////
 
 
 
+////////////////////////////////////////////////////////////////////////////////
+                        // PRODUCTO DE MATRICES (NxN)
+////////////////////////////////////////////////////////////////////////////////
+
+  void rellenarMatriz(std::vector< std::vector<char> > &v) {
+    for (int i = 0; i < count; ++i)
+    {
+      for (int i = 0; i < count; ++i)
+      {
+        /* code */
+      }
+    }
+
+
+  }
+
+////////////////////////////////////////////////////////////////////////////////
 
 
 
+////////////////////////////////////////////////////////////////////////////////
 
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -499,8 +526,19 @@ int main() {
 
   double coefDeter; // Coeficiente de determinacion
 
+  char respuesta; // Respuesta del usuario para realizar estimaciones
+  double N; // Número de elementos para la estimación
 
-  int opcion;
+  int opcion; // Selecciona la parte del programa a ejecutar
+
+
+
+  std::vector< <std::vector<double> > m1, m2, producto; // Matrices para la segunda parte del programa
+
+
+
+
+
 
   std::cout << "\t\tMENÚ:" << '\n';
   std::cout << "\t------------------" << '\n';
@@ -549,9 +587,9 @@ int main() {
       eliminaFichero();
 
       // Se realizan las pruebas
-      realizarExperimento(v, min, max, incremento, repeticiones);
+      realizarExperimento(v, n, tiemposReales, min, max, incremento, repeticiones);
 
-      extraerTiempos(n, tiemposReales);
+      // extraerTiempos(n, tiemposReales);
 
       // std::cout << "Vector de N" << '\n';
       // imprimeVectorDouble(n);
@@ -569,11 +607,61 @@ int main() {
 
       std::cout << "\nCOEF: " << coefDeter << '\n';
 
+      // Se guardan los elementos y tiempos en un fichero de texto
+      guardaEnFichero(n, tiemposReales, tiemposEstimados);
+
+      // Se dibuja la grafica
+      system("./ejemplo_gnuplot.sh");
+
+
+      // Pausamos la ejecucuón para analizar los datos y esperamos al usuario
+      std::cout << "Pulse cualquier tecla para continuar" << '\n';
+      getchar();
+
+
+      system("clear");
+      std::cout << "¿Desea realizar una estimacion? [y / n]: ";
+      std::cin >> respuesta;
+      std::cout << '\n';
+
+      switch (respuesta) {
+        case 'y':
+          std::cout << "Introduzca el número de elementos para los que desea realizar la estimacion: ";
+          std::cin >> N;
+          std::cout << '\n';
+
+          std::cout << "\tEcuacion de ajuste: t(n) = " << a0 << " + " << a1 << " * " << N << " * log(" << N << ")" << '\n';
+          std::cout << "\tCoeficiente de determinacion: " << "" << '\n';
+
+          // Calcular estimaciones de tiempo para un número de elementos introducidos por el usuario
+          std::cout << "\n\nTiempo estimado: " << calcularTiempoEstimadoNlogN(N, a0, a1) / 8.64e+7 << " días." << '\n';
+        break;
+        
+        case 'n':
+          std::cout << "\n\nTerminando simulación . . ." << '\n';
+        break;
+      }
+
+
+
 
 
     break;
 
     case 2: // QUICKSORT MATRICES
+
+      rellenarMatriz(m1);
+      rellenarMatriz(m2);
+
+
+
+      multiplicarMatrices(m1, m2, producto);
+
+
+
+
+
+
 
     break;
   }
