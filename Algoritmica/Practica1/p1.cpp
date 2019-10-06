@@ -483,16 +483,14 @@ Data Type: struct timespec
                         // PRODUCTO DE MATRICES (NxN)
 ////////////////////////////////////////////////////////////////////////////////
 
-  void rellenarMatriz(std::vector< std::vector<char> > &v) {
-    for (int i = 0; i < count; ++i)
-    {
-      for (int i = 0; i < count; ++i)
-      {
-        /* code */
+  void rellenarMatriz(std::vector< std::vector<double> > &v) {
+    srand(time(NULL));
+
+    for (size_t i = 0; i < v.size(); ++i) {
+      for (size_t j = 0; j < v.size(); ++j) {
+        v[i].at(j) = (rand() % 10 + 95) / 100;
       }
     }
-
-
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -533,9 +531,9 @@ int main() {
 
 
 
-  std::vector< <std::vector<double> > m1, m2, producto; // Matrices para la segunda parte del programa
-
-
+  std::vector< std::vector<double> > M1; // Matrices para la segunda parte del programa
+  std::vector< std::vector<double> > M2; // Matrices para la segunda parte del programa
+  std::vector< std::vector<double> > P; // Matrices para la segunda parte del programa
 
 
 
@@ -636,7 +634,7 @@ int main() {
           // Calcular estimaciones de tiempo para un número de elementos introducidos por el usuario
           std::cout << "\n\nTiempo estimado: " << calcularTiempoEstimadoNlogN(N, a0, a1) / 8.64e+7 << " días." << '\n';
         break;
-        
+
         case 'n':
           std::cout << "\n\nTerminando simulación . . ." << '\n';
         break;
@@ -649,13 +647,38 @@ int main() {
     break;
 
     case 2: // QUICKSORT MATRICES
+      system("clear");
 
-      rellenarMatriz(m1);
-      rellenarMatriz(m2);
+      std::cout << "Introduzca el mínimo número de elementos de la matriz: ";
+      std::cin >> min;
+      std::cout << '\n';
+
+      std::cout << "Introduzca el número máximo de elementos de la matriz: ";
+      std::cin >> max;
+      std::cout << '\n';
+
+      while (min > max) {
+        std::cout << "ERROR.\n" << '\n';
+        std::cout << "Introduzca el número máximo de elementos de la matriz: ";
+        std::cin >> max;
+        std::cout << '\n';
+      }
+
+      std::cout << "Introduzca el incremento: ";
+      std::cin >> incremento;
+      std::cout << '\n';
 
 
+      M1 = std::vector< std::vector<double> > (min, std::vector<double>(min));
+      M2 = std::vector< std::vector<double> > (min, std::vector<double>(min));
 
-      multiplicarMatrices(m1, m2, producto);
+      rellenarMatriz(M1);
+      rellenarMatriz(M2);
+
+      imprimeMatriz(M1);
+      imprimeMatriz(M2);
+
+      multiplicarMatrices(M1, M2, P);
 
 
 

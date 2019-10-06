@@ -6,7 +6,7 @@ using namespace std;
 
 void inicializarInversa(vector < vector < double > >  &inversa);
 void trianguloInferior(vector < vector < double > > &A, vector < vector < double > > &inversa);
-bool  eliminarCero(vector < vector < double > > &A, vector < vector < double > > &inversa, unsigned int x);
+bool eliminarCero(vector < vector < double > > &A, vector < vector < double > > &inversa, unsigned int x);
 void hacerCerosColumna(vector < vector < double > > &A, vector < vector < double > > &inversa, unsigned int x);
 void combinarFilas(vector < vector < double > > &matriz, unsigned int filaOrigen, double factor, unsigned int filaDestino);
 double productoDiagonal(const vector < vector < double > > &matriz);
