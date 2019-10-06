@@ -375,7 +375,7 @@ Data Type: struct timespec
   }
 
 ////////////////////////////////////////////////////////////////////////////////
-
+/*
   // Funcion para extraer nº de elementos y tiempos del fichero
   void extraerTiempos(std::vector<double> &n, std::vector<double> &tiemposReales) {
     std::ifstream ficheroTiempos;
@@ -393,11 +393,11 @@ Data Type: struct timespec
     }
     else {std::cout << "\n\n\nERROR. No se pudo abrir el fichero." << '\n';}
   }
-
+*/
 ////////////////////////////////////////////////////////////////////////////////
 
   // Funcion que realiza las pruebas
-  void realizarExperimento(std::vector<int> &vector, std::vector<double> &n, std::vector<double> &tiemposReales, int minimo, int maximo, int incremento, int repeticiones) {
+  void realizarExperimento(std::vector<int> &vector, std::vector<double> &n, std::vector<double> &tiemposReales, int minimo, const int maximo, const int incremento, const int repeticiones) {
     Clock time;
     // Comienza a contar el contador
     time.start();
@@ -405,7 +405,7 @@ Data Type: struct timespec
     double suma = 0;
     double contador = 0;
 
-    std::vector<double> tiempos;
+    // std::vector<double> tiempos;
 
     // Bucle para realizar las pruebas.
     while (minimo <= maximo) {
@@ -438,9 +438,17 @@ Data Type: struct timespec
       // std::cout << "\nLa media de los tiempos es: " << suma / contador << " microsegundos\n\n";
 
       // Guardado de los valores en un vector
-      tiempos.push_back(suma / contador);
+      // tiempos.push_back(suma / contador);
       // std::cout << "\nVector de tiempos:" << '\n';
       // imprimeVectorDouble(tiempos);
+
+      // Almacenar numero de elementos y tiempo medio en un fichero de texto
+      // guardaEnFichero(tiempos.back(), minimo);
+
+      n.push_back(minimo);
+      std::cout << '\n' << minimo;
+      tiemposReales.push_back(suma / contador);
+      std::cout << " " << tiemposReales.back() << '\n';
 
       // Reinicio de las variables para calcular la media
       suma = 0;
@@ -452,13 +460,6 @@ Data Type: struct timespec
       // Comprueba que el vector esté ordenado
       // if (estaOrdenado(vector) == false) {std::cout << "\n\tEl vector NO está ordenado." << '\n';}
       // else {std::cout << "\n\nEl vector está ordenado." << "\n\n";}
-
-      // Almacenar numero de elementos y tiempo medio en un fichero de texto
-      // guardaEnFichero(tiempos.back(), minimo);
-      std::cout << '\n' << minimo;
-      n.push_back(minimo);
-      std::cout << " " << tiempos.back() << '\n';
-      tiemposReales.push_back(tiempos.back());
 
       // Incremento del tamaño del vector.
       minimo += incremento;
@@ -519,7 +520,7 @@ Data Type: struct timespec
     imprimeMatriz(B);
 
     // Resolucion del ajuste para hallar las incógnitas "a0" y "a1"
-    resolverSistemaEcuaciones(A, B, 2, X);
+    resolverSistemaEcuaciones(A, B, 3, X);
     std::cout << "\nMatriz de soluciones:" << '\n';
     imprimeMatriz(X);
 
@@ -533,34 +534,27 @@ Data Type: struct timespec
 
   // Se calculan los tiempos estimados
   void calcularTiemposEstimadosPolinomico(const vector <double> &n, const vector <double> &tiemposReales, const vector <double> &a, vector<double> &tiemposEstimados) {
-
-
-
-
+    for (size_t i = 0; i < n.size(); i++) {
+      tiemposEstimados.push_back(a.at(0) + (a.at(1) * n.at(i)) + (a.at(2) * pow(n.at(i), 2)));
+    }
   }
 
 ////////////////////////////////////////////////////////////////////////////////
 
   // Se calcula el tiempo estimado para un valor de N
   double calcularTiempoEstimadoPolinomico(const double &n, const vector<double> &a) {
-
-
-
-
-
-    return 0;
+    double res = a.at(0) + (a.at(1) * n) + (a.at(2) * pow(n, 2));
+    // return (a.at(0) + (a.at(1) * n) + (a.at(2) * pow(n, 2)));
+    return res;
   }
 
 ////////////////////////////////////////////////////////////////////////////////
 
   // Funcion que realiza las pruebas sobre las matrices
-  void realizarExperimentoMatrices(std::vector< std::vector<double> > &M1, std::vector< std::vector<double> > &M2, std::vector< std::vector<double> > &P, int &min, const int &max, const int &incremento) {
+  void realizarExperimentoMatrices(std::vector< std::vector<double> > &M1, std::vector< std::vector<double> > &M2, std::vector< std::vector<double> > &P, int &min, const int &max, const int &incremento, std::vector<double> &n, std::vector<double> &tiemposReales) {
     Clock time;
     // Comienza a contar el contador
     time.start();
-
-
-
 
     while (min <= max) {
       // Se rellenan las matrices con valores entre 0.95 y 1.05
@@ -577,44 +571,21 @@ Data Type: struct timespec
       std::cout << "\nProducto:" << '\n';
       imprimeMatriz(P);
 
+      // Se detiene el cronómetro.
+      if (time.isStarted()) {
+        time.stop();
+        // std::cout << "\tHan pasado " << time.elapsed() << " microsegundos.\n";
+      }
 
+      // Almacenar numero de elementos y tiempos reales en sus respectivos vectores
+      n.push_back(min);
+      // std::cout << '\n' << min;
+      tiemposReales.push_back(time.elapsed());
+      // std::cout << " " << tiemposReales.back() << '\n';
 
-/*
-
-          // Se detiene el cronómetro.
-          if (time.isStarted()) {
-            time.stop();
-            // std::cout << "\tHan pasado " << time.elapsed() << " microsegundos.\n";
-          }
-          
-        // Guardado de los valores en un vector
-        tiempos.push_back(suma / contador);
-        // std::cout << "\nVector de tiempos:" << '\n';
-        // imprimeVectorDouble(tiempos);
-
-        // Almacenar numero de elementos y tiempo medio en un fichero de texto
-        // guardaEnFichero(tiempos.back(), minimo);
-        std::cout << '\n' << minimo;
-        n.push_back(minimo);
-        std::cout << " " << tiempos.back() << '\n';
-        tiemposReales.push_back(tiempos.back());
-
-        // Incremento del tamaño del vector.
-        minimo += incremento;
-*/
-
-
-
-
-
-
-
-
+      // Incremento del tamaño del vector.
       min += incremento;
     }
-
-
-
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -736,12 +707,6 @@ int main() {
       system("./ejemplo_gnuplot.sh");
 
 
-      // Pausamos la ejecucuón para analizar los datos y esperamos al usuario
-      std::cout << "Pulse cualquier tecla para continuar" << '\n';
-      getchar();
-
-
-      system("clear");
       std::cout << "¿Desea realizar una estimacion? [y / n]: ";
       std::cin >> respuesta;
       std::cout << '\n';
@@ -793,15 +758,44 @@ int main() {
       std::cout << '\n';
 
       // Se realizan las pruebas
-      realizarExperimentoMatrices(M1, M2, P, min, max, incremento);
+      realizarExperimentoMatrices(M1, M2, P, min, max, incremento, n, tiemposReales);
 
       // Se realiza el ajuste, para obtener las incognitas
       ajustePolinomico(n, tiemposReales, a);
       a0 = a.at(0);
       a1 = a.at(1);
       a2 = a.at(2);
-      imprimeVectorDouble(a);
+      // imprimeVectorDouble(a);
 
+      // Calculo de los tiempos estimados
+      calcularTiemposEstimadosPolinomico(n, tiemposReales, a, tiemposEstimados);
+      std::cout << "/* message */1" << '\n';
+      imprimeVectorDouble(tiemposEstimados);
+
+
+
+
+      std::cout << "¿Desea realizar una estimacion? [y / n]: ";
+      std::cin >> respuesta;
+      std::cout << '\n';
+
+      switch (respuesta) {
+        case 'y':
+          std::cout << "Introduzca el número de elementos para los que desea realizar la estimacion: ";
+          std::cin >> N;
+          std::cout << '\n';
+
+          // std::cout << "\tEcuacion de ajuste: t(n) = " << a0 << " + " << a1 << " * " << N << " * log(" << N << ")" << '\n';
+          // std::cout << "\tCoeficiente de determinacion: " << "" << '\n';
+
+          // Calcular estimaciones de tiempo para un número de elementos introducidos por el usuario
+          std::cout << "\n\nTiempo estimado: " << calcularTiempoEstimadoPolinomico(N, a) / 8.64e+7 << " días." << '\n';
+        break;
+
+        case 'n':
+          std::cout << "\n\nTerminando simulación . . ." << '\n';
+        break;
+      }
 
 
 
