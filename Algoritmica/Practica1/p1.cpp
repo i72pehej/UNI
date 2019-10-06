@@ -230,12 +230,38 @@ Data Type: struct timespec
 
 ////////////////////////////////////////////////////////////////////////////////
 
+  // Se almacenan en un fichero de texto los valores de N y Tiempos correspondientes
+  void guardaEnFicheroMatriz(std::vector<double> &nEle, std::vector<double> &times, std::vector<double> &timesEst) {
+    // Abre el fichero para añadir al final
+    std::fstream ficheroTiempos("tiemposMatriz.txt", std::ios::app);
+
+    if (ficheroTiempos.is_open()) {
+      for (size_t i = 0; i < nEle.size(); ++i) {
+        ficheroTiempos << nEle.at(i) << " " << times.at(i) << " " << timesEst.at(i) << '\n';
+      }
+    }
+    else {std::cout << "\n\n\nERROR al abrir el fichero." << '\n';}
+
+    ficheroTiempos.close();
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+
   // Elimina cualquier fichero coincidente
   void eliminaFichero() {
     if (std::remove("tiempos.txt") == 0) {
       std::cout << "\nFichero <'tiempos.txt'> existente.\nEliminando . . .\n" << '\n';
     }
   }
+
+  ////////////////////////////////////////////////////////////////////////////////
+
+    // Elimina cualquier fichero coincidente
+    void eliminaFicheroMatriz() {
+      if (std::remove("tiemposMatriz.txt") == 0) {
+        std::cout << "\nFichero <'tiemposMatriz.txt'> existente.\nEliminando . . .\n" << '\n';
+      }
+    }
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -262,7 +288,7 @@ Data Type: struct timespec
 ////////////////////////////////////////////////////////////////////////////////
 
   // Función para realizar los sumatorios de los tiempos de las pruebas
-  void sumatorioY(std::vector< std::vector<double> > &B, const std::vector<double> v, const std::vector<double> treal, const int tam) {
+  void sumatorioY(std::vector< std::vector<double> > &B, const std::vector<double> &v, const std::vector<double> &treal, const int tam) {
     B.clear();  // Se limpia la matriz.
     int sumaB;  // Sumatorio
 
@@ -539,6 +565,9 @@ Data Type: struct timespec
     time.start();
 
     while (min <= max) {
+      // Reinicia el cronómetro
+      time.restart();
+
       // Se rellenan las matrices con valores entre 0.95 y 1.05
       rellenarMatriz(M1, min);
       rellenarMatriz(M2, min);
@@ -739,6 +768,9 @@ int main() {
       std::cin >> incremento;
       std::cout << '\n';
 
+      // Se elimina el fichero de trabajo para tenerlo limpio
+      eliminaFicheroMatriz();
+
       // Se realizan las pruebas
       realizarExperimentoMatrices(M1, M2, P, min, max, incremento, n, tiemposReales);
 
@@ -753,7 +785,11 @@ int main() {
       calcularTiemposEstimadosPolinomico(n, tiemposReales, a, tiemposEstimados);
       // imprimeVectorDouble(tiemposEstimados);
 
+      // Se guardan los elementos y tiempos en un fichero de texto
+      guardaEnFicheroMatriz(n, tiemposReales, tiemposEstimados);
 
+      // Se dibuja la grafica
+      system("./ejemplo_gnuplot2.sh");
 
 
       std::cout << "¿Desea realizar una estimacion? [y / n]: ";
