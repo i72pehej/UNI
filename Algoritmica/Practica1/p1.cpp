@@ -284,7 +284,7 @@ Data Type: struct timespec
   void imprimeMatriz(const std::vector< std::vector<double> > matrix) {
     for (size_t i = 0; i < matrix.size(); i++) {
       for (size_t j = 0; j < matrix.size(); j++) {
-        std::cout << "| " << matrix[i].at(j) << " |"; // De cada fila todas las columnas.
+        std::cout << "| " << matrix[i][j] << " |"; // De cada fila todas las columnas.
       }
       std::cout << '\n';
     }
@@ -298,16 +298,6 @@ Data Type: struct timespec
     std::vector< std::vector<double> > B; // Matriz nx1 de terminos independientes
     std::vector< std::vector<double> > X(2, std::vector<double>(2)); // Matriz 2x2 de soluciones
     std::vector<double> nlogs;  // Vector para almacenar "n*log(n)", para después el sumatorio
-
-    // std::vector< std::vector<double> > A;
-    // std::vector< std::vector<double> > B;
-    // std::vector< std::vector<double> > X;
-    // std::vector<double> nlogs;  // Vector para almacenar "n*log(n)", para después el sumatorio
-    //
-    // A = std::vector< std::vector<double> > (2, std::vector<double>(2)); // Matriz nxn de coeficientes
-    // B = std::vector< std::vector<double> > (2, std::vector<double>(1)); // Matriz nx1 de terminos independientes
-    // X = std::vector< std::vector<double> > (2, std::vector<double>(2)); // Matriz 2x2 de soluciones
-
 
     for (size_t i = 0; i < n.size(); i++) {
       nlogs.push_back(n.at(i) * log10(n.at(i)));
@@ -483,19 +473,155 @@ Data Type: struct timespec
                         // PRODUCTO DE MATRICES (NxN)
 ////////////////////////////////////////////////////////////////////////////////
 
-  void rellenarMatriz(std::vector< std::vector<double> > &v) {
-    srand(time(NULL));
+  // Función para realizar los sumatorios de los tamaños de las pruebas
+  void sumatorioXMatriz(std::vector< std::vector<double> > &A, const std::vector<double> v) {
+    A.clear();  // Se limpia la matriz.
+    int sumaA;  // Sumatorio
 
-    for (size_t i = 0; i < v.size(); ++i) {
-      for (size_t j = 0; j < v.size(); ++j) {
-        v[i].at(j) = (rand() % 10 + 95) / 100;
+    A = std::vector< std::vector<double> > (3, std::vector<double>(3));
+
+    // Recorre la matriz para ir colocando los sumatorios en sus posiciones
+    for (size_t i = 0; i < A.size(); i++) {
+      for (size_t j = 0; j < A.size(); j++) {
+        sumaA = 0; // Reiniciamos el valor.
+
+        for (size_t k = 0; k < v.size(); k++) {
+          sumaA += pow(v.at(k), i + j);  // Sumatorio de los valores de tamaño de cada posición de A.
+        }
+        A[i][j] = sumaA;  // Se asigna el valor a su posicion
       }
     }
   }
 
 ////////////////////////////////////////////////////////////////////////////////
 
+  // Función para realizar los sumatorios de los tiempos de las pruebas
+  void sumatorioYMatriz(std::vector< std::vector<double> > &B, const std::vector<double> v, const std::vector<double> treal) {
+    B.clear();  // Se limpia la matriz.
+    int sumaB;  // Sumatorio
 
+    B = std::vector< std::vector<double> > (2, std::vector<double>(2));
+
+    for (size_t i = 0; i < B.size(); i++) {
+      sumaB = 0; // Reiniciamos el valor.
+
+      for (size_t k = 0; k < v.size(); k++) {
+        sumaB += (treal.at(k) * pow(v.at(k), i));  // Sumatorio de los valores de tiempos de cada posición de B.
+      }
+      B[i][0] = sumaB;  // Se asigna el valor a su posicion
+    }
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+  // Funcion que asigna valores entre 0.95 y 1.05
+  void rellenarMatriz(std::vector< std::vector<double> > &V, int n) {
+    V = std::vector< std::vector<double> > (n, std::vector<double>(n));
+
+    for (size_t i = 0; i < V.size(); ++i) {
+      for (size_t j = 0; j < V.size(); ++j) {
+        V[i][j] = (double)(95 + rand() % (105 - 95)) / 100;
+      }
+    }
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+
+  // Se realiza un ajuste polinomico de grado 3
+  void ajustePolinomico(const vector <double> &n, const vector <double> &tiemposReales, vector <double> &a) {
+    std::vector< std::vector<double> > A; // Matriz nxn de coeficientes
+    std::vector< std::vector<double> > B; // Matriz nx1 de terminos independientes
+    std::vector< std::vector<double> > X(3, std::vector<double>(3)); // Matriz 3x3 de soluciones
+
+    for (size_t i = 0; i < n.size(); i++) {
+      nlogs.push_back(n.at(i) * log10(n.at(i)));
+    }
+
+    // std::cout << "\nVector de NLogN:" << '\n';
+    // imprimeVectorDouble(nlogs);
+
+    sumatorioX(A, nlogs);
+    std::cout << "\nMatriz de sumatorios de tamaños:" << '\n';
+    imprimeMatriz(A);
+
+    sumatorioY(B, nlogs, tiemposReales);
+    std::cout << "\nMatriz de términos independientes:" << '\n';
+    imprimeMatriz(B);
+
+    // Resolucion del ajuste para hallar las incógnitas "a0" y "a1"
+    resolverSistemaEcuaciones(A, B, 2, X);
+    std::cout << "\nMatriz de soluciones:" << '\n';
+    imprimeMatriz(X);
+
+    // Guardamos las soluciones
+    a0 = X[0][0];
+    a1 = X[1][0];
+
+
+
+
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+
+  // Se calculan los tiempos estimados
+  void calcularTiemposEstimadosPolinomico(const vector <double> &n, const vector <double> &tiemposReales, const vector <double> &a, vector<double> &tiemposEstimados) {
+
+
+
+
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+
+  // Se calcula el tiempo estimado para un valor de N
+  double calcularTiempoEstimadoPolinomico(const double &n, const vector<double> &a) {
+
+
+
+
+
+
+  }
+
+////////////////////////////////////////////////////////////////////////////////
+
+  // Funcion que realiza las pruebas sobre las matrices
+  void realizarExperimentoMatrices(std::vector< std::vector<double> > &M1, std::vector< std::vector<double> > &M2, std::vector< std::vector<double> > &P, int &min, const int &max, const int &incremento) {
+    while (min <= max) {
+      // Se rellenan las matrices con valores entre 0.95 y 1.05
+      rellenarMatriz(M1, min);
+      rellenarMatriz(M2, min);
+      std::cout << "\nMatriz 1:" << '\n';
+      imprimeMatriz(M1);
+      std::cout << "\nMatriz 2:" << '\n';
+      imprimeMatriz(M2);
+
+      P = std::vector< std::vector<double> > (min, std::vector<double>(min));
+      // Se realiza el producto de matrices
+      multiplicarMatrices(M1, M2, P);
+      std::cout << "\nProducto:" << '\n';
+      imprimeMatriz(P);
+
+
+      min += incremento;
+    }
+
+
+
+  }
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -528,6 +654,8 @@ int main() {
   double N; // Número de elementos para la estimación
 
   int opcion; // Selecciona la parte del programa a ejecutar
+
+  srand(time(NULL));  // Inicialización de la semilla de tiempo
 
 
 
@@ -669,16 +797,8 @@ int main() {
       std::cout << '\n';
 
 
-      M1 = std::vector< std::vector<double> > (min, std::vector<double>(min));
-      M2 = std::vector< std::vector<double> > (min, std::vector<double>(min));
+      realizarExperimentoMatrices(M1, M2, P, min, max, incremento);
 
-      rellenarMatriz(M1);
-      rellenarMatriz(M2);
-
-      imprimeMatriz(M1);
-      imprimeMatriz(M2);
-
-      multiplicarMatrices(M1, M2, P);
 
 
 
