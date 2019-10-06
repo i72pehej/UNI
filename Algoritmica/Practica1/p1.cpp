@@ -240,11 +240,11 @@ Data Type: struct timespec
 ////////////////////////////////////////////////////////////////////////////////
 
   // Función para realizar los sumatorios de los tamaños de las pruebas
-  void sumatorioX(std::vector< std::vector<double> > &A, const std::vector<double> v) {
+  void sumatorioX(std::vector< std::vector<double> > &A, const std::vector<double> v, const int tam) {
     A.clear();  // Se limpia la matriz.
     int sumaA;  // Sumatorio
 
-    A = std::vector< std::vector<double> > (2, std::vector<double>(2));
+    A = std::vector< std::vector<double> > (tam, std::vector<double>(tam));
 
     // Recorre la matriz para ir colocando los sumatorios en sus posiciones
     for (size_t i = 0; i < A.size(); i++) {
@@ -262,11 +262,11 @@ Data Type: struct timespec
 ////////////////////////////////////////////////////////////////////////////////
 
   // Función para realizar los sumatorios de los tiempos de las pruebas
-  void sumatorioY(std::vector< std::vector<double> > &B, const std::vector<double> v, const std::vector<double> treal) {
+  void sumatorioY(std::vector< std::vector<double> > &B, const std::vector<double> v, const std::vector<double> treal, const int tam) {
     B.clear();  // Se limpia la matriz.
     int sumaB;  // Sumatorio
 
-    B = std::vector< std::vector<double> > (2, std::vector<double>(2));
+    B = std::vector< std::vector<double> > (tam, std::vector<double>(tam));
 
     for (size_t i = 0; i < B.size(); i++) {
       sumaB = 0; // Reiniciamos el valor.
@@ -306,11 +306,11 @@ Data Type: struct timespec
     // std::cout << "\nVector de NLogN:" << '\n';
     // imprimeVectorDouble(nlogs);
 
-    sumatorioX(A, nlogs);
+    sumatorioX(A, nlogs, 2);
     std::cout << "\nMatriz de sumatorios de tamaños:" << '\n';
     imprimeMatriz(A);
 
-    sumatorioY(B, nlogs, tiemposReales);
+    sumatorioY(B, nlogs, tiemposReales, 2);
     std::cout << "\nMatriz de términos independientes:" << '\n';
     imprimeMatriz(B);
 
@@ -473,44 +473,9 @@ Data Type: struct timespec
                         // PRODUCTO DE MATRICES (NxN)
 ////////////////////////////////////////////////////////////////////////////////
 
-  // Función para realizar los sumatorios de los tamaños de las pruebas
-  void sumatorioXMatriz(std::vector< std::vector<double> > &A, const std::vector<double> v) {
-    A.clear();  // Se limpia la matriz.
-    int sumaA;  // Sumatorio
-
-    A = std::vector< std::vector<double> > (3, std::vector<double>(3));
-
-    // Recorre la matriz para ir colocando los sumatorios en sus posiciones
-    for (size_t i = 0; i < A.size(); i++) {
-      for (size_t j = 0; j < A.size(); j++) {
-        sumaA = 0; // Reiniciamos el valor.
-
-        for (size_t k = 0; k < v.size(); k++) {
-          sumaA += pow(v.at(k), i + j);  // Sumatorio de los valores de tamaño de cada posición de A.
-        }
-        A[i][j] = sumaA;  // Se asigna el valor a su posicion
-      }
-    }
-  }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-  // Función para realizar los sumatorios de los tiempos de las pruebas
-  void sumatorioYMatriz(std::vector< std::vector<double> > &B, const std::vector<double> v, const std::vector<double> treal) {
-    B.clear();  // Se limpia la matriz.
-    int sumaB;  // Sumatorio
-
-    B = std::vector< std::vector<double> > (2, std::vector<double>(2));
-
-    for (size_t i = 0; i < B.size(); i++) {
-      sumaB = 0; // Reiniciamos el valor.
-
-      for (size_t k = 0; k < v.size(); k++) {
-        sumaB += (treal.at(k) * pow(v.at(k), i));  // Sumatorio de los valores de tiempos de cada posición de B.
-      }
-      B[i][0] = sumaB;  // Se asigna el valor a su posicion
-    }
-  }
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -545,18 +510,11 @@ Data Type: struct timespec
     std::vector< std::vector<double> > B; // Matriz nx1 de terminos independientes
     std::vector< std::vector<double> > X(3, std::vector<double>(3)); // Matriz 3x3 de soluciones
 
-    for (size_t i = 0; i < n.size(); i++) {
-      nlogs.push_back(n.at(i) * log10(n.at(i)));
-    }
-
-    // std::cout << "\nVector de NLogN:" << '\n';
-    // imprimeVectorDouble(nlogs);
-
-    sumatorioX(A, nlogs);
+    sumatorioX(A, n, 3);
     std::cout << "\nMatriz de sumatorios de tamaños:" << '\n';
     imprimeMatriz(A);
 
-    sumatorioY(B, nlogs, tiemposReales);
+    sumatorioY(B, n, tiemposReales, 3);
     std::cout << "\nMatriz de términos independientes:" << '\n';
     imprimeMatriz(B);
 
@@ -566,12 +524,9 @@ Data Type: struct timespec
     imprimeMatriz(X);
 
     // Guardamos las soluciones
-    a0 = X[0][0];
-    a1 = X[1][0];
-
-
-
-
+    a.at(0) = X[0][0];
+    a.at(1) = X[1][0];
+    a.at(2) = X[2][0];
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -593,13 +548,20 @@ Data Type: struct timespec
 
 
 
-
+    return 0;
   }
 
 ////////////////////////////////////////////////////////////////////////////////
 
   // Funcion que realiza las pruebas sobre las matrices
   void realizarExperimentoMatrices(std::vector< std::vector<double> > &M1, std::vector< std::vector<double> > &M2, std::vector< std::vector<double> > &P, int &min, const int &max, const int &incremento) {
+    Clock time;
+    // Comienza a contar el contador
+    time.start();
+
+
+
+
     while (min <= max) {
       // Se rellenan las matrices con valores entre 0.95 y 1.05
       rellenarMatriz(M1, min);
@@ -614,6 +576,38 @@ Data Type: struct timespec
       multiplicarMatrices(M1, M2, P);
       std::cout << "\nProducto:" << '\n';
       imprimeMatriz(P);
+
+
+
+/*
+
+          // Se detiene el cronómetro.
+          if (time.isStarted()) {
+            time.stop();
+            // std::cout << "\tHan pasado " << time.elapsed() << " microsegundos.\n";
+          }
+          
+        // Guardado de los valores en un vector
+        tiempos.push_back(suma / contador);
+        // std::cout << "\nVector de tiempos:" << '\n';
+        // imprimeVectorDouble(tiempos);
+
+        // Almacenar numero de elementos y tiempo medio en un fichero de texto
+        // guardaEnFichero(tiempos.back(), minimo);
+        std::cout << '\n' << minimo;
+        n.push_back(minimo);
+        std::cout << " " << tiempos.back() << '\n';
+        tiemposReales.push_back(tiempos.back());
+
+        // Incremento del tamaño del vector.
+        minimo += incremento;
+*/
+
+
+
+
+
+
 
 
       min += incremento;
@@ -653,16 +647,18 @@ int main() {
   char respuesta; // Respuesta del usuario para realizar estimaciones
   double N; // Número de elementos para la estimación
 
+
+
   int opcion; // Selecciona la parte del programa a ejecutar
-
-  srand(time(NULL));  // Inicialización de la semilla de tiempo
-
-
 
   std::vector< std::vector<double> > M1; // Matrices para la segunda parte del programa
   std::vector< std::vector<double> > M2; // Matrices para la segunda parte del programa
   std::vector< std::vector<double> > P; // Matrices para la segunda parte del programa
 
+  srand(time(NULL));  // Inicialización de la semilla de tiempo
+
+  double a2;  // Variable para guardar el resultado del sistema
+  std::vector<double> a(3);  // Vector donde guardar los resultados del sistema
 
 
 
@@ -796,12 +792,15 @@ int main() {
       std::cin >> incremento;
       std::cout << '\n';
 
-
+      // Se realizan las pruebas
       realizarExperimentoMatrices(M1, M2, P, min, max, incremento);
 
-
-
-
+      // Se realiza el ajuste, para obtener las incognitas
+      ajustePolinomico(n, tiemposReales, a);
+      a0 = a.at(0);
+      a1 = a.at(1);
+      a2 = a.at(2);
+      imprimeVectorDouble(a);
 
 
 
