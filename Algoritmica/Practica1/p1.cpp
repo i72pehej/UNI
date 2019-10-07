@@ -571,16 +571,16 @@ Data Type: struct timespec
       // Se rellenan las matrices con valores entre 0.95 y 1.05
       rellenarMatriz(M1, min);
       rellenarMatriz(M2, min);
-      std::cout << "\nMatriz 1:" << '\n';
-      imprimeMatriz(M1);
-      std::cout << "\nMatriz 2:" << '\n';
-      imprimeMatriz(M2);
+      // std::cout << "\nMatriz 1:" << '\n';
+      // imprimeMatriz(M1);
+      // std::cout << "\nMatriz 2:" << '\n';
+      // imprimeMatriz(M2);
 
       P = std::vector< std::vector<double> > (min, std::vector<double>(min));
       // Se realiza el producto de matrices
       multiplicarMatrices(M1, M2, P);
-      std::cout << "\nProducto:" << '\n';
-      imprimeMatriz(P);
+      // std::cout << "\nProducto:" << '\n';
+      // imprimeMatriz(P);
 
       // Se detiene el cronómetro.
       if (time.isStarted()) {
