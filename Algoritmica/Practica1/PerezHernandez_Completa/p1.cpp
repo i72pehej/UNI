@@ -369,8 +369,8 @@ Data Type: struct timespec
 
   // Funcion para calcular el coeficiente de determinacion
   double calcularCoeficienteDeterminacion(const std::vector<double> &tiemposReales, const std::vector<double> &tiemposEstimados) {
-    double varReales, mediaReales;
-    double varEstimados, mediaEstimados;
+    double varReales = 0, mediaReales = 0;
+    double varEstimados = 0, mediaEstimados = 0;
 
     for (size_t i = 0; i < tiemposReales.size(); i++) {mediaReales += tiemposReales.at(i);}
     mediaReales /= tiemposReales.size();
