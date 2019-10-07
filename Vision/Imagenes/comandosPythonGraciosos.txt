@@ -1,0 +1,40 @@
+import cv2
+import numpy as np
+img1 = cv2.imread('chroma-key.jpg')
+img2 = cv2.imread('paisaje.jpg')
+img.shape
+img1.shape
+clear
+cv2.imshow('',img1); cv2.waitKey(0); cv2.destroyAllWindows();
+clear
+cv2.imshow('',img2); cv2.waitKey(0); cv2.destroyAllWindows();
+clear
+img3 = cv2.resize(img2, (660, 330))
+cv2.imshow('',img3); cv2.waitKey(0); cv2.destroyAllWindows();
+clear
+channels = cv2.split(img1)
+channels
+mask = channels[1] > 252
+mask
+mask = cv2.compare(img1, 250, cv2.CMP_GT)
+mask
+mask = cv2.compare(channels[1], 250, cv2.CMP_GT)
+mask
+cv2.imshow('',mask); cv2.waitKey(0); cv2.destroyAllWindows();
+comp = cv2.bitwise_or(cv2.bitwise_and(img1, cv2.bitwise_not(mask)), cv2.bitwise_and(img3, mask))
+mask = cv2.merge([mask, mask, mask])
+mask
+comp = cv2.bitwise_or(cv2.bitwise_and(img1, cv2.bitwise_not(mask)), cv2.bitwise_and(img3, mask))
+cv2.imshow('', comp); cv2.waitKey(0); cv2.destroyAllWindows();
+mask = cv2.compare(channels[1], 240, cv2.CMP_GT)
+mask = cv2.merge([mask, mask, mask])
+comp = cv2.bitwise_or(cv2.bitwise_and(img1, cv2.bitwise_not(mask)), cv2.bitwise_and(img3, mask))
+cv2.imshow('', comp); cv2.waitKey(0); cv2.destroyAllWindows();
+comp = cv2.bitwise_or(cv2.bitwise_and(img1, cv2.bitwise_not(mask)), cv2.bitwise_and(img3, mask))
+mask = cv2.compare(channels[1], 210, cv2.CMP_GT)
+mask = cv2.merge([mask, mask, mask])
+comp = cv2.bitwise_or(cv2.bitwise_and(img1, cv2.bitwise_not(mask)), cv2.bitwise_and(img3, mask))
+cv2.imshow('', comp); cv2.waitKey(0); cv2.destroyAllWindows();
+q
+%history
+
