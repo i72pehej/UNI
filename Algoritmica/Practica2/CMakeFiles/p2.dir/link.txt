@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/p2.dir/p2.cpp.o  -o p2 
