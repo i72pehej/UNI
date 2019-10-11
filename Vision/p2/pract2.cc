@@ -9,12 +9,12 @@
 //#include <opencv2/calib3d/calib3d.hpp>
 
 const cv::String keys =
-  "{help h usage ? |      | print this message   }"
+  "{help h usage ?  |      | print this message }"
+  "{@image          |      | image for process  }"
   // "{path           |.     | path to file         }"
   // "{fps            | -1.0 | fps for output video }"
   // "{N count        |100   | count of objects     }"
   // "{ts timestamp   |      | use time stamp       }"
-  "{@image1        |      | image1 for compare   }"
   // "{@image2        |<none>| image2 for compare   }"
   // "{@repeat        |1     | number               }"
 ;
@@ -81,8 +81,6 @@ int main (int argc, char* const* argv) {
     //Visualizo la imagen cargada en la ventana.
     cv::imshow("IMAGEN ORIGINAL", img);
 
-
-
     // Normalizamos la imagen que se carga
     cv::Mat img_procesada;
     img.convertTo(img_procesada, CV_32F, 1.0 / 255, 0);
@@ -91,26 +89,47 @@ int main (int argc, char* const* argv) {
     cv::namedWindow("IMAGEN PROCESADA");
     cv::imshow("IMAGEN PROCESADA", img_procesada);
 
+    // Se comprueba que la imagen sea RGB (3 canales)
+    bool esRGB = false;
+    if (img_procesada.channels() == 3) {esRGB = true;}
 
-    for (size_t i = 0; i < img_procesada.rows; i++) {
-      for (size_t j = 0; j < img_procesada.cols; j++) {
-        cv::Vec3b pixel = img_procesada.at<cv::Vec3b>(i, j);
+    // Si es RGB el proceso se aplica solo a la iluminancia (V) en HSV
+    if (esRGB == true) {
+      cv::Mat img_salida = img_procesada.clone();
+      cv::Mat canalesHSV[3];
+
+      // Se transforma al formato HSV
+      cv::cvtColor(img_salida, img_salida, CV_BGR2HSV);
+
+      // Se separan los canales para poder procesar solo el canal V
+      cv::split(img_salida, canalesHSV);
+
+
+      // Se realiza el procesamiento del canal V
+      for (size_t i = 0; i < img_salida.rows; i++) {
+        for (size_t j = 0; j < img_salida.cols; j++) {
+          cv::Vec3b pixel = img_salida.at<cv::Vec3b>(i, j);
 
           uchar B = pixel[0];
           uchar G = pixel[1];
           uchar R = pixel[2];
 
           // gray.at<uchar>(i, j) = (B + G + R) / 3;
-
-
-
-        // if (img) {
-        //   /* code */
-        // }
-
-
+        }
       }
+
+
+      // Se vuelven a unir los 3 canales en la imagen
+      img_salida.merge();
+
+    } else {
+
+
+
+
+
     }
+
 
 
 
