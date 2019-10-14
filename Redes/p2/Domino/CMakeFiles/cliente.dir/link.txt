@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/cliente.dir/ejemploClienteTCP.c.o  -o cliente 

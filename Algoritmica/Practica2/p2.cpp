@@ -49,18 +49,28 @@ int main(int argc, char const *argv[]) {
   }
 
 
-  // PULSE INTRO PARA CONTINUAR
-  std::cout << "\n\n" << '\n';
 
 
+  // Selecciona realizar el apartado opcional
+  std::cout << "\n\n¿Desea visualizar las tablas de las soluciones?" << '\n';
+  std::cout << "-----------------------------------" << '\n';
+  std::cout << "\t(1) ------ SI\n\t(2) ------ NO" << '\n';
+  std::cout << "-----------------------------------" << '\n';
+  std::cout << "Opcion: ";
+  std::cin >> opcion;
+  std::cout << '\n';
 
   switch (opcion) {
-    case 0:
+    case 1: // Se imprimen las tablas de soluciones
+      system("clear");
+
+
 
     break;
 
-    case 1:
-
+    case 2: // No se desea imprimir las tablas de soluciones
+      system("clear");
+      std::cout << "\n\nTerminando programa . . ." << '\n';
     break;
   }
 

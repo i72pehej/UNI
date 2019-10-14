@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/servidor.dir/servidorprueba.c.o  -o servidor 

@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/julen/i72pehej/Uni_3/Redes/p2/Domino/clases.h
+stdio.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+netdb.h
+-
+stdlib.h
+-
+string.h
+-
+math.h
+-
+stdbool.h
+-
+time.h
+-
+unistd.h
+-
+
+/home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorprueba.c
+clases.h
+/home/julen/i72pehej/Uni_3/Redes/p2/Domino/clases.h
+
