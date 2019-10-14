@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica2/p2.cpp
+cassert
+-
+ctime
+-
+cstdio
+-
+stdio.h
+-
+stdlib.h
+-
+iostream
+-
+cstring
+-
+stdint.h
+-
+vector
+-
+fstream
+-
+cmath
+-
+string
+-
+p2.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica2/p2.hpp
+
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica2/p2.hpp
+
