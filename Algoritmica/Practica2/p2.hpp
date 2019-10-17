@@ -44,6 +44,7 @@ void calcularCaminos(const int fila, const int columna, int &nCaminos, std::vect
 
     nCaminos++;
   }
+  
   // Se realiza la comprobacion de caminos con las 4 posibles posiciones de las
   else {
     m[fila][columna] = 1; // Colocamos
