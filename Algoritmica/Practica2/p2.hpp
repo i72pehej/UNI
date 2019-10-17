@@ -6,6 +6,16 @@
 
 // Imprime el camino que se reconoce de la matriz
 void imprimeMatriz(const std::vector< std::vector<int> > &m) {
+  system("clear");  // Se limpia la terminal
+
+  int opt; // Opcion
+
+  std::cout << "Would you desire to show the paths?" << '\n';
+  std::cout << "(1) ------ YES\n(2) ------ NO" << '\n';
+  std::cin >> opt;
+
+
+
   std::cout << "Camino: ";
   for (int i = 0; i < m.size(); i++) {
     for (int j = 0; j < m.size(); j++) {
@@ -44,7 +54,7 @@ void calcularCaminos(const int fila, const int columna, int &nCaminos, std::vect
 
     nCaminos++;
   }
-  
+
   // Se realiza la comprobacion de caminos con las 4 posibles posiciones de las
   else {
     m[fila][columna] = 1; // Colocamos

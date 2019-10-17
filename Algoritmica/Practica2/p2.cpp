@@ -82,6 +82,8 @@ int main(int argc, char const *argv[]) {
 
         std::cout << "Caminos para [8," << columnaFinal + 1 << "] = " << nCaminos << '\n';
 
+
+
         std::cout << "\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
         std::cin.ignore();
         std::cin.ignore();

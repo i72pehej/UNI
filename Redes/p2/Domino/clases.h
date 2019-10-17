@@ -1,4 +1,4 @@
-#include <stdio.h>
+ff#include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -17,7 +17,7 @@
 // Estructura para las posiciones de las fichas
 struct ficha
 {
-	int izq;
+	int izq;	//
 	int der;
 };
 
@@ -51,11 +51,11 @@ struct part
 ////////////////////////////////////////////////////////////////////////////
 
 void iniciarDomino(struct part n, struct clients *clientes);	// Inicia la partida de DOMINÓ con los jugadores
-bool ponerFicha(struct part n, struct ficha k);								// Pone la ficha seleccionada en la mesa
+bool ponerFicha(struct part p, struct ficha f);								// Pone la ficha seleccionada en la mesa
 void quitarFicha(struct clients *c, struct ficha f, int n);		// Quita la ficha seleccionada de la mano
 void verFichas(struct clients c);															// Muestra al cliente sus fichas
 int fichaMayor(struct clients cli);														// Devuelve la mayor suma de los valores entre las fichas del jugador
-int comprobarDobles(struct clients *cli);											// Devuelve el jugador con el mayor doble
+int comprobarTurno(struct clients *cli);											// Devuelve el jugador con el mayor doble o mayor
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -109,87 +109,91 @@ void iniciarDomino(struct part n, struct clients *clientes)
 
 ////////////////////////////////////////////////////////////////////////////
 
-bool ponerFicha(struct part n, struct ficha k/*, char extremo[25]*/)
+bool ponerFicha(struct part p, struct ficha f/*, char extremo[25]*/)
 {
 	int i, j;
 	char aux[200];	// Tablero auxiliar
 	char aux2[10];
-	strcpy(aux, n.tablero);
+	strcpy(aux, p.tablero);
 	//printf("\n-->>>>>>>>>><PONIENDO FICHAAA\n");
 
-	if((k.izq == 6) && (k.der == 6))
+/*
+	if((f.izq == 6) && (f.der == 6))
 	{
 		//printf("\nPrimera mano\n");
 		n.start = 1;
 		strcpy(n.tablero, "");
-		sprintf(n.tablero, "|%d|%d|", k.der, k.izq);
+		sprintf(n.tablero, "|%d|%d|", f.der, f.izq);
 
-		n.derecha = k.der;
-		n.izquierda = k.izq;
+		n.derecha = f.der;
+		n.izquierda = f.izq;
 
 		printf("\nTABLERO\n%s\n", n.tablero);
 
 		return true;
 	}
+	*/
+
+	if (p.tablero == NULL) {
+		/* code */
+	}
+
+	//printf("\nOtra mano\n");
+	//printf("\nIzquierda: %d\n", n.izquierda);
+	//printf("\nDerecha: %d\n", n.derecha);
+	//printf("Ficha: | %d | %d | \n",f.izq, f.der);
+
+	else if (p.izquierda == f.izq)
+	{
+		strcpy(p.tablero, "");
+		sprintf(p.tablero, "|%d|%d|", f.der, f.izq);
+		sprintf(p.tablero, "%s%s",p.tablero, aux);
+
+		p.izquierda=f.der;
+
+		printf("\nTABLERO\n%s\n", p.tablero);
+
+		return true;
+	}
+	else if (p.izquierda == f.der)
+	{
+		strcpy(p.tablero, "");
+		sprintf(p.tablero, "|%d|%d|", f.izq, f.der);
+		sprintf(p.tablero, "%s%s",p.tablero, aux);
+
+		p.izquierda = f.izq;
+
+		printf("\nTABLERO\n%s\n", p.tablero);
+
+		return true;
+	}
+	else if(p.derecha==f.izq)
+	{
+		sprintf(aux2, "|%d|%d|", f.izq, f.der);
+		sprintf(p.tablero, "%s%s",p.tablero, aux2);
+
+		p.derecha = f.der;
+
+		printf("\nTABLERO\n%s\n", p.tablero);
+
+		return true;
+	}
+	else if (p.derecha == f.der)
+	{
+		sprintf(aux2, "|%d|%d|", f.der, f.izq);
+		sprintf(p.tablero, "%s%s", p.tablero, aux2);
+
+		p.derecha = f.izq;
+
+		printf("\nTABLERO\n%s\n", p.tablero);
+
+		return true;
+	}
 	else
 	{
-		//printf("\nOtra mano\n");
-		//printf("\nIzquierda: %d\n", n.izquierda);
-		//printf("\nDerecha: %d\n", n.derecha);
-		//printf("Ficha: | %d | %d | \n",k.izq, k.der);
-		if(n.izquierda == k.izq)
-		{
-			strcpy(n.tablero, "");
-			sprintf(n.tablero, "|%d|%d|", k.der, k.izq);
-			sprintf(n.tablero, "%s%s",n.tablero, aux);
+		printf("\n-ERR\n\n");
 
-			n.izquierda=k.der;
-
-			printf("\nTABLERO\n%s\n", n.tablero);
-
-			return true;
-		}
-		else if (n.izquierda == k.der)
-		{
-			strcpy(n.tablero, "");
-			sprintf(n.tablero, "|%d|%d|", k.izq, k.der);
-			sprintf(n.tablero, "%s%s",n.tablero, aux);
-
-			n.izquierda = k.izq;
-
-			printf("\nTABLERO\n%s\n", n.tablero);
-
-			return true;
-		}
-		else if(n.derecha==k.izq)
-		{
-
-			sprintf(aux2, "|%d|%d|", k.izq, k.der);
-			sprintf(n.tablero, "%s%s",n.tablero, aux2);
-
-			n.derecha = k.der;
-
-			printf("\nTABLERO\n%s\n", n.tablero);
-
-			return true;
-		}
-		else if (n.derecha == k.der)
-		{
-			sprintf(aux2, "|%d|%d|", k.der, k.izq);
-			sprintf(n.tablero, "%s%s", n.tablero, aux2);
-
-			n.derecha = k.izq;
-
-			printf("\nTABLERO\n%s\n", n.tablero);
-
-			return true;
-		}
-		else
-		{
-			printf("\n-ERR\n\n");
-
-			return false;
-		}
+		return false;
 	}
 }
 
@@ -252,12 +256,14 @@ int fichaMayor(struct clients cli)
 {
 	int i, mayor;
 
+	// Valor inicial para "mayor"
 	mayor = cli.fichas[0].izq + cli.fichas[0].der;
 	for (i = 1; i < 7; i++)
 	{
+		// Comprobacion del valor total de la ficha
 		if(mayor < (cli.fichas[i].izq + cli.fichas[i].der))
 		{
-			mayor = cli.fichas[i].izq + cli.fichas[i].der;
+			mayor = cli.fichas[i].izq + cli.fichas[i].der;	// Guarda el mayor valor
 		}
 	}
 
@@ -266,20 +272,30 @@ int fichaMayor(struct clients cli)
 
 ////////////////////////////////////////////////////////////////////////////
 
-int comprobarDobles(struct clients *cli)
+int comprobarTurno(struct clients *cli, struct part n)
 {
-	int k, j;
+	int i, j, k;
 
-	for(k = 0; k < 2; k++)
+	// Comprobacion de las fichas 6 a 0
+	for(j = 6; j >= 0; j--)
 	{
-		for(j = 6; j <= 0; j--)
+		// Comprobacion para los dos jugadores
+		for(k = 0; k < 2; k++)
 		{
-			if((cli[k].fichas[j].izq == j) && (cli[k].fichas[j].der == j))
-			{
-				return k;
+			// Comprobacion de cada ficha
+			for (i = 0; i < 7; i++) {
+				// Comprobacion de fichas dobles
+				if((cli[k].fichas[i].izq == j) && (cli[k].fichas[i].der == j))
+				{
+					ponerFicha(n, cli[k].fichas[i]);
+					quitarFicha();
+
+					return k;	// Retorna el jugador que posee la mayor ficha doble
+				}
 			}
 		}
 	}
+	// En caso de no tener dobles, sale el jugador con la mayor ficha
 	if(fichaMayor(cli[0]) > fichaMayor(cli[1]))
 	{
 		return 0;

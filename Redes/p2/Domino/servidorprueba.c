@@ -329,7 +329,7 @@ int main ( ) {
 									iniciarDomino(party[nMesa], cli);
 
 									// Asigna el turno al jugador correspondiente
-									party[nMesa].turno = cli[comprobarDobles(cli)].socket;
+									party[nMesa].turno = cli[comprobarTurno(cli, party)].socket;
 
 									// Se muestran las fichas a cada jugador, su orden y su turno
                   for(x = 0; x < 2; x++)
