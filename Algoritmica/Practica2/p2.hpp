@@ -8,27 +8,19 @@
 void imprimeMatriz(const std::vector< std::vector<int> > &m, const int n) {
   system("clear");  // Se limpia la terminal
 
-  // int opt; // Opcion
-  //
-  // std::cout << "\n\nWould you desire to show the paths?" << '\n';
-  // std::cout << "(1) ------ YES\n(2) ------ NO" << '\n';
-  // std::cin >> opt;
-
-  // if (opt == 1) {
-    std::cout << "Camino: " << n << '\n';
-    for (int i = 0; i < m.size(); i++) {
-      for (int j = 0; j < m.size(); j++) {
-        // Posicion del movimiento de la ficha
-        if (m[i][j] == 1) {
-          std::cout << "|X|";
-        }
-        else {
-          std::cout << "| |";
-        }
+  std::cout << "Camino: " << n << '\n';
+  for (int i = 0; i < m.size(); i++) {
+    for (int j = 0; j < m.size(); j++) {
+      // Posicion del movimiento de la ficha
+      if (m[i][j] == 1) {
+        std::cout << "|X|";
       }
-      std::cout << '\n';
+      else {
+        std::cout << "| |";
+      }
     }
-  // }
+    std::cout << '\n';
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -46,20 +38,19 @@ void imprimeMatriz(const std::vector< std::vector<int> > &m, const int n) {
 
 // Funcion para calcular los caminos posibles comenzando desde el final
 void calcularCaminos(const int fila, const int columna, int &nCaminos, std::vector< std::vector<int> > &m, const int opt) {
-    // Si se llega al principio del tablero, se ha encontrado un camino
-    if (fila == 0) {
-      nCaminos++; // Incremento del contador de caminos
-      m[fila][columna] = 1; // Asignamos posicion valida
+  // Si se llega al principio del tablero, se ha encontrado un camino
+  if (fila == 0) {
+    nCaminos++; // Incremento del contador de caminos
+    m[fila][columna] = 1; // Asignamos posicion valida
 
-      if (opt == 1) { // Se muestran los caminos
-        imprimeMatriz(m, nCaminos); // Imprime los caminos
-      }
-
-      m[fila][columna] = -1;  // Reincio del valor para continuar la busqueda del camino
-
-      std::cout << "\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
+    if (opt == 1) { // Se muestran los caminos
+      imprimeMatriz(m, nCaminos); // Imprime los caminos
+      std::cout << "\n\n\n\tPulse INTRO para continuar . . ." << '\n';
       std::cin.ignore();
     }
+
+    m[fila][columna] = -1;  // Reincio del valor para continuar la busqueda del camino
+  }
 
   // Se realiza la comprobacion de caminos con las 4 posibles posiciones de las
   else {
@@ -89,15 +80,6 @@ void calcularCaminos(const int fila, const int columna, int &nCaminos, std::vect
   m[fila][columna] = -1;
 }
 
-
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////
 
 #endif

@@ -78,21 +78,34 @@ int main(int argc, char const *argv[]) {
           std::cout << '\n';
         }
 
-        std::cout << "\n\nWould you desire to show the paths?" << '\n';
-        std::cout << "(1) ------ YES\n(2) ------ NO" << '\n';
+        // PARTE OPCIONAL: Selecciona si visualizar o no
+        std::cout << "\nWould you desire to show the paths?" << '\n';
+        std::cout << "\t(1) ------ YES\n\t(2) ------ NO" << '\n';
+        std::cout << "Option: ";
         std::cin >> opt;
+        std::cout << '\n';
 
         matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
         std::cin.ignore();
-        calcularCaminos(7, columnaFinal, nCaminos, matriz, opt); // Calcular los caminos
-        std::cout << "\tCaminos para [8," << columnaFinal + 1 << "] = " << nCaminos << '\n';
 
+        // Calcular primero el numero de caminos y despues mostrarlos
+        if (opt == 1) {
+          calcularCaminos(7, columnaFinal, nCaminos, matriz, 0); // Calcular los caminos
+          std::cout << "\tCaminos para [8," << columnaFinal + 1 << "]: " << nCaminos << '\n';
 
+          std::cout << "\n\n\n\tPulse INTRO para mostrar los caminos . . ." << '\n';
+          std::cin.ignore();
 
+          nCaminos = 0;
+          calcularCaminos(7, columnaFinal, nCaminos, matriz, opt); // Calcular los caminos
+        }
+        // Solo calcular el numero de caminos
+        else {
+          calcularCaminos(7, columnaFinal, nCaminos, matriz, opt); // Calcular los caminos
+          std::cout << "\tCaminos para [8," << columnaFinal + 1 << "] = " << nCaminos << '\n';
+        }
 
-
-        std::cout << "\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
-        std::cin.ignore();
+        std::cout << "\n\n\tFIN DE LOS CAMINOS\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
         std::cin.ignore();
       break;
 
