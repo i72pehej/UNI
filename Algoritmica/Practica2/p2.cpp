@@ -21,10 +21,11 @@
 
 int main(int argc, char const *argv[]) {
   int opcion ;  // Variable para el switch
+  int opt = 0;      // Opcion imprimir
 
   int columnaFinal; // Valor de la columna a la que se quiere llegar
   std::vector< std::vector<int> > matriz;
-  int nCaminos; // Numero de caminos para cada posicion
+  int nCaminos;     // Numero de caminos para cada posicion
 
 
   // Bucle infinito para poder realizar todas las opciones
@@ -77,10 +78,16 @@ int main(int argc, char const *argv[]) {
           std::cout << '\n';
         }
 
-        matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
-        calcularCaminos(7, columnaFinal, nCaminos, matriz); // Calcular los caminos
+        std::cout << "\n\nWould you desire to show the paths?" << '\n';
+        std::cout << "(1) ------ YES\n(2) ------ NO" << '\n';
+        std::cin >> opt;
 
-        std::cout << "Caminos para [8," << columnaFinal + 1 << "] = " << nCaminos << '\n';
+        matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
+        std::cin.ignore();
+        calcularCaminos(7, columnaFinal, nCaminos, matriz, opt); // Calcular los caminos
+        std::cout << "\tCaminos para [8," << columnaFinal + 1 << "] = " << nCaminos << '\n';
+
+
 
 
 
@@ -95,7 +102,7 @@ int main(int argc, char const *argv[]) {
         system("clear");  // Se limpia la terminal
 
         matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
-        calcularCaminos(7, 6, nCaminos, matriz); // Calcular los caminos (Posiciones simetricas)
+        calcularCaminos(7, 6, nCaminos, matriz, opt); // Calcular los caminos (Posiciones simetricas)
         std::cout << "Caminos para llegar a FILA 8 desde [1,2]: " << nCaminos << '\n';
 
         std::cout << "\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
@@ -109,7 +116,7 @@ int main(int argc, char const *argv[]) {
         system("clear");  // Se limpia la terminal
 
         matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
-        calcularCaminos(7, 1, nCaminos, matriz); // Calcular los caminos (Posiciones simetricas)
+        calcularCaminos(7, 1, nCaminos, matriz, opt); // Calcular los caminos (Posiciones simetricas)
         std::cout << "Caminos para llegar a FILA 8 desde [1,7]: " << nCaminos << '\n';
 
         std::cout << "\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
