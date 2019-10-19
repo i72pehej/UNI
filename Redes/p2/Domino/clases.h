@@ -1,4 +1,4 @@
-ff#include <stdio.h>
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -43,6 +43,7 @@ struct part
 	int derecha;
 	int usuarios[2];
 	struct ficha fichas[28];
+	int fichasMonton;
 	int turno;
 	int start; // Varible de control
 	int pasar;
@@ -52,12 +53,16 @@ struct part
 
 void iniciarDomino(struct part n, struct clients *clientes);	// Inicia la partida de DOMINÓ con los jugadores
 bool ponerFicha(struct part p, struct ficha f);								// Pone la ficha seleccionada en la mesa
-void quitarFicha(struct clients *c, struct ficha f, int n);		// Quita la ficha seleccionada de la mano
+void quitarFicha(struct clients c, struct ficha f);						// Quita la ficha seleccionada de la mano
 void verFichas(struct clients c);															// Muestra al cliente sus fichas
-int fichaMayor(struct clients cli);														// Devuelve la mayor suma de los valores entre las fichas del jugador
-int comprobarTurno(struct clients *cli);											// Devuelve el jugador con el mayor doble o mayor
+struct ficha fichaMayor(struct clients cli);									// Devuelve la mayor ficha entre las fichas del jugador
+int comprobarTurno(struct clients *cli, struct part n);				// Devuelve el jugador con el mayor doble o mayor
+void quitarFichaMonton(struct part n, struct ficha f);
+bool Robarficha(struct clients cli, struct part n);
 
 ////////////////////////////////////////////////////////////////////////////
+
+
 
 void iniciarDomino(struct part n, struct clients *clientes)
 {
@@ -66,7 +71,7 @@ void iniciarDomino(struct part n, struct clients *clientes)
 	k = 0;
 	clientes[0].nFichas = 0;
 	clientes[1].nFichas = 0;
-
+	n.fichasMonton=29;
 
 	// Creacion de las fichas
 	for(i = 0; i < 7; i++)
@@ -91,14 +96,17 @@ void iniciarDomino(struct part n, struct clients *clientes)
 		k = rand() % 2;	// Valor entre 0-1
 
 		(clientes[k % 2]).fichas[i] = n.fichas[j];
+		quitarFichaMonton(n,n.fichas[j]);
 		j++;
 
 		(clientes[(k + 1) % 2]).fichas[i] = n.fichas[j];
+		quitarFichaMonton(n,n.fichas[j]);
 		j++;
 
 
 		clientes[0].nFichas++;
 		clientes[1].nFichas++;
+		n.fichasMonton-=2;
 	}
 
 	if ((clientes[0].nFichas != 7) || (clientes[1].nFichas != 7)) {
@@ -117,25 +125,18 @@ bool ponerFicha(struct part p, struct ficha f/*, char extremo[25]*/)
 	strcpy(aux, p.tablero);
 	//printf("\n-->>>>>>>>>><PONIENDO FICHAAA\n");
 
-/*
-	if((f.izq == 6) && (f.der == 6))
-	{
-		//printf("\nPrimera mano\n");
-		n.start = 1;
-		strcpy(n.tablero, "");
-		sprintf(n.tablero, "|%d|%d|", f.der, f.izq);
+	// Cuando el tablero esta vacio, se coloca la ficha del jugador que empieza
+	if (p.tablero == NULL) {
+		p.start = 1;
+		strcpy(p.tablero, "");
+		sprintf(p.tablero, "|%d|%d|", f.der, f.izq);
 
-		n.derecha = f.der;
-		n.izquierda = f.izq;
+		p.derecha = f.der;
+		p.izquierda = f.izq;
 
-		printf("\nTABLERO\n%s\n", n.tablero);
+		printf("\nTABLERO\n%s\n", p.tablero);
 
 		return true;
-	}
-	*/
-
-	if (p.tablero == NULL) {
-		/* code */
 	}
 
 	//printf("\nOtra mano\n");
@@ -169,8 +170,9 @@ bool ponerFicha(struct part p, struct ficha f/*, char extremo[25]*/)
 	}
 	else if(p.derecha==f.izq)
 	{
-		sprintf(aux2, "|%d|%d|", f.izq, f.der);
-		sprintf(p.tablero, "%s%s",p.tablero, aux2);
+		strcpy(p.tablero, "");
+		sprintf(p.tablero, "|%d|%d|", f.izq, f.der);
+		sprintf(p.tablero, "%s%s",p.tablero, aux);
 
 		p.derecha = f.der;
 
@@ -180,8 +182,12 @@ bool ponerFicha(struct part p, struct ficha f/*, char extremo[25]*/)
 	}
 	else if (p.derecha == f.der)
 	{
-		sprintf(aux2, "|%d|%d|", f.der, f.izq);
-		sprintf(p.tablero, "%s%s", p.tablero, aux2);
+		/*sprintf(aux2, "|%d|%d|", f.der, f.izq);
+		sprintf(p.tablero, "%s%s", p.tablero, aux2);*/
+
+		strcpy(p.tablero, "");
+		sprintf(p.tablero, "|%d|%d|", f.izq, f.der);
+		sprintf(p.tablero, "%s%s",p.tablero, aux);
 
 		p.derecha = f.izq;
 
@@ -199,29 +205,45 @@ bool ponerFicha(struct part p, struct ficha f/*, char extremo[25]*/)
 
 ////////////////////////////////////////////////////////////////////////////
 
-void quitarFicha(struct clients *c, struct ficha f, int n)
+void quitarFicha(struct clients c, struct ficha f)
 {
 	//printf("\n-->>>>>>quitando FICHAAA\n");
-	char cad[100];
-	char aux[10];
-	strcpy(aux,"");
-	strcpy(cad, "");
 	int i;
 
-	for(i = 0; i < 7; i++)
+	// Recorremos las fichas del jugador
+	for(i = 0; i < c.nFichas; i++)
+	{
+		// Se encuentra la ficha que se quiere eliminar
+		if((f.izq == c.fichas[i].izq) && (f.der == c.fichas[i].der))
 		{
-		if((f.izq == c[n].fichas[i].izq) && (f.der == c[n].fichas[i].der))
-		{
-			c[n].fichas[i].izq = -1;
-			c[n].fichas[i].der = -1;
-		}
-		else
-		{
-			sprintf(aux, "|%d|%d| ", c[n].fichas[i].izq, c[n].fichas[i].der);
-			strcat(cad, aux);
+			while(i < c.nFichas - 1) {
+				c.fichas[i] = c.fichas[i + 1];	// Copiamos las fichas restantes
+			}
 		}
 	}
-	(c[n].nFichas)--;
+
+	c.nFichas--;
+}
+////////////////////////////////////////////////////////////////////////////
+
+void quitarFichaMonton(struct part n, struct ficha f)
+{
+	//printf("\n-->>>>>>quitando FICHAAA\n");
+	int i;
+
+	// Recorremos las fichas del jugador
+	for(i = 0; i < n.fichasMonton; i++)
+	{
+		// Se encuentra la ficha que se quiere eliminar
+		if((f.izq == n.fichas[i].izq) && (f.der == n.fichas[i].der))
+		{
+			while(i < n.fichasMonton - 1) {
+				n.fichas[i] = n.fichas[i + 1];	// Copiamos las fichas restantes
+			}
+		}
+	}
+
+	n.fichasMonton--;
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -230,9 +252,10 @@ void verFichas(struct clients c)
 {
 	char cad[100];
 	char aux[10];
+	int i;
+
 	strcpy(aux, "");
 	strcpy(cad, "");
-	int i;
 
 	for(i = 0; i < 7; i++)
 	{
@@ -252,10 +275,10 @@ void verFichas(struct clients c)
 
 ////////////////////////////////////////////////////////////////////////////
 
-int fichaMayor(struct clients cli)
+struct ficha fichaMayor(struct clients cli)
 {
 	int i, mayor;
-
+	struct ficha aux;
 	// Valor inicial para "mayor"
 	mayor = cli.fichas[0].izq + cli.fichas[0].der;
 	for (i = 1; i < 7; i++)
@@ -263,11 +286,11 @@ int fichaMayor(struct clients cli)
 		// Comprobacion del valor total de la ficha
 		if(mayor < (cli.fichas[i].izq + cli.fichas[i].der))
 		{
-			mayor = cli.fichas[i].izq + cli.fichas[i].der;	// Guarda el mayor valor
+			aux = cli.fichas[i];	// Guarda el mayor valor
 		}
 	}
 
-	return mayor;
+	return aux;
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -288,7 +311,7 @@ int comprobarTurno(struct clients *cli, struct part n)
 				if((cli[k].fichas[i].izq == j) && (cli[k].fichas[i].der == j))
 				{
 					ponerFicha(n, cli[k].fichas[i]);
-					quitarFicha();
+					quitarFicha(cli[k], cli[k].fichas[i]);
 
 					return k;	// Retorna el jugador que posee la mayor ficha doble
 				}
@@ -296,13 +319,27 @@ int comprobarTurno(struct clients *cli, struct part n)
 		}
 	}
 	// En caso de no tener dobles, sale el jugador con la mayor ficha
-	if(fichaMayor(cli[0]) > fichaMayor(cli[1]))
+	if((fichaMayor(cli[0]).izq + fichaMayor(cli[0]).der) > (fichaMayor(cli[1]).izq + fichaMayor(cli[1]).der))
 	{
+		ponerFicha(n, fichaMayor(cli[0]));
+		quitarFicha(cli[0], fichaMayor(cli[0]));
+
 		return 0;
 	}
 	else
 	{
+		ponerFicha(n, fichaMayor(cli[1]));
+		quitarFicha(cli[1], fichaMayor(cli[1]));
+
 		return 1;
 	}
 }
 ////////////////////////////////////////////////////////////////////////////
+bool Robarficha(struct clients cli, struct part n){
+
+struct ficha aux;
+aux=n.fichas[0];
+cli.nFichas++;
+cli.fichas[cli.nFichas]=aux;
+quitarFichaMonton(n,aux);
+}

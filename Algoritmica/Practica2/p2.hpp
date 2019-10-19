@@ -9,10 +9,10 @@ void imprimeMatriz(const std::vector< std::vector<int> > &m, const int n) {
   system("clear");  // Se limpia la terminal
 
   std::cout << "Camino: " << n << '\n';
-  for (int i = 0; i < m.size(); i++) {
-    for (int j = 0; j < m.size(); j++) {
+  for (int j = 0; j < m.size(); j++) {
+    for (int i = (m.size() - 1); i > -1; i--) {
       // Posicion del movimiento de la ficha
-      if (m[i][j] == 1) {
+      if (m[j][i] == 1) {
         std::cout << "|X|";
       }
       else {
@@ -25,6 +25,24 @@ void imprimeMatriz(const std::vector< std::vector<int> > &m, const int n) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// Imprime el camino que se reconoce de la matriz inversamente
+void imprimeMatrizInversa(const std::vector< std::vector<int> > &m, const int n) {
+  system("clear");  // Se limpia la terminal
+
+  std::cout << "Camino: " << n << '\n';
+  for (int i = (m.size() - 1); i > -1; i--) {
+    for (int j = 0; j < m.size(); j++) {
+      // Posicion del movimiento de la ficha
+      if (m[i][j] == 1) {
+        std::cout << "|X|";
+      }
+      else {
+        std::cout << "| |";
+      }
+    }
+    std::cout << '\n';
+  }
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -44,6 +62,11 @@ void calcularCaminos(const int fila, const int columna, int &nCaminos, std::vect
     m[fila][columna] = 1; // Asignamos posicion valida
 
     if (opt == 1) { // Se muestran los caminos
+      imprimeMatrizInversa(m, nCaminos); // Imprime los caminos
+      std::cout << "\n\n\n\tPulse INTRO para continuar . . ." << '\n';
+      std::cin.ignore();
+    }
+    else if (opt == 2) {
       imprimeMatriz(m, nCaminos); // Imprime los caminos
       std::cout << "\n\n\n\tPulse INTRO para continuar . . ." << '\n';
       std::cin.ignore();

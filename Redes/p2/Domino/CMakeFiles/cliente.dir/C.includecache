@@ -21,4 +21,8 @@ stdlib.h
 -
 string.h
 -
+arpa/inet.h
+-
+unistd.h
+-
 

@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <arpa/inet.h>	// Corrige error con inet_addr
+#include <unistd.h>			// Corrige error con close
+
 
 
 int main ( )
@@ -14,20 +17,20 @@ int main ( )
 	/*----------------------------------------------------
 		Descriptores del socket y buffer de datos
 	-----------------------------------------------------*/
-	int sd, flag = 0;              // Descriptores del socket
-	struct sockaddr_in sockname;   // Nombre del socket
-	char buffer[250];              // Buffer de envío
-	socklen_t len_sockname;			// Tamaño del socket
+	int sd, flag = 0;							// Descriptores del socket
+	struct sockaddr_in sockname;	// Nombre del socket
+	char buffer[250];							// Buffer de envío
+	socklen_t len_sockname;				// Tamaño del socket
 	fd_set lectura, auxlectura;		// Descriptores del socket
 
 	/* --------------------------------------------------
 		Se abre el socket
 	---------------------------------------------------*/
-  	sd = socket (AF_INET, SOCK_STREAM, 0);
+  sd = socket (AF_INET, SOCK_STREAM, 0);
 	if (sd == -1)
 	{
 		perror("No se puede abrir el socket cliente\n");
-    	exit (1);
+    exit (1);
 	}
 
 	// Inicialización de los sockets
@@ -72,7 +75,7 @@ int main ( )
 		// Comprobacion del descriptor del socket
 		if(FD_ISSET(0, &auxlectura))
 		{
-			gets(buffer);
+			fgets(buffer, 250, stdin);	// Leemos desde el teclado
 
 			// Enviamos los datos al servidor
 			if(send(sd, buffer, 250, 0) == -1)

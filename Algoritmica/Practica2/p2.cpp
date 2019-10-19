@@ -15,8 +15,6 @@
 
 
 
-
-
 ////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char const *argv[]) {
@@ -38,9 +36,9 @@ int main(int argc, char const *argv[]) {
     std::cout << "\t(1) ------ CAMINOS PARA LLEGAR A LA FILA 8 DESDE LA 1" << '\n';
     std::cout << "\t(2) ------ CAMINOS PARA LLEGAR A LA FILA 8 DESDE (1 , 2)" << '\n';
     std::cout << "\t(3) ------ CAMINOS PARA LLEGAR A LA FILA 8 DESDE (1 , 7)" << '\n';
-    std::cout << "\t--------------------------------------------------------" << '\n';
-    std::cout << "\t(4) ------ VISUALIZAR SOLUCIONES" << '\n';
-    std::cout << "\t(5) ------ CAMINOS PARA LLEGAR A LA FILA n DESDE LA 1" << '\n';
+    // std::cout << "\t--------------------------------------------------------" << '\n';
+    // std::cout << "\t(4) ------ VISUALIZAR SOLUCIONES" << '\n';
+    // std::cout << "\t(5) ------ CAMINOS PARA LLEGAR A LA FILA n DESDE LA 1" << '\n';
     std::cout << "\t--------------------------------------------------------" << '\n';
     std::cout << "\t(0) ------ SALIR" << '\n';
     std::cout << "\t--------------------------------------------------------" << '\n';
@@ -80,8 +78,8 @@ int main(int argc, char const *argv[]) {
 
         // PARTE OPCIONAL: Selecciona si visualizar o no
         std::cout << "\nWould you desire to show the paths?" << '\n';
-        std::cout << "\t(1) ------ YES\n\t(2) ------ NO" << '\n';
-        std::cout << "Option: ";
+        std::cout << "\t(1) ------ YES\n\t(0) ------ NO" << '\n';
+        std::cout << "\nOption: ";
         std::cin >> opt;
         std::cout << '\n';
 
@@ -114,12 +112,34 @@ int main(int argc, char const *argv[]) {
       case 2:
         system("clear");  // Se limpia la terminal
 
-        matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
-        calcularCaminos(7, 6, nCaminos, matriz, opt); // Calcular los caminos (Posiciones simetricas)
-        std::cout << "Caminos para llegar a FILA 8 desde [1,2]: " << nCaminos << '\n';
+        // PARTE OPCIONAL: Selecciona si visualizar o no
+        std::cout << "\nWould you desire to show the paths?" << '\n';
+        std::cout << "\t(2) ------ YES\n\t(0) ------ NO" << '\n';
+        std::cout << "\nOption: ";
+        std::cin >> opt;
+        std::cout << '\n';
 
-        std::cout << "\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
+        matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
         std::cin.ignore();
+
+        // Calcular primero el numero de caminos y despues mostrarlos
+        if (opt == 2) {
+          calcularCaminos(7, 6, nCaminos, matriz, 0); // Calcular los caminos
+          std::cout << "Caminos para llegar a FILA 8 desde [1,2]: " << nCaminos << '\n';
+
+          std::cout << "\n\n\n\tPulse INTRO para mostrar los caminos . . ." << '\n';
+          std::cin.ignore();
+
+          nCaminos = 0;
+          calcularCaminos(7, 6, nCaminos, matriz, opt); // Calcular los caminos
+        }
+        // Solo calcular el numero de caminos
+        else {
+          calcularCaminos(7, 6, nCaminos, matriz, opt); // Calcular los caminos
+          std::cout << "Caminos para llegar a FILA 8 desde [1,2]: " << nCaminos << '\n';
+        }
+
+        std::cout << "\n\n\tFIN DE LOS CAMINOS\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
         std::cin.ignore();
       break;
 
@@ -128,12 +148,34 @@ int main(int argc, char const *argv[]) {
       case 3:
         system("clear");  // Se limpia la terminal
 
-        matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
-        calcularCaminos(7, 1, nCaminos, matriz, opt); // Calcular los caminos (Posiciones simetricas)
-        std::cout << "Caminos para llegar a FILA 8 desde [1,7]: " << nCaminos << '\n';
+        // PARTE OPCIONAL: Selecciona si visualizar o no
+        std::cout << "\nWould you desire to show the paths?" << '\n';
+        std::cout << "\t(2) ------ YES\n\t(0) ------ NO" << '\n';
+        std::cout << "\nOption: ";
+        std::cin >> opt;
+        std::cout << '\n';
 
-        std::cout << "\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
+        matriz = std::vector< std::vector<int> > (8, std::vector<int> (8)); // Reserva de memoria
         std::cin.ignore();
+
+        // Calcular primero el numero de caminos y despues mostrarlos
+        if (opt == 2) {
+          calcularCaminos(7, 1, nCaminos, matriz, 0); // Calcular los caminos
+          std::cout << "Caminos para llegar a FILA 8 desde [1,7]: " << nCaminos << '\n';
+
+          std::cout << "\n\n\n\tPulse INTRO para mostrar los caminos . . ." << '\n';
+          std::cin.ignore();
+
+          nCaminos = 0;
+          calcularCaminos(7, 1, nCaminos, matriz, opt); // Calcular los caminos
+        }
+        // Solo calcular el numero de caminos
+        else {
+          calcularCaminos(7, 1, nCaminos, matriz, opt); // Calcular los caminos
+          std::cout << "Caminos para llegar a FILA 8 desde [1,7]: " << nCaminos << '\n';
+        }
+
+        std::cout << "\n\n\tFIN DE LOS CAMINOS\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
         std::cin.ignore();
       break;
 
@@ -153,6 +195,8 @@ int main(int argc, char const *argv[]) {
 
       case 5:
         system("clear");  // Se limpia la terminal
+
+
 
         std::cout << "\n\n\n\tPulse cualquier tecla para continuar . . ." << '\n';
         std::cin.ignore();
