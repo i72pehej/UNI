@@ -247,7 +247,7 @@ int main ( ) {
 	            // Comprobacion del password
 							else if (cliente[j].nivel == 0)
 							{
-								if((strncmp(buffer, "PASSWORD", 4)) == 0)
+								if((strncmp(buffer, "PASSWORD", 8)) == 0)
 								{
 									sscanf(buffer,"%s %s", auxl2, auxl3);  // Guardamos lo contraseña en auxl3
 									if((strcmp(auxl3, cliente[j].pass)) == 0)  // Comparamos el buffer con el fichero
@@ -292,7 +292,7 @@ int main ( ) {
 									if(esperando == 1)
 									{
 										printf("\nMesa: %d", nMesa);
-										printf("\nJugadores: %d %d", cli[0].socket, cli[1].socket);
+										printf("\nJugadores: %d %d\n", cli[0].socket, cli[1].socket);
 
 	                  // Recorre los usuarios en espera[]
 										for(x = 0; x < 2; x++)
@@ -329,14 +329,14 @@ int main ( ) {
 
 	                  // Se inicia la partida
 										iniciarDomino(party[nMesa], cli);
-
+printf("hola\n" );
 										// Asigna el turno al jugador correspondiente
 										party[nMesa].turno = cli[comprobarTurno(cli, party[nMesa])].socket;
 
 										// Se muestran las fichas a cada jugador, su orden y su turno
 	                  for(x = 0; x < 2; x++)
 										{
-											send(cli[x].socket,"Tus fichas: ", 250, 0);
+											send(cli[x].socket,"TUS FICHAS: ", 250, 0);
 											sleep(1);
 											verFichas(cli[x]);
 											sleep(1);
@@ -363,6 +363,7 @@ int main ( ) {
 
 	////////////////////////////////////////////////////////////////////////////////
 
+								// El usuario desea salir del servidor
 								else if((strncmp(buffer, "SALIR", 5)) == 0)
 								{
 									send(cliente[j].socket, "+Ok. Desconexion procesada.\n", 250, 0);
@@ -376,7 +377,8 @@ int main ( ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-							else if(cliente[j].nivel == 2)	// Jugando una partida
+							// Jugando una partida
+							else if(cliente[j].nivel == 2)
 							{
 								for(i = 0; i < 20; i++)
 								{
@@ -386,7 +388,7 @@ int main ( ) {
 										{
 											send(cliente[j].socket, "+Ok.Turno de partida", 250, 0);
 
-											if((strncmp(buffer, "COLOCAR-FICHA", 11)) == 0)
+											if((strncmp(buffer, "COLOCAR-FICHA", 13)) == 0)
 											{
 												sscanf(buffer, "COLOCAR-FICHA |%d|%d|, %c", &n1, &n2, extremo);
 												f.izq = n1;
@@ -394,18 +396,16 @@ int main ( ) {
 												flag = 0;
 												pep = 0;
 
-	// ?¿?¿?¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿?¿?¿??¿??¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿
 												for(q = 0; q < 2; q++)
 												{
 													if(cli[q].socket == cliente[j].socket)
 													{
-														pep = q;  // no se para que sirve tbh
+														pep = q;
 													}
 												}
-												// ?¿?¿?¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿?¿?¿??¿??¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿
 
 												// Imprime las fichas del jugador y comprueba que la ficha es valida
-												for(k = 0; k < 7; k++)
+												for(k = 0; k < cli[pep].nFichas; k++)
 												{
 													printf("\n|%d|%d|\n", cli[pep].fichas[k].izq, cli[pep].fichas[k].der);
 
@@ -439,7 +439,7 @@ int main ( ) {
 															{
 
 
-	// CAMBIAR PARA QUE A UNO LE SALGA VICTORIA Y AL OTRO DERROTA (quitar bucle y send(cli[0]) o send(cli[1]))
+// CAMBIAR PARA QUE A UNO LE SALGA VICTORIA Y AL OTRO DERROTA (quitar bucle y send(cli[0]) o send(cli[1]))
 
 
 																// En funcion del nivel del jugador
@@ -454,22 +454,24 @@ int main ( ) {
 																}
 															}
 
-
-															send(party[i].usuarios[k], "TABLERO:\n", 250,0);  //mostramos el tablero a cada usuarip
-															send(party[i].usuarios[k], party[i].tablero, 250,0);
+															send(party[i].usuarios[k], "TABLERO:\n", 250, 0);  // Se muestra el tablero a cada usuarip
+															send(party[i].usuarios[k], party[i].tablero, 250, 0);
 															sleep(0.5);
 															//strcpy(aux, "");
 															//sprintf(aux, "Es el turno de %d\n", party[i].turno);
 															//send(party[i].usuarios[k], aux, 100, 0);
 															}
 
+														party[i].turno = (party[i].turno) + 1;
 
-														party[i].turno= ((party[i].turno) +1);
-														if(party[i].turno > party[i].usuarios[3]) //reseteamos los turno
-															party[i].turno=party[i].usuarios[0];
+														// Reseteamos los turnos
+														if(party[i].turno > party[i].usuarios[1])
+														{
+															party[i].turno = party[i].usuarios[0];
+														}
 														send(party[i].turno, "Es tu turno", 250, 0);
 														send(party[i].turno, "TUS FICHAS:\n", 250, 0);
-														verFichas(cli[(pep+1)%4]);
+														verFichas(cli[(pep + 1) % 2]);
 													}
 													else
 													{
@@ -483,53 +485,20 @@ int main ( ) {
 												}
 											}
 
-	////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-											else if ((strncmp(buffer, "PASO", 5)) == 0)
+											// El jugador no tiene ficha y pasa turno
+											else if ((strncmp(buffer, "PASO-TURNO", 10)) == 0)
 											{
-												for(q = 0; q < 4; q++)
-												{
-													if(cli[q].socket == cliente[j].socket)
-													{
-														pep = q;
-														//printf("\nCliente encontrado\n");
-													}
-												}
-												(party[i].pasar)++;
-												for(q = 0; q < 4; q++)
-												{
-													send(party[i].usuarios[q], "Han pasado turno", 250, 0);
-													if(party[i].pasar == 4)  //comprobamos si ninguno puede poner y pasamos turno
-													{
-														flagFin = 1;
-														send(party[i].usuarios[q], "PARTIDA FINALIZADA", 250, 0);
-														cli[i].nivel = -1;
-													}
-												}
-												if(flagFin == 0)
-												{
-													party[i].turno = ((party[i].turno) + 1);  //volvemos a resetar los turnos
-
-													if(party[i].turno > party[i].usuarios[3]) {
-														party[i].turno = party[i].usuarios[0];
-													}
-
-													send(party[i].turno, "Es tu turno\n", 250, 0);
-													send(party[i].turno, "TUS FICHAS:\n", 250, 0);
-													verFichas(cli[(pep + 1) % 4]);
-												}
-											}
-
-											else if((strncmp(buffer, "ROBAR-FICHA", 12)) == 0){
-												flag = 0;
-
 												for(q = 0; q < 2; q++)
 												{
 													if(cli[q].socket == cliente[j].socket)
 													{
-														pep = q;  // no se para que sirve tbh
+														//printf("\nCliente encontrado\n");
+														pep = q;
 													}
 												}
+
 												for(int j = 0; j < cli[pep].nFichas; j++){
 													if(cli[pep].fichas[j].der == party[i].izquierda || cli[pep].fichas[j].der == party[i].derecha){
 														flag = 1;
@@ -539,32 +508,127 @@ int main ( ) {
 													}
 												}
 
-												if(flag == 1){
-													Robarficha(cli[pep], party[i])	;
+												if(flag == 1)
+												{
+													party[i].pasar++;
+
+													// Iteracion por los jugadores
+													for(q = 0; q < 2; q++)
+													{
+														send(party[i].usuarios[q], "+Ok. Se ha pasado turno", 250, 0);
+
+														// Se comprueba si ninguno puede poner y se pasa turno
+														if(party[i].pasar == 2)
+														{
+															flagFin = 1;
+
+															send(party[i].usuarios[q], "PARTIDA FINALIZADA", 250, 0);
+															cli[i].nivel = -1;
+														}
+
+														// Se comprueba el ganador dependiendo del numero de fichas en mano
+														if (recuentoPuntos(cli[0]) > recuentoPuntos(cli[1]))
+														{
+															send(party[i].usuarios[0], "+Ok. DERROTA", 250, 0);
+															send(party[i].usuarios[1], "+Ok. VICTORIA", 250, 0);
+														}
+														else
+														{
+															send(party[i].usuarios[0], "+Ok. VICTORIA", 250, 0);
+															send(party[i].usuarios[1], "+Ok. DERROTA", 250, 0);
+														}
+													}
+
+													// No se ha terminado la partida
+													if(flagFin == 0)
+													{
+														// Se resetan los turnos
+														party[i].turno = (party[i].turno) + 1;
+
+														// Control de turnos
+														if(party[i].turno > party[i].usuarios[1]) {
+															party[i].turno = party[i].usuarios[0];
+														}
+
+														send(party[i].turno, "+Ok. Es tu turno\n", 250, 0);
+														send(party[i].turno, "TUS FICHAS:\n", 250, 0);
+														verFichas(cli[(pep + 1) % 2]);
+													}
 												}
-												else{
-													send(cli[q].socket, "+Ok. No es necesario robar ficha", 250, 0);
+												else
+												{
+													send(cli[q].socket, "+Ok. No es necesario pasar turno", 250, 0);
+												}
+											}
+
+////////////////////////////////////////////////////////////////////////////////
+
+											// El jugador roba fichas del monton
+											else if ((strncmp(buffer, "ROBAR-FICHA", 11)) == 0)
+											{
+												flag = 0;
+
+												for(q = 0; q < 2; q++)
+												{
+													if(cli[q].socket == cliente[j].socket)
+													{
+														pep = q;
 													}
 												}
 
-
-											else if ((strncmp(buffer, "SALIR", 6)) == 0)
-											{
-												for(k = 0; k < 4; k++)
+												for(int j = 0; j < cli[pep].nFichas; j++)
 												{
-													send(party[i].usuarios[k], "Alguien ha abandonao la partida. FIN", 250, 0);
-													send(party[i].usuarios[k], "SALIR1", 250, 0);
-													(cli[k].nivel) = -1;
+													if(cli[pep].fichas[j].der == party[i].izquierda || cli[pep].fichas[j].der == party[i].derecha)
+													{
+														flag = 1;
+													}
+													else if(cli[pep].fichas[j].izq == party[i].izquierda || cli[pep].fichas[j].izq == party[i].derecha)
+													{
+														flag = 1;
+													}
+												}
+
+												if(flag == 1)
+												{
+													Robarficha(cli[pep], party[i]);
+												}
+												else
+												{
+													send(cli[pep].socket, "+Ok. No es necesario robar ficha", 250, 0);
 												}
 											}
+
+////////////////////////////////////////////////////////////////////////////////
+
+											// Un jugador sale antes de terminar la partida
+											else if ((strncmp(buffer, "SALIR", 5)) == 0)
+											{
+												for(q = 0; q < 2; q++)
+												{
+													if(cli[q].socket == cliente[j].socket)
+													{
+														pep = q;
+													}
+													send(cli[pep].socket, "+Ok. Desconexion procesada ", 250, 0);
+
+													for(k = 0; k < 2; k++)
+													{
+														if(party[i].usuarios[k] != cli[pep].socket)
+														{
+															send(party[i].usuarios[k], "+Ok. La partida ha sido anulada", 250, 0);
+															cli[k].nivel = -1;
+														}
+													}
+												}
+											}
+
+////////////////////////////////////////////////////////////////////////////////
+
+											// Pasa de turno
 											else
 											{
-												send(cliente[j].socket, "-Error. COLOCAR-FICHA |X|Y|", 250, 0);
+												send(cliente[j].socket, "+Ok. Turno del otro jugador", 250, 0);
 											}
-										}
-										else
-										{
-											send(cliente[j].socket, "+Ok. Turno del otro jugador.", 250, 0);
 										}
 									}
 								}
@@ -572,15 +636,15 @@ int main ( ) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-							else if (cliente[j].nivel==3)
+							/*else if (cliente[j].nivel==3)
 							{
-							}
+							}*/
 
 ////////////////////////////////////////////////////////////////////////////////
 
-							else if (cliente[j].nivel==4)
+							/*else if (cliente[j].nivel==4)
 							{
-							}
+							}*/
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -595,8 +659,8 @@ int main ( ) {
 			}
 		}
 	}
+
 	close(sd);
 }
 
-
-//************************************************
+////////////////////////////////////////////////////////////////////////////////
