@@ -1,0 +1,22 @@
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+#include <math.h>
+#include <iostream>
+
+#include "p3.hpp"
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+int main(int argc, char const *argv[]) {
+  std::cout << "/* message */" << '\n';
+
+
+
+  return 0;
+}
+
+////////////////////////////////////////////////////////////////////////////////
