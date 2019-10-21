@@ -8,7 +8,8 @@
 
 
 
-int main ( ) {
+int main(int argc, char const *argv[])
+{
 
 	/*----------------------------------------------------
 		Descriptor del socket y buffer de datos
@@ -142,6 +143,7 @@ int main ( ) {
 				if(FD_ISSET(i, &auxlectura))
 				{
 					printf("\nCliente conocido: %d \n\n", i);
+
 					if(recv(i, buffer, 250, 0) == -1)
 					{
 						perror("Error en la operación de recv");
@@ -221,8 +223,9 @@ int main ( ) {
 										if(strcmp(auxl3, auxl2) == 0) // Si coinciden ambos se reconoce al usuario
 										{
 											flag = 1; // Usuario conocido
+											cliente[j].nivel++; // Nivel 0 = usuario conocido
+
 											printf("\nUSUARIO REGISTRADO(1/2)\n\n");
-											(cliente[j].nivel)++; // Nivel 0 = usuario conocido
 											strcpy(cliente[j].user, auxl2);
 											strcpy(cliente[j].pass, auxl4);
 											printf("\nLvl: %d\tU: %s\tC: %s\n\n", cliente[j].nivel, cliente[j].user, cliente[j].pass);
@@ -252,7 +255,8 @@ int main ( ) {
 									sscanf(buffer,"%s %s", auxl2, auxl3);  // Guardamos lo contraseña en auxl3
 									if((strcmp(auxl3, cliente[j].pass)) == 0)  // Comparamos el buffer con el fichero
 									{
-										(cliente[j].nivel)++;  // Nivel 1 = usuario dentro
+										cliente[j].nivel++;  // Nivel 1 = usuario dentro
+
 										printf("\nPASSWORD CORRECTO (2/2)\n\n");
 										send(cliente[j].socket, "+Ok. Usuario validado.", 250, 0);
 									}
@@ -276,7 +280,6 @@ int main ( ) {
 								{
 									cliente[j].id = id;
 									id++;
-
 									esperando++;
 
 									espera[esperando] = cliente[j].socket;
@@ -302,7 +305,7 @@ int main ( ) {
 											{
 												if(cliente[k].socket == espera[x])
 												{
-													(cliente[k].nivel)++; // Nivel 2 = en partida
+													cliente[k].nivel++; // Nivel 2 = en partida
 												}
 											}
 											send(cli[x].socket, "\n+Ok. Empieza la partida.\n", 250, 0);
@@ -388,6 +391,9 @@ printf("hola\n" );
 										{
 											send(cliente[j].socket, "+Ok.Turno de partida", 250, 0);
 
+////////////////////////////////////////////////////////////////////////////////
+
+											// El jugador desea colocar una ficha
 											if((strncmp(buffer, "COLOCAR-FICHA", 13)) == 0)
 											{
 												sscanf(buffer, "COLOCAR-FICHA |%d|%d|, %c", &n1, &n2, extremo);
@@ -449,6 +455,7 @@ printf("hola\n" );
 																	sprintf(auxl, "El jugador numero %d ha ganado", k);
 																	send(cli[x].socket, auxl, 250, 0);
 																	sleep(0.5);
+
 																	send(cli[x].socket, "Fin de la partida", 250, 0);
 																	cli[x].nivel = -1;	// Fuera de partida
 																}
@@ -460,7 +467,7 @@ printf("hola\n" );
 															//strcpy(aux, "");
 															//sprintf(aux, "Es el turno de %d\n", party[i].turno);
 															//send(party[i].usuarios[k], aux, 100, 0);
-															}
+														}
 
 														party[i].turno = (party[i].turno) + 1;
 
@@ -499,11 +506,15 @@ printf("hola\n" );
 													}
 												}
 
-												for(int j = 0; j < cli[pep].nFichas; j++){
-													if(cli[pep].fichas[j].der == party[i].izquierda || cli[pep].fichas[j].der == party[i].derecha){
+												for(int j = 0; j < cli[pep].nFichas; j++)
+												{
+//?¿?¿?¿?¿?¿¿¿¿¿¿??¿?¿?¿?¿?¿													// Se puede colocar la ficha en algun extremo
+													if((cli[pep].fichas[j].der == party[i].izquierda) || (cli[pep].fichas[j].der == party[i].derecha))
+													{
 														flag = 1;
 													}
-													else if(cli[pep].fichas[j].izq == party[i].izquierda || cli[pep].fichas[j].izq == party[i].derecha){
+													else if((cli[pep].fichas[j].izq == party[i].izquierda) || (cli[pep].fichas[j].izq == party[i].derecha))
+													{
 														flag = 1;
 													}
 												}
@@ -546,7 +557,8 @@ printf("hola\n" );
 														party[i].turno = (party[i].turno) + 1;
 
 														// Control de turnos
-														if(party[i].turno > party[i].usuarios[1]) {
+														if(party[i].turno > party[i].usuarios[1])
+														{
 															party[i].turno = party[i].usuarios[0];
 														}
 
@@ -633,18 +645,6 @@ printf("hola\n" );
 									}
 								}
 							}
-
-////////////////////////////////////////////////////////////////////////////////
-
-							/*else if (cliente[j].nivel==3)
-							{
-							}*/
-
-////////////////////////////////////////////////////////////////////////////////
-
-							/*else if (cliente[j].nivel==4)
-							{
-							}*/
 
 ////////////////////////////////////////////////////////////////////////////////
 
