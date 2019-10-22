@@ -136,7 +136,7 @@ int main(int argc, char const *argv[])
 
 			n++;
 		}
-		else // cliente conocido
+		else // Cliente conocido
 		{
 			for(i = 0; i < FD_SETSIZE; i++)
 			{
