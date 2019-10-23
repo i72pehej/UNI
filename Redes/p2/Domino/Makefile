@@ -136,59 +136,59 @@ cliente/fast:
 	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/build
 .PHONY : cliente/fast
 
-ejemploClienteTCP.o: ejemploClienteTCP.c.o
+clienteDomino.o: clienteDomino.c.o
 
-.PHONY : ejemploClienteTCP.o
-
-# target to build an object file
-ejemploClienteTCP.c.o:
-	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/ejemploClienteTCP.c.o
-.PHONY : ejemploClienteTCP.c.o
-
-ejemploClienteTCP.i: ejemploClienteTCP.c.i
-
-.PHONY : ejemploClienteTCP.i
-
-# target to preprocess a source file
-ejemploClienteTCP.c.i:
-	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/ejemploClienteTCP.c.i
-.PHONY : ejemploClienteTCP.c.i
-
-ejemploClienteTCP.s: ejemploClienteTCP.c.s
-
-.PHONY : ejemploClienteTCP.s
-
-# target to generate assembly for a file
-ejemploClienteTCP.c.s:
-	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/ejemploClienteTCP.c.s
-.PHONY : ejemploClienteTCP.c.s
-
-servidorprueba.o: servidorprueba.c.o
-
-.PHONY : servidorprueba.o
+.PHONY : clienteDomino.o
 
 # target to build an object file
-servidorprueba.c.o:
-	$(MAKE) -f CMakeFiles/servidor.dir/build.make CMakeFiles/servidor.dir/servidorprueba.c.o
-.PHONY : servidorprueba.c.o
+clienteDomino.c.o:
+	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/clienteDomino.c.o
+.PHONY : clienteDomino.c.o
 
-servidorprueba.i: servidorprueba.c.i
+clienteDomino.i: clienteDomino.c.i
 
-.PHONY : servidorprueba.i
+.PHONY : clienteDomino.i
 
 # target to preprocess a source file
-servidorprueba.c.i:
-	$(MAKE) -f CMakeFiles/servidor.dir/build.make CMakeFiles/servidor.dir/servidorprueba.c.i
-.PHONY : servidorprueba.c.i
+clienteDomino.c.i:
+	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/clienteDomino.c.i
+.PHONY : clienteDomino.c.i
 
-servidorprueba.s: servidorprueba.c.s
+clienteDomino.s: clienteDomino.c.s
 
-.PHONY : servidorprueba.s
+.PHONY : clienteDomino.s
 
 # target to generate assembly for a file
-servidorprueba.c.s:
-	$(MAKE) -f CMakeFiles/servidor.dir/build.make CMakeFiles/servidor.dir/servidorprueba.c.s
-.PHONY : servidorprueba.c.s
+clienteDomino.c.s:
+	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/clienteDomino.c.s
+.PHONY : clienteDomino.c.s
+
+servidorDomino.o: servidorDomino.c.o
+
+.PHONY : servidorDomino.o
+
+# target to build an object file
+servidorDomino.c.o:
+	$(MAKE) -f CMakeFiles/servidor.dir/build.make CMakeFiles/servidor.dir/servidorDomino.c.o
+.PHONY : servidorDomino.c.o
+
+servidorDomino.i: servidorDomino.c.i
+
+.PHONY : servidorDomino.i
+
+# target to preprocess a source file
+servidorDomino.c.i:
+	$(MAKE) -f CMakeFiles/servidor.dir/build.make CMakeFiles/servidor.dir/servidorDomino.c.i
+.PHONY : servidorDomino.c.i
+
+servidorDomino.s: servidorDomino.c.s
+
+.PHONY : servidorDomino.s
+
+# target to generate assembly for a file
+servidorDomino.c.s:
+	$(MAKE) -f CMakeFiles/servidor.dir/build.make CMakeFiles/servidor.dir/servidorDomino.c.s
+.PHONY : servidorDomino.c.s
 
 # Help Target
 help:
@@ -200,12 +200,12 @@ help:
 	@echo "... servidor"
 	@echo "... rebuild_cache"
 	@echo "... cliente"
-	@echo "... ejemploClienteTCP.o"
-	@echo "... ejemploClienteTCP.i"
-	@echo "... ejemploClienteTCP.s"
-	@echo "... servidorprueba.o"
-	@echo "... servidorprueba.i"
-	@echo "... servidorprueba.s"
+	@echo "... clienteDomino.o"
+	@echo "... clienteDomino.i"
+	@echo "... clienteDomino.s"
+	@echo "... servidorDomino.o"
+	@echo "... servidorDomino.i"
+	@echo "... servidorDomino.s"
 .PHONY : help
 
 

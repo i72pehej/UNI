@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/julen/i72pehej/Uni_3/Redes/p2/Domino/clases.h
+/home/julen/i72pehej/Uni_3/Redes/p2/Domino/funcionesDomino.h
 stdio.h
 -
 sys/types.h
@@ -30,7 +30,7 @@ time.h
 unistd.h
 -
 
-/home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorprueba.c
-clases.h
-/home/julen/i72pehej/Uni_3/Redes/p2/Domino/clases.h
+/home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorDomino.c
+funcionesDomino.h
+/home/julen/i72pehej/Uni_3/Redes/p2/Domino/funcionesDomino.h
 

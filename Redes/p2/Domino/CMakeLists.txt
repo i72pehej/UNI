@@ -3,5 +3,5 @@ project (Redes)
 
 
 
-add_executable(servidor servidorprueba.c)
-add_executable(cliente ejemploClienteTCP.c)
+add_executable(servidor servidorDomino.c)
+add_executable(cliente clienteDomino.c)

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorprueba.c" "/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles/servidor.dir/servidorprueba.c.o"
+  "/home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorDomino.c" "/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles/servidor.dir/servidorDomino.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

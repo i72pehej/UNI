@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/julen/i72pehej/Uni_3/Redes/p2/Domino/ejemploClienteTCP.c" "/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles/cliente.dir/ejemploClienteTCP.c.o"
+  "/home/julen/i72pehej/Uni_3/Redes/p2/Domino/clienteDomino.c" "/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles/cliente.dir/clienteDomino.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

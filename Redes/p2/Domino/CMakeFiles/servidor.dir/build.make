@@ -57,38 +57,38 @@ include CMakeFiles/servidor.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/servidor.dir/flags.make
 
-CMakeFiles/servidor.dir/servidorprueba.c.o: CMakeFiles/servidor.dir/flags.make
-CMakeFiles/servidor.dir/servidorprueba.c.o: servidorprueba.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/servidor.dir/servidorprueba.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/servidor.dir/servidorprueba.c.o   -c /home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorprueba.c
+CMakeFiles/servidor.dir/servidorDomino.c.o: CMakeFiles/servidor.dir/flags.make
+CMakeFiles/servidor.dir/servidorDomino.c.o: servidorDomino.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/servidor.dir/servidorDomino.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/servidor.dir/servidorDomino.c.o   -c /home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorDomino.c
 
-CMakeFiles/servidor.dir/servidorprueba.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/servidor.dir/servidorprueba.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorprueba.c > CMakeFiles/servidor.dir/servidorprueba.c.i
+CMakeFiles/servidor.dir/servidorDomino.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/servidor.dir/servidorDomino.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorDomino.c > CMakeFiles/servidor.dir/servidorDomino.c.i
 
-CMakeFiles/servidor.dir/servidorprueba.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/servidor.dir/servidorprueba.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorprueba.c -o CMakeFiles/servidor.dir/servidorprueba.c.s
+CMakeFiles/servidor.dir/servidorDomino.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/servidor.dir/servidorDomino.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/julen/i72pehej/Uni_3/Redes/p2/Domino/servidorDomino.c -o CMakeFiles/servidor.dir/servidorDomino.c.s
 
-CMakeFiles/servidor.dir/servidorprueba.c.o.requires:
+CMakeFiles/servidor.dir/servidorDomino.c.o.requires:
 
-.PHONY : CMakeFiles/servidor.dir/servidorprueba.c.o.requires
+.PHONY : CMakeFiles/servidor.dir/servidorDomino.c.o.requires
 
-CMakeFiles/servidor.dir/servidorprueba.c.o.provides: CMakeFiles/servidor.dir/servidorprueba.c.o.requires
-	$(MAKE) -f CMakeFiles/servidor.dir/build.make CMakeFiles/servidor.dir/servidorprueba.c.o.provides.build
-.PHONY : CMakeFiles/servidor.dir/servidorprueba.c.o.provides
+CMakeFiles/servidor.dir/servidorDomino.c.o.provides: CMakeFiles/servidor.dir/servidorDomino.c.o.requires
+	$(MAKE) -f CMakeFiles/servidor.dir/build.make CMakeFiles/servidor.dir/servidorDomino.c.o.provides.build
+.PHONY : CMakeFiles/servidor.dir/servidorDomino.c.o.provides
 
-CMakeFiles/servidor.dir/servidorprueba.c.o.provides.build: CMakeFiles/servidor.dir/servidorprueba.c.o
+CMakeFiles/servidor.dir/servidorDomino.c.o.provides.build: CMakeFiles/servidor.dir/servidorDomino.c.o
 
 
 # Object files for target servidor
 servidor_OBJECTS = \
-"CMakeFiles/servidor.dir/servidorprueba.c.o"
+"CMakeFiles/servidor.dir/servidorDomino.c.o"
 
 # External object files for target servidor
 servidor_EXTERNAL_OBJECTS =
 
-servidor: CMakeFiles/servidor.dir/servidorprueba.c.o
+servidor: CMakeFiles/servidor.dir/servidorDomino.c.o
 servidor: CMakeFiles/servidor.dir/build.make
 servidor: CMakeFiles/servidor.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable servidor"
@@ -99,7 +99,7 @@ CMakeFiles/servidor.dir/build: servidor
 
 .PHONY : CMakeFiles/servidor.dir/build
 
-CMakeFiles/servidor.dir/requires: CMakeFiles/servidor.dir/servidorprueba.c.o.requires
+CMakeFiles/servidor.dir/requires: CMakeFiles/servidor.dir/servidorDomino.c.o.requires
 
 .PHONY : CMakeFiles/servidor.dir/requires
 

@@ -57,38 +57,38 @@ include CMakeFiles/cliente.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/cliente.dir/flags.make
 
-CMakeFiles/cliente.dir/ejemploClienteTCP.c.o: CMakeFiles/cliente.dir/flags.make
-CMakeFiles/cliente.dir/ejemploClienteTCP.c.o: ejemploClienteTCP.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/cliente.dir/ejemploClienteTCP.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cliente.dir/ejemploClienteTCP.c.o   -c /home/julen/i72pehej/Uni_3/Redes/p2/Domino/ejemploClienteTCP.c
+CMakeFiles/cliente.dir/clienteDomino.c.o: CMakeFiles/cliente.dir/flags.make
+CMakeFiles/cliente.dir/clienteDomino.c.o: clienteDomino.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/cliente.dir/clienteDomino.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cliente.dir/clienteDomino.c.o   -c /home/julen/i72pehej/Uni_3/Redes/p2/Domino/clienteDomino.c
 
-CMakeFiles/cliente.dir/ejemploClienteTCP.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cliente.dir/ejemploClienteTCP.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/julen/i72pehej/Uni_3/Redes/p2/Domino/ejemploClienteTCP.c > CMakeFiles/cliente.dir/ejemploClienteTCP.c.i
+CMakeFiles/cliente.dir/clienteDomino.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cliente.dir/clienteDomino.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/julen/i72pehej/Uni_3/Redes/p2/Domino/clienteDomino.c > CMakeFiles/cliente.dir/clienteDomino.c.i
 
-CMakeFiles/cliente.dir/ejemploClienteTCP.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cliente.dir/ejemploClienteTCP.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/julen/i72pehej/Uni_3/Redes/p2/Domino/ejemploClienteTCP.c -o CMakeFiles/cliente.dir/ejemploClienteTCP.c.s
+CMakeFiles/cliente.dir/clienteDomino.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cliente.dir/clienteDomino.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/julen/i72pehej/Uni_3/Redes/p2/Domino/clienteDomino.c -o CMakeFiles/cliente.dir/clienteDomino.c.s
 
-CMakeFiles/cliente.dir/ejemploClienteTCP.c.o.requires:
+CMakeFiles/cliente.dir/clienteDomino.c.o.requires:
 
-.PHONY : CMakeFiles/cliente.dir/ejemploClienteTCP.c.o.requires
+.PHONY : CMakeFiles/cliente.dir/clienteDomino.c.o.requires
 
-CMakeFiles/cliente.dir/ejemploClienteTCP.c.o.provides: CMakeFiles/cliente.dir/ejemploClienteTCP.c.o.requires
-	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/ejemploClienteTCP.c.o.provides.build
-.PHONY : CMakeFiles/cliente.dir/ejemploClienteTCP.c.o.provides
+CMakeFiles/cliente.dir/clienteDomino.c.o.provides: CMakeFiles/cliente.dir/clienteDomino.c.o.requires
+	$(MAKE) -f CMakeFiles/cliente.dir/build.make CMakeFiles/cliente.dir/clienteDomino.c.o.provides.build
+.PHONY : CMakeFiles/cliente.dir/clienteDomino.c.o.provides
 
-CMakeFiles/cliente.dir/ejemploClienteTCP.c.o.provides.build: CMakeFiles/cliente.dir/ejemploClienteTCP.c.o
+CMakeFiles/cliente.dir/clienteDomino.c.o.provides.build: CMakeFiles/cliente.dir/clienteDomino.c.o
 
 
 # Object files for target cliente
 cliente_OBJECTS = \
-"CMakeFiles/cliente.dir/ejemploClienteTCP.c.o"
+"CMakeFiles/cliente.dir/clienteDomino.c.o"
 
 # External object files for target cliente
 cliente_EXTERNAL_OBJECTS =
 
-cliente: CMakeFiles/cliente.dir/ejemploClienteTCP.c.o
+cliente: CMakeFiles/cliente.dir/clienteDomino.c.o
 cliente: CMakeFiles/cliente.dir/build.make
 cliente: CMakeFiles/cliente.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/julen/i72pehej/Uni_3/Redes/p2/Domino/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable cliente"
@@ -99,7 +99,7 @@ CMakeFiles/cliente.dir/build: cliente
 
 .PHONY : CMakeFiles/cliente.dir/build
 
-CMakeFiles/cliente.dir/requires: CMakeFiles/cliente.dir/ejemploClienteTCP.c.o.requires
+CMakeFiles/cliente.dir/requires: CMakeFiles/cliente.dir/clienteDomino.c.o.requires
 
 .PHONY : CMakeFiles/cliente.dir/requires
 
