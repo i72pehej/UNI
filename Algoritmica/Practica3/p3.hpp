@@ -14,10 +14,13 @@ class Entero {
     Entero (const Entero num, const int tam);  // Constructor
     virtual ~Entero (); // Destructor
 
-    getEntero();
-    getTamMax();
+    // Observadores
+    std::string getEnteroStr();
+    int getEnteroInt();
+    int getTamMax();
 
-    setEntero();
+    // Modificadores
+    void setEntero();
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -35,18 +38,28 @@ Entero (const Entero num, const int tam) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void getEntero() {
+// Devuelve el numero de la clase Entero en formato "string"
+void getEnteroStr() {
 
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// Devuelve el numero de la clase Entero en formato "int"
+void getEnteroInt() {
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Devuelve el tamaño maximo de digitos del valor de Entero
 void getTamMax() {
 
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// Asigna un valor a la clase Entero
 void setEntero() {
 
 }

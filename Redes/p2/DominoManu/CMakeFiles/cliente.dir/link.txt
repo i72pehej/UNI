@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/cliente.dir/clienteDomino.c.o  -o cliente 

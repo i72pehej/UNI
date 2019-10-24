@@ -17,8 +17,8 @@
 // Estructura para las posiciones de las fichas
 struct ficha
 {
-	int izq;	// Valor izquierdo de la ficha
-	int der;	// Valor derecho de la ficha
+	int izq;	//
+	int der;
 };
 
 // Estructura para los clientes
@@ -49,14 +49,13 @@ struct part
 	int pasar;
 };
 
-////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
 
 void iniciarDomino(struct part n, struct clients *clientes);				// Inicia la partida de DOMINÓ con los jugadores
-bool ponerFicha(struct part *p, struct ficha f, char extremo[10]);	// Pone la ficha seleccionada en la mesa
+bool ponerFicha(struct part *p, struct ficha f);	// Pone la ficha seleccionada en la mesa
 void quitarFicha(struct clients *c, struct ficha f);								// Quita la ficha seleccionada de la mano
-void verFichas(struct clients c);																		// Muestra al cliente sus fichas
+char *verFichas(struct clients c);																	// Muestra al cliente sus fichas
 struct ficha fichaMayor(struct clients cli);												// Devuelve la mayor ficha entre las fichas del jugador
 int comprobarTurno(struct clients *cli, struct part *n);						// Devuelve el jugador con el mayor doble o mayor
 void quitarFichaMonton(struct part *n, struct ficha f);							// Quita la ficha seleccionada del monton
@@ -72,7 +71,7 @@ void iniciarDomino(struct part n, struct clients *clientes)
 	k = 0;
 	clientes[0].nFichas = 0;
 	clientes[1].nFichas = 0;
-	n.fichasMonton = 29;
+	n.fichasMonton = 28;
 
 	// Creacion de las fichas
 	for(i = 0; i < 7; i++)
@@ -81,7 +80,7 @@ void iniciarDomino(struct part n, struct clients *clientes)
 		{
 			n.fichas[k].izq = i;
 			n.fichas[k].der = j;
-			printf("Ficha %d: |%d|%d|\n", h, i, j);
+			printf("FICHA GENERADA: |%d|%d|\n", i, j);
 
 			k++;
 		}
@@ -89,7 +88,6 @@ void iniciarDomino(struct part n, struct clients *clientes)
 		h++;
 	}
 
-	// srand(time(NULL));
 	j = 0;
 
 	// Reparto aleatorio aleatorio
@@ -109,6 +107,7 @@ void iniciarDomino(struct part n, struct clients *clientes)
 		clientes[1].nFichas++;
 	}
 
+  printf("\n\nFICHAS MONTON:\n");
 	for (int i = 0; i < n.fichasMonton; i++)
 	{
 		printf("|%d|%d|\n", n.fichas[i].izq, n.fichas[i].der);
@@ -123,91 +122,74 @@ void iniciarDomino(struct part n, struct clients *clientes)
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
+bool ponerFicha(struct part *p, struct ficha f)
 {
 	int i, j;
 	char aux[200];	// Tablero auxiliar
-
+	char aux2[10];
+	strcpy(aux, p->tablero);
 
 	// Cuando el tablero esta vacio, se coloca la ficha del jugador que empieza
-	if (p->start == 0)
-	{
+	if (p->start == 0) {
 		p->start = 1;
+		strcpy(p->tablero, "");
+		sprintf(p->tablero, "|%d|%d|", f.der, f.izq);
 
-		strcpy(aux, p->tablero);
+		p->derecha = f.der;
+		p->izquierda = f.izq;
+
+		printf("\nTABLERO:\n%s\n", p->tablero);
+
+		return true;
+	}
+
+	else if (p->izquierda == f.izq)
+	{
+		strcpy(p->tablero, "");
+		sprintf(p->tablero, "|%d|%d|", f.der, f.izq);
+		sprintf(p->tablero, "%s%s",p->tablero, aux);
+
+		p->izquierda=f.der;
+
+		printf("\nTABLERO:\n%s\n", p->tablero);
+
+		return true;
+	}
+	else if(p->derecha==f.izq)
+	{
 		strcpy(p->tablero, "");
 		sprintf(p->tablero, "|%d|%d|", f.izq, f.der);
+		sprintf(p->tablero, "%s%s",p->tablero, aux);
 
-		p->izquierda = f.izq;
 		p->derecha = f.der;
 
 		printf("\nTABLERO:\n%s\n", p->tablero);
 
 		return true;
 	}
-	// Se coloca la ficha en el extremo izquierdo del tablero
-	else if ((strncmp(extremo, "izquierda", 9)) == 0)
+	else if(p->derecha == f.izq)
 	{
-		// Coloca el valor izquierdo de la ficha en el extremo izquierdo del tablero
-		if (p->izquierda == f.izq)
-		{
-			strcpy(aux, p->tablero);	// Se guarda el tablero
-			strcpy(p->tablero, "");	// Se vacia el tablero
-			sprintf(p->tablero, "|%d|%d|", f.der, f.izq);	// Se guarda la ficha a colocar
-			sprintf(p->tablero, "%s%s", p->tablero, aux);	// Se juntan tablero y ficha
+		strcpy(p->tablero, "");
+		sprintf(p->tablero, "|%d|%d|", f.izq, f.der);
+		sprintf(p->tablero, "%s%s", p->tablero, aux);
 
-			p->izquierda = f.der;	// Se actualiza el valor del extremos del tablero
+		p->derecha = f.der;
 
-			printf("\nTABLERO:\n%s\n", p->tablero);
+		printf("\nTABLERO:\n%s\n", p->tablero);
 
-			return true;
-		}
-		// Coloca el valor derecho de la ficha en el extremo izquierdo del tablero
-		else
-		{
-			strcpy(aux, p->tablero);
-			strcpy(p->tablero, "");
-			sprintf(p->tablero, "|%d|%d|", f.izq, f.der);
-			sprintf(p->tablero, "%s%s", p->tablero, aux);
-
-			p->izquierda = f.izq;
-
-			printf("\nTABLERO:\n%s\n", p->tablero);
-
-			return true;
-		}
+		return true;
 	}
-	// Se coloca la ficha en el extremo izquierdo del tablero
-	else if ((strncmp(extremo, "derecha", 7)) == 0)
+	else if (p->derecha == f.der)
 	{
-		// Coloca el valor izquierdo de la ficha en el extremo derecho del tablero
-		if(p->derecha == f.izq)
-		{
-			strcpy(aux, p->tablero);
-			strcpy(p->tablero, "");
-			sprintf(p->tablero, "|%d|%d|", f.izq, f.der);
-			sprintf(p->tablero, "%s%s", aux, p->tablero);
+		strcpy(p->tablero, "");
+		sprintf(p->tablero, "|%d|%d|", f.izq, f.der);
+		sprintf(p->tablero, "%s%s",p->tablero, aux);
 
-			p->derecha = f.der;
+		p->derecha = f.izq;
 
-			printf("\nTABLERO:\n%s\n", p->tablero);
+		printf("\nTABLERO:\n%s\n", p->tablero);
 
-			return true;
-		}
-		// Coloca el valor derecho de la ficha en el extremo derecho del tablero
-		else
-		{
-			strcpy(aux, p->tablero);
-			strcpy(p->tablero, "");
-			sprintf(p->tablero, "|%d|%d|", f.der, f.izq);
-			sprintf(p->tablero, "%s%s", aux, p->tablero);
-
-			p->derecha = f.izq;
-
-			printf("\nTABLERO:\n%s\n", p->tablero);
-
-			return true;
-		}
+		return true;
 	}
 	else
 	{
@@ -216,7 +198,6 @@ bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
 		return false;
 	}
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 
 void quitarFicha(struct clients *c, struct ficha f)
@@ -262,11 +243,11 @@ void quitarFichaMonton(struct part *n, struct ficha f)
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void verFichas(struct clients c)
+char *verFichas(struct clients c)
 {
-	int i;
-	char cad[100];
+	char *cad;
 	char aux[10];
+	int i;
 
 	strcpy(aux, "");
 	strcpy(cad, "");
@@ -284,7 +265,7 @@ void verFichas(struct clients c)
 		}
 	}
 
-	send(c.socket, cad, 250, 0);
+	return cad;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

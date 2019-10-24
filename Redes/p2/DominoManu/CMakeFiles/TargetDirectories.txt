@@ -1,0 +1,4 @@
+/home/julen/i72pehej/Uni_3/Redes/p2/DominoManu/CMakeFiles/edit_cache.dir
+/home/julen/i72pehej/Uni_3/Redes/p2/DominoManu/CMakeFiles/servidor.dir
+/home/julen/i72pehej/Uni_3/Redes/p2/DominoManu/CMakeFiles/rebuild_cache.dir
+/home/julen/i72pehej/Uni_3/Redes/p2/DominoManu/CMakeFiles/cliente.dir

@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/servidor.dir/servidorManu.c.o  -o servidor 

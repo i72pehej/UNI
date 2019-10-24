@@ -72,8 +72,9 @@ void iniciarDomino(struct part n, struct clients *clientes)
 	k = 0;
 	clientes[0].nFichas = 0;
 	clientes[1].nFichas = 0;
-	n.fichasMonton = 29;
+	n.fichasMonton = 28;
 
+	printf("\n");
 	// Creacion de las fichas
 	for(i = 0; i < 7; i++)
 	{
@@ -92,6 +93,7 @@ void iniciarDomino(struct part n, struct clients *clientes)
 	// srand(time(NULL));
 	j = 0;
 
+	printf("\n");
 	// Reparto aleatorio aleatorio
 	for(i = 0; i < 7; i++)
 	{
@@ -125,7 +127,6 @@ void iniciarDomino(struct part n, struct clients *clientes)
 
 bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
 {
-	int i, j;
 	char aux[200];	// Tablero auxiliar
 
 
@@ -325,7 +326,7 @@ int comprobarTurno(struct clients *cli, struct part *n)
 				if((cli[k].fichas[i].izq == j) && (cli[k].fichas[i].der == j))
 				{
 					// Se coloca la ficha dle jugador que empieza y pasa turno
-					ponerFicha(n, cli[k].fichas[i]);
+					ponerFicha(n, cli[k].fichas[i], "izquierda");
 					quitarFicha(&cli[k], cli[k].fichas[i]);
 
 					// Retorna el jugador del siguiente turno
@@ -345,14 +346,14 @@ int comprobarTurno(struct clients *cli, struct part *n)
 	// En caso de no tener dobles, sale el jugador con la mayor ficha
 	if((fichaMayor(cli[0]).izq + fichaMayor(cli[0]).der) > (fichaMayor(cli[1]).izq + fichaMayor(cli[1]).der))
 	{
-		ponerFicha(n, fichaMayor(cli[0]));
+		ponerFicha(n, fichaMayor(cli[0]), "izquierda");
 		quitarFicha(&cli[0], fichaMayor(cli[0]));
 
 		return 0;
 	}
 	else
 	{
-		ponerFicha(n, fichaMayor(cli[1]));
+		ponerFicha(n, fichaMayor(cli[1]), "izquierda");
 		quitarFicha(&cli[1], fichaMayor(cli[1]));
 
 		return 1;
