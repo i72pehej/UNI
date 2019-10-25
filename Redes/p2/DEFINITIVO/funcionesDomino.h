@@ -128,11 +128,12 @@ void iniciarDomino(struct part n, struct clients *clientes)
 bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
 {
 	char aux[200];	// Tablero auxiliar
-
+	char aux2[10];		// Ficha auxiliar
 
 	// Cuando el tablero esta vacio, se coloca la ficha del jugador que empieza
 	if (p->start == 0)
 	{
+printf("OPCION 0\n");
 		p->start = 1;
 
 		strcpy(aux, p->tablero);
@@ -142,7 +143,7 @@ bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
 		p->izquierda = f.izq;
 		p->derecha = f.der;
 
-		printf("\nTABLERO:\n%s\n", p->tablero);
+		printf("\nTABLERO:\n%s\n\n", p->tablero);
 
 		return true;
 	}
@@ -152,24 +153,26 @@ bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
 		// Coloca el valor izquierdo de la ficha en el extremo izquierdo del tablero
 		if (p->izquierda == f.izq)
 		{
+printf("OPCION 1\n");
 			strcpy(aux, p->tablero);	// Se guarda el tablero
 			strcpy(p->tablero, "");	// Se vacia el tablero
-			sprintf(p->tablero, "|%d|%d|", f.der, f.izq);	// Se guarda la ficha a colocar
-			sprintf(p->tablero, "%s%s", p->tablero, aux);	// Se juntan tablero y ficha
+			sprintf(aux2, "|%d|%d|", f.der, f.izq);	// Se guarda la ficha a colocar
+			sprintf(p->tablero, "%s%s", aux2, aux);	// Se juntan tablero y ficha
 
 			p->izquierda = f.der;	// Se actualiza el valor del extremos del tablero
 
-			printf("\nTABLERO:\n%s\n", p->tablero);
+			printf("\nTABLERO:\n%s\n\n", p->tablero);
 
 			return true;
 		}
 		// Coloca el valor derecho de la ficha en el extremo izquierdo del tablero
 		else
 		{
+printf("OPCION 2\n");
 			strcpy(aux, p->tablero);
 			strcpy(p->tablero, "");
-			sprintf(p->tablero, "|%d|%d|", f.izq, f.der);
-			sprintf(p->tablero, "%s%s", p->tablero, aux);
+			sprintf(aux2, "|%d|%d|", f.izq, f.der);
+			sprintf(p->tablero, "%s%s", aux2, aux);
 
 			p->izquierda = f.izq;
 
@@ -184,10 +187,11 @@ bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
 		// Coloca el valor izquierdo de la ficha en el extremo derecho del tablero
 		if(p->derecha == f.izq)
 		{
+printf("OPCION 3\n");
 			strcpy(aux, p->tablero);
 			strcpy(p->tablero, "");
-			sprintf(p->tablero, "|%d|%d|", f.izq, f.der);
-			sprintf(p->tablero, "%s%s", aux, p->tablero);
+			sprintf(aux2, "|%d|%d|", f.izq, f.der);
+			sprintf(p->tablero, "%s%s", aux, aux2);
 
 			p->derecha = f.der;
 
@@ -198,10 +202,14 @@ bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
 		// Coloca el valor derecho de la ficha en el extremo derecho del tablero
 		else
 		{
+printf("OPCION 4\n");
 			strcpy(aux, p->tablero);
+// printf("AUX: %s\n", aux);
 			strcpy(p->tablero, "");
-			sprintf(p->tablero, "|%d|%d|", f.der, f.izq);
-			sprintf(p->tablero, "%s%s", aux, p->tablero);
+// printf("p->tablero: %s\n", p->tablero);
+			sprintf(aux2, "|%d|%d|", f.der, f.izq);
+// printf("aux2: %s\n", aux2);
+			sprintf(p->tablero, "%s%s", aux, aux2);
 
 			p->derecha = f.izq;
 
@@ -213,6 +221,7 @@ bool ponerFicha(struct part *p, struct ficha f, char extremo[10])
 	else
 	{
 		printf("\n-ERR.\n\n");
+		printf("%s\n", extremo);
 
 		return false;
 	}
