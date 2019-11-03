@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/funcionesbajonivel.cpp
+cstdio
+-
+cstdlib
+-
+cstring
+-
+math.h
+-
+funcionesbajonivel.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/funcionesbajonivel.hpp
+
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/funcionesbajonivel.hpp
+
 /home/julen/i72pehej/Uni_3/Algoritmica/Practica3/p3.cpp
 cstdio
 -
@@ -33,6 +47,10 @@ string
 -
 math.h
 -
+cmath
+-
 iostream
 -
+funcionesbajonivel.cpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/funcionesbajonivel.cpp
 

@@ -1,0 +1,93 @@
+int diferencia;
+string resultado;
+int acarreo = 0;
+//Entero *auxE = new al::Entero();
+Entero auxE;
+diferencia = this->getTamano() - a.getTamano();
+if (diferencia < 0) {
+  string aux = getEntero();
+  agregarCerosDelante(aux, abs(diferencia));
+  setEntero(aux);
+} else if (diferencia > 0){
+  string aux = a.getEntero();
+  agregarCerosDelante(aux, diferencia);
+  a.setEntero(aux);
+}
+
+resultado.resize(getTamano() + 1);
+string aux1 = this->getEntero();
+string aux2 = a.getEntero();
+for (int i=this->getTamano()-1; i>=0; i--){
+  int i1 = aux1[i]-'0';
+  int i2 = aux2[i]- '0';
+  int suma = i1 + i2 + acarreo;
+  if (suma < 10){
+    resultado[i+1] = (char)suma + 48;
+    acarreo = 0;
+  }
+  else {
+    suma = suma % 10;
+    resultado[i+1] = (char)suma + 48;
+    acarreo = 1;
+  }
+}
+if (acarreo == 1){
+  resultado[0] = '1';
+} else if (acarreo == 0){
+  resultado[0] = '0';
+}
+  quitarCerosNoSignificativos(resultado);
+  auxE.setEntero(resultado);
+  return auxE;
+
+
+
+
+  Entero *aux = new Entero() ;
+  string res;
+  int suma;
+  string cad_a=a.getEntero();
+  string cad1=getEntero();
+  int n;
+
+  if(cad_a.length()>cad1.length()){
+    agregarCerosDelante(cad1, cad_a.length()-cad1.length()+1);
+    agregarCerosDelante(cad_a,1);
+    n=cad_a.length()+1;
+  }
+  else if(cad1.length()+cad_a.length()){
+    agregarCerosDelante(cad_a,cad1.length()-cad_a.length()+1);
+    agregarCerosDelante(cad1,1);
+    n=cad1.length()+1;
+  }
+  else{
+    agregarCerosDelante(cad_a,1);
+    agregarCerosDelante(cad1, 1);
+    n=cad1.length()+1;
+  }
+
+  for(int i=n-1; n>=0; --i){
+    suma=(cad_a[i] - '0') + (cad1[i]- '0');
+    if(suma>=10){
+      suma=suma-10;
+      cad1[i-1]=(char)(((cad1[i-1]-'0')+1)+48);
+      res.push_back((char)((suma)+48));
+    }
+    else{
+      res.push_back((char)((suma)+48));
+    }
+  }
+
+  string rev;
+  for(int i=res.length()-1;i>=0;i--){
+    rev=rev.append(1,res[i]);
+  }
+
+  quitarCerosNoSignificativos(rev);
+  string final;
+  for(int i=0;i<rev.length()-1;i++){
+    final.push_back(rev[i]);
+  }
+
+  aux->setEntero(final);
+  return *aux;*/
