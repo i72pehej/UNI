@@ -16,6 +16,11 @@ int main(int argc, char const *argv[]) {
 
   int opcion; // Opcion para switch
 
+  int n;  // Mayor numero de digitos
+  int s;  // Potencia a la que elevar 10
+  Entero w, x, y, z; // Enteros grandes
+
+
 
   std::cout << "\n\n-------------------------------" << '\n';
   std::cout << "Introduzca la operacion deseada" << '\n';
@@ -47,7 +52,28 @@ int main(int argc, char const *argv[]) {
     break;
 
     case 2: // PRODUCTO
+      // Colocar ceros para que ambos numeros tengan el mismo numero de digitos
+      if (this->getEnteroString().size() > e2.getEnteroString().size()) {
+        n = this->getEnteroString().size();
+        colocar_ceros(e2, (this->getEnteroString().size() - e2.getEnteroString().seize()));
+      }
+      else {
+        n = e2.getEnteroString().size();
+        colocar_ceros(this, (e2.getEnteroString().size() - this->getEnteroString().seize()));
+      }
 
+      if (n <= 4) { // Numero lo suficientemente pequeño
+        return (this * e2);
+      }
+      else {  // Enteros grandes
+        s = n / 2;
+        w = this->getEnteroInt() / pow(10, s);
+        x = this->getEnteroInt() % pow(10, s);
+        y = e2.getEnteroInt() / pow(10, s);
+        z = e2.getEnteroInt() % pow(10, s);
+
+        return ((w * y * pow(10, 2 * s)) + (((w * z) + (x * y)) * pow(10, s)) + (x * z));
+      }
     break;
   }
 
@@ -149,42 +175,22 @@ void Entero::colocar_ceros(Entero &e1, const int cant) {
 ////////////////////////////////////////////////////////////////////////////////
 
 // Sobrecarga del operador de la suma
-Entero Entero::operator + (const Entero e2) {
+Entero Entero::operator + (Entero &e2) {
 
 
 
+  return e2;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 // Sobrecarga del operador del producto
-Entero Entero::operator * (const Entero e2) {
-  int n;  // Mayor numero de digitos
-  int s;  // Potencia a la que elevar 10
-  Entero w, x, y, z; // Enteros grandes
+Entero Entero::operator * (Entero &e2) {
 
-  // Colocar ceros para que ambos numeros tengan el mismo numero de digitos
-  if (this->getEnteroString().size() > e2.getEnteroString().size()) {
-    n = this->getEnteroString().size();
-    colocar_ceros(e2, (this->getEnteroString().size() - e2.getEnteroString().seize()));
-  }
-  else {
-    n = e2.getEnteroString().size();
-    colocar_ceros(this, (e2.getEnteroString().size() - this->getEnteroString().seize()));
-  }
 
-  if (n <= 4) { // Numero lo suficientemente pequeño
-    return (this * e2);
-  }
-  else {  // Enteros grandes
-    s = n / 2;
-    w = this->getEnteroInt() / pow(10, s);
-    x = this->getEnteroInt() % pow(10, s);
-    y = e2.getEnteroInt() / pow(10, s);
-    z = e2.getEnteroInt() % pow(10, s);
 
-    return ((w * y * pow(10, 2 * s)) + (((w * z) + (x * y)) * pow(10, s)) + (x * z));
-  }
+
+  return e2;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

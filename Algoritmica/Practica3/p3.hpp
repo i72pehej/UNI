@@ -35,8 +35,8 @@ class Entero {
     void colocar_ceros(Entero &e1, const int cant);
 
     // Sobrecarga de operadores
-    Entero operator + (const Entero e2);
-    Entero operator * (const Entero e2);
+    Entero operator + (Entero e2);
+    Entero operator * (Entero e2);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
