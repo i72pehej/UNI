@@ -2,20 +2,18 @@
 #include <stdlib.h>
 #include <string>
 #include <iostream>
-
 #include "Entero.cpp"
 
 using namespace al;
 
-int main(int argc, char const *argv[]) {
-	Entero a;
-	Entero b;
-	Entero aux;
-	int option;
-
+int main ()
+{
+	Entero a ;
+	Entero b ;
 	char auxi;
+	int option;
+	Entero aux;
 	string x, y;
-
 	cout<<"1-Suma"<<endl;
 	cout<<"2-multiplicacion"<<endl;
 	cin >> option;
@@ -26,13 +24,13 @@ int main(int argc, char const *argv[]) {
 
 	switch(option){
 		case 1:
-			aux = a + b;
-			cout << "suma=" << aux.getEntero();
-		break;
 
+		aux = a + b;
+		cout << "suma=" << aux.getEntero();
+		break;
 		case 2:
-			aux = a * b;
-			cout << "multiplicacion=" << aux.getEntero();
+		aux = a * b;
+		cout << "multiplicacion=" << aux.getEntero();
 		break;
 	}
 }
