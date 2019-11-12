@@ -3,9 +3,6 @@
 
 #include <iostream>
 
-
-////////////////////////////////////////////////////////////////////////////////
-
 //Esta función reserva una cadena de n caracteres y devuelve un puntero a la misma.
 std::string reservarCadena(int n);
 
@@ -25,8 +22,5 @@ void quitarCerosNoSignificativos(std::string &c);
 void AgregarCeros(std::string & cadena, int c);
 //Esta función devuelve una cadena que contendrá el número resultante de multiplicar el número almacenado en la cadena c por 10 elevado a potencia.
 std::string multiplicarPotencia10( const std::string  &c, int potencia);
-
-////////////////////////////////////////////////////////////////////////////////
-
 
 #endif
