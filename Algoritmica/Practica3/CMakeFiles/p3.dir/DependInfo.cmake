@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/p3.cpp" "/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/CMakeFiles/p3.dir/p3.cpp.o"
+  "/home/i72pehej/Uni3ero/Algoritmica/Practica3/p3.cpp" "/home/i72pehej/Uni3ero/Algoritmica/Practica3/CMakeFiles/p3.dir/p3.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

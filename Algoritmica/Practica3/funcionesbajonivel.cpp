@@ -2,21 +2,30 @@
 #include <cstdlib>
 #include <cstring>
 #include <math.h>
+#include <iostream>
+#include <string>
 
 #include "funcionesbajonivel.hpp"
 
-char * reservarCadena(int n)
-{
-	return new char [n];
+using namespace std;
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+string reservarCadena(int n) {
+	string a;
+	a.resize(n);
+	return a;
 }
 
-void partirCadena(char *c, char* &c1, char* &c2)
-{
+////////////////////////////////////////////////////////////////////////////////
+
+void partirCadena(string s, string &s1, string &s2) {
 	int n;
 	int n1, n2;
 	int i;
 
-	n = strlen(c);
+	n = s.size();
 
 	if (n % 2 == 0) //n es par
 	{
@@ -29,25 +38,24 @@ void partirCadena(char *c, char* &c1, char* &c2)
 		n2 = n1 - 1;
 	}
 
-	c1 = reservarCadena(n1 + 1); //Se reserva uno mas para el caracter fin de cadena
-	c2 = reservarCadena(n2 + 1); //Se reserva uno mas para el caracter fin de cadena
+	s1 = reservarCadena(n1 + 1); //Se reserva uno mas para el caracter fin de cadena
+	s2 = reservarCadena(n2 + 1); //Se reserva uno mas para el caracter fin de cadena
 
 	for(i = 0; i < n1; i++) //Se rellena la primera cadena
-		c1[i] = c[i];
-	c1[i] = '\0';
+		s1[i] = s[i];
 
 	for(i = n1; i < n; i++) //Se rellena la segunda cadena
-		c2[i - n1] = c[i];
-	c2[i - n1] = '\0';
+		s2[i - n1] = s[i];
 }
 
-void agregarCerosFinal(char* &c, int nCeros)
-{
+////////////////////////////////////////////////////////////////////////////////
+
+void agregarCerosFinal(string &c, int nCeros) {
 	int n, numeroCaracteres;
-	char *nuevaCadena = NULL;
+	string nuevaCadena;
 	int i;
 
-	n = strlen(c);
+	n = c.size();
 	numeroCaracteres = n + nCeros;
 
 	nuevaCadena = reservarCadena(numeroCaracteres + 1);
@@ -57,42 +65,38 @@ void agregarCerosFinal(char* &c, int nCeros)
 
 	for(i = n; i < numeroCaracteres; i++) //Se rellena con los ceros al final
 		nuevaCadena[i] = '0';
-	nuevaCadena[i] = '\0';
-
-	delete [] c; //Se libera la cadena antigua
 
 	c = nuevaCadena;
 }
 
-void agregarCerosDelante(char* &c, int nCeros)
-{
+////////////////////////////////////////////////////////////////////////////////
+
+void agregarCerosDelante(string &c, int nCeros) {
 	int n, numeroCaracteres;
-	char *nuevaCadena;
+	string nuevaCadena;
 	int i;
 
-	n = strlen(c);
+	n = c.size();
 	numeroCaracteres = n + nCeros;
 
 	nuevaCadena = reservarCadena(numeroCaracteres + 1);
 
 	for(i = 0; i < n; i++) //Se desplazan los caracteres iniciales para dejar espacio a los ceros
 		nuevaCadena[i + nCeros] = c[i];
-	nuevaCadena[i + nCeros] = '\0'; //Se cierra la cadena
 
 	for(i = 0; i < nCeros; i++) //Se rellena con los ceros al principio
 		nuevaCadena[i] = '0';
-
-	delete []c; //Se libera la cadena antigua
 	c = nuevaCadena;
 }
 
-void quitarCerosNoSignificativos(char* &c)
-{
-	char *aux;
+////////////////////////////////////////////////////////////////////////////////
+
+void quitarCerosNoSignificativos(string &c) {
+	string aux;
 	int l, i = 0;
 	int numeroCeros = 0;
 
-	l = strlen(c);
+	l = c.size();
 	//Contamos ceros no significativos
 	while(c[i] == '0' && i < l)
 	{
@@ -106,18 +110,27 @@ void quitarCerosNoSignificativos(char* &c)
 	//Copiamos la cadena sin los ceros no significativos
 	for(i = numeroCeros; i < l; i++)
 		aux[i - numeroCeros] = c[i];
-
-	aux[l - numeroCeros] = '\0'; //Cerramos la cadena
-	delete []c;
 	c = aux;
 }
 
-char * multiplicarPotencia10(char *c, int potencia)
-{
-	char *aux;
+////////////////////////////////////////////////////////////////////////////////
 
-	aux = reservarCadena(strlen(c) + 1);
-	strcpy(aux, c);
+string multiplicarPotencia10(const string &c, int potencia) {
+	string aux;
+
+	aux = reservarCadena(c.size() + 1);
+	aux = c;
+	//cout<<"valor como string"<<c<<endl;
 	agregarCerosFinal(aux, potencia);
+	//quitarCerosNoSignificativos(aux);
 	return aux;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+void AgregarCeros(string & cadena, int c) {
+	for(int i=0;i<c;i++)
+		cadena.append("0");
+}
+
+////////////////////////////////////////////////////////////////////////////////
