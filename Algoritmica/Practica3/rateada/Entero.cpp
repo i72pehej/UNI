@@ -1,5 +1,4 @@
-
-  #include "Entero.hpp"
+#include "Entero.hpp"
 
  al::Entero  al::Entero::operator+(Entero a){
    //variables operando y resultado

@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <cmath>
+
 #include "funcionesbajonivel.cpp"
 
 #ifndef _ENTERO_HPP_

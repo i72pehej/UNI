@@ -9,15 +9,18 @@
 
 using namespace std;
 
-string reservarCadena(int n)
-{
+
+////////////////////////////////////////////////////////////////////////////////
+
+string reservarCadena(int n) {
 	string a;
 	a.resize(n);
 	return a;
 }
 
-void partirCadena(string s, string &s1, string &s2)
-{
+////////////////////////////////////////////////////////////////////////////////
+
+void partirCadena(string s, string &s1, string &s2) {
 	int n;
 	int n1, n2;
 	int i;
@@ -45,10 +48,9 @@ void partirCadena(string s, string &s1, string &s2)
 		s2[i - n1] = s[i];
 }
 
+////////////////////////////////////////////////////////////////////////////////
 
-
-void agregarCerosFinal(string &c, int nCeros)
-{
+void agregarCerosFinal(string &c, int nCeros) {
 	int n, numeroCaracteres;
 	string nuevaCadena;
 	int i;
@@ -67,8 +69,9 @@ void agregarCerosFinal(string &c, int nCeros)
 	c = nuevaCadena;
 }
 
-void agregarCerosDelante(string &c, int nCeros)
-{
+////////////////////////////////////////////////////////////////////////////////
+
+void agregarCerosDelante(string &c, int nCeros) {
 	int n, numeroCaracteres;
 	string nuevaCadena;
 	int i;
@@ -86,8 +89,9 @@ void agregarCerosDelante(string &c, int nCeros)
 	c = nuevaCadena;
 }
 
-void quitarCerosNoSignificativos(string &c)
-{
+////////////////////////////////////////////////////////////////////////////////
+
+void quitarCerosNoSignificativos(string &c) {
 	string aux;
 	int l, i = 0;
 	int numeroCeros = 0;
@@ -109,8 +113,9 @@ void quitarCerosNoSignificativos(string &c)
 	c = aux;
 }
 
-string multiplicarPotencia10(const string &c, int potencia)
-{
+////////////////////////////////////////////////////////////////////////////////
+
+string multiplicarPotencia10(const string &c, int potencia) {
 	string aux;
 
 	aux = reservarCadena(c.size() + 1);
@@ -121,8 +126,11 @@ string multiplicarPotencia10(const string &c, int potencia)
 	return aux;
 }
 
-void AgregarCeros(string & cadena, int c)
-{
+////////////////////////////////////////////////////////////////////////////////
+
+void AgregarCeros(string & cadena, int c) {
 	for(int i=0;i<c;i++)
 		cadena.append("0");
 }
+
+////////////////////////////////////////////////////////////////////////////////

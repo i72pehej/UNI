@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/funcionesbajonivel.cpp
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/funcionesbajonivel.cpp
 cstdio
 -
 cstdlib
@@ -15,12 +15,48 @@ cstring
 -
 math.h
 -
+iostream
+-
+string
+-
 funcionesbajonivel.hpp
-/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/funcionesbajonivel.hpp
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/funcionesbajonivel.hpp
 
-/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/funcionesbajonivel.hpp
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/funcionesbajonivel.hpp
+iostream
+-
 
-/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/p3.cpp
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/p3.cpp
+cstdio
+-
+cstdlib
+-
+cstring
+-
+string
+-
+math.h
+-
+iostream
+-
+p3funciones.cpp
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/p3funciones.cpp
+
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/p3.hpp
+stdio.h
+-
+stdlib.h
+-
+string
+-
+iostream
+-
+cmath
+-
+funcionesbajonivel.cpp
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/funcionesbajonivel.cpp
+
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/p3funciones.cpp
 cstdio
 -
 cstdlib
@@ -34,23 +70,5 @@ math.h
 iostream
 -
 p3.hpp
-/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/p3.hpp
-
-/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/p3.hpp
-cstdio
--
-cstdlib
--
-cstring
--
-string
--
-math.h
--
-cmath
--
-iostream
--
-funcionesbajonivel.cpp
-/home/julen/i72pehej/Uni_3/Algoritmica/Practica3/funcionesbajonivel.cpp
+/home/i72pehej/Uni3ero/Algoritmica/Practica3/p3.hpp
 
