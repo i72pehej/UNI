@@ -18,7 +18,7 @@ GreedyMethod::GreedyMethod(char *fileName, int numberPointsPolygonalApproximatio
 {
   //A digital curve is created to load the digital curve in file
 	DigitalCurve dc(fileName);
-  
+
   //Digital curve as saved as original curve
   setOriginalCurve(dc);
 
@@ -33,6 +33,9 @@ GreedyMethod::~GreedyMethod()
 
 void GreedyMethod::apply()
 {
-  //Completar
-}
+	
 
+
+
+
+}

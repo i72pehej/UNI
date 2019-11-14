@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
   char fileNameDC[100], fileNamePA[100];
   int n;
-  cout << "Digital curve to obtain polygonal approximation (Curva para obtener la aproximacion): ";
+  cout << "Curva digital para obtener la aproximacion poligonal: ";
   cin >> fileNameDC;
 
   //Creates a new class for method and the pointer points to the new class
@@ -22,14 +22,15 @@ int main(int argc, char *argv[])
   //Execute the method
   a->apply();
 
-  cout << "Number of points of the polygonal approxmation: " << a->getNumberPointsPolygonalApproximation() << endl;
-  cout << "The value of ISE is " << a->getISE() << endl;
+  cout << "Numero de puntos de la aproximacion poligonal: " << a->getNumberPointsPolygonalApproximation() << endl;
+  cout << "El valor de ISE es: " << a->getISE() << endl;
 
   DigitalCurve aP = a->getPolygonalApproximation();
 
-  cout << "Name of file to save the polygonal approximation: ";
+  cout << "Fichero para guardar la aproximacion poligonal: ";
   cin >> fileNamePA;
 
   aP.saveDigitalCurve(fileNamePA);
+
   return 0;
 }
