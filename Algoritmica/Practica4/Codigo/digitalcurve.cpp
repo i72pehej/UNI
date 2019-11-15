@@ -14,26 +14,26 @@
 
 using namespace std;
 
-// TAD  DigitalCurve 
+// TAD  DigitalCurve
 //
-DigitalCurve::DigitalCurve()	
+DigitalCurve::DigitalCurve()
 {
 }
 
 
 //Constructor. Crea un DigitalCurve a partir de un fichero
-DigitalCurve::DigitalCurve(char *fileName)	
+DigitalCurve::DigitalCurve(char *fileName)
 {
 	long double x, y;
   Point point;
-  
+
   ifstream pf(fileName);
   if (!pf)
   {
     cout << "\n File does not exist";
     exit(0);
   }
-  
+
   //read from file
   while ( pf >> x >> y)
   {
@@ -47,7 +47,7 @@ DigitalCurve::DigitalCurve(char *fileName)
 }
 
 //Destructor
-DigitalCurve::~DigitalCurve() 
+DigitalCurve::~DigitalCurve()
 {
 }
 
@@ -64,7 +64,7 @@ long double DigitalCurve::longDigitalCurve()const
 {
  	long double longitud = 0.0;
  	Point p1, p2;
- 	
+
 
  	for(int i = 0; i < getNumberPointsDigitalCurve() - 1; i++)
  	{
@@ -81,13 +81,13 @@ void DigitalCurve::saveDigitalCurve(char *fileName)const
 	Point point;
  	ofstream pf(fileName);
 
- 	if (!pf) 
+ 	if (!pf)
   {
     cout << "Error opening file \n";
     exit(0);
   }
- 
- 	// The points of the digital curve are saved in a file 
+
+ 	// The points of the digital curve are saved in a file
  	for(int i = 0 ;i < getNumberPointsDigitalCurve() ; i++)
 	{
 		point = getPointDigitalCurve(i);
@@ -100,7 +100,7 @@ void DigitalCurve::saveDigitalCurve(char *fileName)const
 
 void DigitalCurve::calculateChainCodeDigitalCurve()
 {
- 	int chainCode; 
+ 	int chainCode;
  	Point current, next;
 
   //The chain code of the n-1 first points are calculated
@@ -134,23 +134,23 @@ long double DigitalCurve::getISE(int initial, int final) const
 {
 	assert(initial >= 0 and initial < getNumberPointsDigitalCurve());
 	assert(final >= 0 and final < getNumberPointsDigitalCurve());
-	
+
 	long double ise = 0.0;
 	long double error = 0.0;
 	int begin, end, limite;
-	
+
 	if (initial == final)
 		return 0.0;
-        
+
   Point p;
   //Auxiliar variables to save initial amd final points
   begin = initial;
   end = final;
-	
+
 	Line line(getPointDigitalCurve(initial), getPointDigitalCurve(final));
-	
+
   if (getPointDigitalCurve(initial) != getPointDigitalCurve(final)) //It is not a bucle
-  { 
+  {
   //Error are obtained from distances from points to a line
     if (initial < final)
     {
@@ -160,12 +160,12 @@ long double DigitalCurve::getISE(int initial, int final) const
               ise += error * error;
       }
     }
-    else 
+    else
     {
       int limit = getNumberPointsDigitalCurve() - 1;
       if (isClosed()) //Closed curve. First point duplicated and its error is not calculated
         limit--;
-      
+
       for (int i = begin; i <= limite; i++)
       {
         error = line.distancePointLine(getPointDigitalCurve(i));
@@ -178,8 +178,8 @@ long double DigitalCurve::getISE(int initial, int final) const
       }
     }
   }
-  else //It is a bucle 
-  { 
+  else //It is a bucle
+  {
     if (initial < final)
     {
       for (int i = begin; i <= end; i++)
@@ -188,12 +188,12 @@ long double DigitalCurve::getISE(int initial, int final) const
         ise += error * error;
       }
     }
-    else 
+    else
     {
       int limit = getNumberPointsDigitalCurve() - 1;
       if (isClosed()) //Closed curve. First point duplicated and its error is not calculated
         limit--;
-      
+
       for (int i = begin; i <= limite; i++)
       {
         error = getPointDigitalCurve(initial).distancePoints(getPointDigitalCurve(i));
@@ -206,8 +206,8 @@ long double DigitalCurve::getISE(int initial, int final) const
       }
     }
   }
-	
-	return ise;	
+
+	return ise;
 }
 
 
@@ -224,7 +224,7 @@ void DigitalCurve::getEmax(int initial, int final, long double &eMax, int &posit
   assert(initial!=final);
 	assert(initial >= 0 and initial <= getNumberPointsDigitalCurve() - 1);
 	assert(final >= 0 and final <= getNumberPointsDigitalCurve() - 1);
-	
+
 	eMax = 0.0;
 	position = initial;
 	long double error = 0.0;
@@ -233,8 +233,8 @@ void DigitalCurve::getEmax(int initial, int final, long double &eMax, int &posit
   //Auxiliar variables to save initial amd final points
   begin = initial;
   end = final;
-	
-	
+
+
   if (getPointDigitalCurve(initial) != getPointDigitalCurve(final)) //It is not a bucle
   {
     Line line(getPointDigitalCurve(initial), getPointDigitalCurve(final));
@@ -276,8 +276,8 @@ void DigitalCurve::getEmax(int initial, int final, long double &eMax, int &posit
       }
     }
   }
-  else //It is a bucle 
-  { 
+  else //It is a bucle
+  {
     if (initial < final)
       {
         for (int i = begin; i <= end; i++)
@@ -315,12 +315,6 @@ void DigitalCurve::getEmax(int initial, int final, long double &eMax, int &posit
           }
         }
       }
-      
+
   }
 }
-
-
-
-
-
-

@@ -48,10 +48,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ma1capoa/Practica4/Codigo
+CMAKE_SOURCE_DIR = /home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ma1capoa/Practica4/Codigo
+CMAKE_BINARY_DIR = /home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ma1capoa/Practica4/Codigo/CMakeFiles /home/ma1capoa/Practica4/Codigo/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles /home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ma1capoa/Practica4/Codigo/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -176,6 +176,33 @@ digitalcurve.s: digitalcurve.cpp.s
 digitalcurve.cpp.s:
 	$(MAKE) -f CMakeFiles/main.x.dir/build.make CMakeFiles/main.x.dir/digitalcurve.cpp.s
 .PHONY : digitalcurve.cpp.s
+
+greedymethod.o: greedymethod.cpp.o
+
+.PHONY : greedymethod.o
+
+# target to build an object file
+greedymethod.cpp.o:
+	$(MAKE) -f CMakeFiles/main.x.dir/build.make CMakeFiles/main.x.dir/greedymethod.cpp.o
+.PHONY : greedymethod.cpp.o
+
+greedymethod.i: greedymethod.cpp.i
+
+.PHONY : greedymethod.i
+
+# target to preprocess a source file
+greedymethod.cpp.i:
+	$(MAKE) -f CMakeFiles/main.x.dir/build.make CMakeFiles/main.x.dir/greedymethod.cpp.i
+.PHONY : greedymethod.cpp.i
+
+greedymethod.s: greedymethod.cpp.s
+
+.PHONY : greedymethod.s
+
+# target to generate assembly for a file
+greedymethod.cpp.s:
+	$(MAKE) -f CMakeFiles/main.x.dir/build.make CMakeFiles/main.x.dir/greedymethod.cpp.s
+.PHONY : greedymethod.cpp.s
 
 line.o: line.cpp.o
 
@@ -300,6 +327,9 @@ help:
 	@echo "... digitalcurve.o"
 	@echo "... digitalcurve.i"
 	@echo "... digitalcurve.s"
+	@echo "... greedymethod.o"
+	@echo "... greedymethod.i"
+	@echo "... greedymethod.s"
 	@echo "... line.o"
 	@echo "... line.i"
 	@echo "... line.s"

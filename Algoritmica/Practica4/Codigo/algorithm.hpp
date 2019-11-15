@@ -10,12 +10,12 @@ class Algorithm
 {
 	private:
 		//original digital contour for obtained polygonal approximation
-		DigitalCurve _digitalCurve; 
+		DigitalCurve _digitalCurve;
 
 		//Vector of dominant points positions. Dominant points are the points of the polygonal approximation.
 		//The position corresponding to the Digital Curve
-		vector <int> _dominantPointPosition; 
-		
+		vector <int> _dominantPointPosition;
+
 		//Diginal contour that contains polygonal approximation
 		DigitalCurve _polygonalApproximation;
 
@@ -38,7 +38,7 @@ class Algorithm
 		};
 
 		//Set the curve used to obtain its polygonal approximation
-		inline void setOriginalCurve(const DigitalCurve &dC) 
+		inline void setOriginalCurve(const DigitalCurve &dC)
 		{
 			_digitalCurve = dC;
 		};
@@ -60,8 +60,8 @@ class Algorithm
 			return _polygonalApproximation;
 		};
 
-		//Set the polygonal approximation of the digital curve. 
-		inline void setPolygonalApproximation(const DigitalCurve &pA) 
+		//Set the polygonal approximation of the digital curve.
+		inline void setPolygonalApproximation(const DigitalCurve &pA)
 		{
 			_polygonalApproximation = pA;
 		};
@@ -75,22 +75,22 @@ class Algorithm
 		//Copy a vector that contains the positions of the points of the polygonal approximations in class algorithm
 		void setDominantPointsPosition(const vector <int> & v)
 		{
-			_dominantPointPosition = v;;
+			_dominantPointPosition = v;
 		}
 
 		//Virtual pure function. It must be implement in derivated classes
 		//This function is used to obtain the polygonal approximation
- 		virtual void apply()=0;
-    
-    	//Functions for obtaining errors.
-    	//This function obtains the auxiliar summations to calculate the errors
-    	void calculateSummations();
+ 		virtual void apply() = 0;
 
-    	//This function quickly calculates the accumulated error between two points using the auxiliar summations 
+  	//Functions for obtaining errors.
+  	//This function obtains the auxiliar summations to calculate the errors
+  	void calculateSummations();
+
+  	//This function quickly calculates the accumulated error between two points using the auxiliar summations
 		long double calculateISEValue(const int &initial, const int &final); //To obtain ISE values between two points
-		
+
 		// return the ISE value of the polygonal approximation (all points)
-		long double getISE(); 
+		long double getISE();
 
 		//Function for collinear points elimination
 		void collinearPointsElimination();
@@ -100,4 +100,3 @@ class Algorithm
 };
 
 #endif
-		

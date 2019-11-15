@@ -26,7 +26,7 @@ class Matrix
 		{
 			setRows(r);
 			setColumns(c);
-		
+
 			reserveMemory();
 
 			for(int i = 0; i < getRows(); i++)
@@ -35,7 +35,7 @@ class Matrix
 				{
 				   setElement(i, j, 0.0); //Initialise to 0 all elements
 				}
-			}  
+			}
 		}
 
 		//Copy constructor.
@@ -73,7 +73,7 @@ class Matrix
 		{
 			assert(r >= 0 and r < getRows());
       		assert(c >= 0 and c < getColumns());
-			
+
 			return _m[r][c];
 		}
 

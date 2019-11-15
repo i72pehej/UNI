@@ -7,15 +7,15 @@
 class CollinearSuppressionMethod:public Algorithm
 {
 	private:
-		
+
 	public:
 		CollinearSuppressionMethod(char * fileName);
 		~CollinearSuppressionMethod();
 		//Inherited method from algorithm class. It must be implemented in all inherited classes
 		//This method calculates the polygonal approximation
 		void apply();
-		
+
 };
-		
+
 
 #endif

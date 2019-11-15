@@ -1,4 +1,3 @@
-
 #include <vector>    // necesario para el contenedor vector
 #include "algorithm.hpp"
 #include "suppressioncollinearpointsmethod.hpp"
@@ -18,7 +17,7 @@ CollinearSuppressionMethod::CollinearSuppressionMethod(char *fileName)
 {
   //A digital curve is created to load the digital curve in file
 	DigitalCurve dc(fileName);
-  
+
   //Digital curve as saved as original curve
   setOriginalCurve(dc);
 }
@@ -42,4 +41,3 @@ void CollinearSuppressionMethod::apply()
   //Set the number of points of the polygonal approximation
   setNumberPointsPolygonalApproximation(getPolygonalApproximation().getNumberPointsDigitalCurve());
 }
-
