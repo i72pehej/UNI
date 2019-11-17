@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/algorithm.cpp" "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/algorithm.cpp.o"
-  "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/digitalcurve.cpp" "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/digitalcurve.cpp.o"
-  "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/greedymethod.cpp" "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/greedymethod.cpp.o"
-  "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/line.cpp" "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/line.cpp.o"
-  "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/main.cpp" "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/main.cpp.o"
-  "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/point.cpp" "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/point.cpp.o"
-  "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/suppressioncollinearpointsmethod.cpp" "/home/i72pehej/Uni3ero/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/suppressioncollinearpointsmethod.cpp.o"
+  "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/algorithm.cpp" "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/algorithm.cpp.o"
+  "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/digitalcurve.cpp" "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/digitalcurve.cpp.o"
+  "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/greedymethod.cpp" "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/greedymethod.cpp.o"
+  "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/line.cpp" "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/line.cpp.o"
+  "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/main.cpp" "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/main.cpp.o"
+  "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/point.cpp" "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/point.cpp.o"
+  "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/suppressioncollinearpointsmethod.cpp" "/home/julen/i72pehej/Uni_3/Algoritmica/Practica4/Codigo/CMakeFiles/main.x.dir/suppressioncollinearpointsmethod.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
