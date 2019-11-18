@@ -1,0 +1,67 @@
+
+
+.eslogan{
+    text-align:center;
+    font-size:56px;
+    margin-bottom:10px;
+    font-weight: 600;
+    height: auto;
+}
+
+.profesion{
+    font-size:24px;
+    font-weight:300;
+    text-align: center;
+    margin-bottom:24px;
+}
+
+
+
+.cards{
+    width:100%;
+    margin:auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.card{
+    margin: 20px 0;
+    width:30%;
+    height:250px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 0px 4px 0 rgba(52, 73, 94, 0.849);
+}
+
+.card img{
+    width:140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-user-select: none; /* for button */
+    -webkit-appearance: button; /* for input */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border-radius: 100%;
+}
+
+button:hover{
+    border-top: 5px solid rgba(37, 37, 33, .7);
+}
+
+
+
+

@@ -1,0 +1,27 @@
+<ul id="button">
+			<li><a href="#">Ver CV</a></li>
+			<li><a href="crearCV.html">Crear CV</a></li>
+			<!--Con javascript, el usuario de dicho perfil podrá editar su información -->
+			<li><a href="#">Editar Perfil</a></li>
+		</ul>
+		
+		<div class="columna">
+			 <img src="../imagenes/icon.png" />
+			 <div id="mostrarNombre">Muesta Nombre Perfil</div>
+			 <div id="mostrarEdad">Edad</div>
+			 <div id="mostrarExperiencia">Experiencia</div>
+		</div>
+		<br/>
+		
+		<br/>
+		<div class="columna">
+			<div id="mostrarSobreMi">Sobre Mi</div>
+		</div>
+		<br/>
+		<!-- Con javascript se añadirá un chat para que los usuarios de la misma profesión puedan comunicarse -->
+		<div id="chat">
+			Chat
+		</div>
+		<div id="comentarios">
+			<textarea name="textareaComentarios" rows="5" cols="20">Añadir comentarios sobre el usuario</textarea></textarea><br/>
+		</div>

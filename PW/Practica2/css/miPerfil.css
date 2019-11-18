@@ -1,0 +1,149 @@
+
+#principal {
+    display: inline-block;
+    padding: 6px;
+    width:150px;
+    font-weight:300;
+    border: 1px solid rgba(24, 16, 16, .7);
+    color: rgb(24, 16, 16);
+    font-size:16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 16px;
+    margin-top: 24px;
+    float:left;
+}
+.cards{
+    width:100%;
+    margin:auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.card{
+    margin: 20px 0;
+    width:80%;
+    height:auto;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 0px 4px 0 rgba(52, 73, 94, 0.849);
+}
+
+.primero{
+    display:inline-block;
+    margin: 10px;
+    width:30%;
+    height:auto;
+    padding: 10px;
+}
+
+.botones{
+    display:inline-block;
+    margin: 10px;
+    width:90%;
+    height:auto;
+    padding: 10px;
+    box-shadow: 0px 0px 4px 0 rgba(52, 73, 94, 0.849);
+}
+
+.card img{
+    width:140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+label{
+    color: #000;
+    text-align:center;
+    font-weight:400;
+    font-size:20px;
+}
+
+select{
+    width:20%;
+}
+
+.resumen{
+    display:block;
+    width:100%;
+    max-width:100%;
+    min-width:100%;
+    max-height:200px;
+    min-height:200px;
+    padding:13px; 
+    border-color:rgba(52, 73, 94, 0.849);
+    color: #fff;
+    font-family:'open-sans';
+    margin-bottom:16px;
+}
+
+
+.boton{
+    display: inline-block;
+    padding: 6px;
+    width:150px;
+    font-weight:300;
+    border: 1px solid rgba(24, 16, 16, .7);
+    color: rgb(24, 16, 16);
+    font-size:16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 16px;
+    margin-top: 24px;
+}
+
+.boton:hover{
+    border-top: 5px solid rgba(37, 37, 33, .7);
+}
+
+#form {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+#form p {
+  text-align: center;
+}
+
+#form label .puntua{
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label .puntua {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label .puntua:hover,
+label.puntua:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
+  
+.cajaComentarios {
+    border: 1px solid rgba(37, 37, 33, .7);
+    width:100%;
+    height: 200px;
+}
+
+.comentarios{
+    border: 1px solid rgba(37, 37, 33, .7);
+    width:100%;
+    height: 100px;
+}

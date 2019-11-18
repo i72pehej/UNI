@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Mi Perfil</title>
+        <script src="../javascript/funcionesPerfil.js"></script>
+		<link href="../css/general.css" rel="stylesheet" type="text/css">
+		<link href="../css/headerFooter.css" rel="stylesheet" type="text/css">
+		<link href="../css/miPerfil.css" rel="stylesheet" type="text/css">
+	</head>
+	<body onload="getParams()">
+        <header>
+            <div class="textos">
+                <div class="texto"><h1 class="titulo">CVJobs</h1></div>
+                <div class="texto">
+            </div>
+            </div>
+            <div class="sesgoabajo"></div>
+        </header>
+        <main>
+
+        <section class="principal">
+
+            <div class="contenedor">
+                <div class="cards">
+
+                    <div class="card">
+                        <div class="primero">
+                            <form method="get" action="crearCV.html" style="float: left">
+                                <input type="submit" value="verCV"  name="verCV" class="boton">
+                            </form>
+                        </div>
+                        <div class="primero">
+                            <img src="../imagenes/icon.png" />
+                        </div>
+
+						<br/><br/>
+						<label for="nombreUsuario">Nombre:</label><br/>
+						<input type="text" style='width:100%' maxlength="9" id="nombreUsuario" name="nombreUsuario" disabled="disable"/>
+						<br/><br/>
+						<label for="edadUsuario">Edad</label><br/>
+						<input type="text" style='width:100%' maxlength="9" id="edadUsuario" name="edadUsuario"  disabled="disable"/>
+                        <br/><br/>
+                        <label for="experienciaUsuario">Experiencia</label><br/>
+						<input type="text" style='width:100%' maxlength="9" id="experienciaUsuario" name="experienciaUsuario" disabled="disable"/>
+                        <!--Esto estaría inactivo, se activaría mediante Javascrip cuando el usuario pida editarPerfil -->
+                        <br/><br/>
+                        <label for="estadoLaboral">Estado Laboral</label><br/>
+                        <select id="elaboral" disabled="disable">
+                            <option value="1">Parado</option>
+                            <option value="2">Trabajando</option>
+                        </select>
+                        <br/><br/>
+                        <textarea name="textareaResumen" class="resumen" id="resumen" rows="5" cols="50" disabled="disabled" placeholder="Resumen del CV, descripción, sobre mi"></textarea>
+                        <div class="botones" id="botones">
+                            <input type="submit" value="editarPerfil"  name="Editar Perfil" class="boton" onclick="habilitarCampo();">
+                            <input type="submit" value="Guardar Cambios" name="Guardar Cambios" class="boton" onclick="deshabilitarCampo();">
+
+                            <form method="get" action="crearCV.html" style="float: right">
+                                <input type="submit" value="crearCV"  name="crearCV" class="boton">
+                            </form>
+                            <form action="chat.html" style="float: right">
+                                <input type="submit" value="chat" name="chat" class="boton">
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+                        <form>
+                          <p class="clasificacion">
+                            <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                            --><label class="puntua" for="radio1">★</label><!--
+                            --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                            --><label class="puntua" for="radio2">★</label><!--
+                            --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                            --><label class="puntua" for="radio3">★</label><!--
+                            --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                            --><label class="puntua" for="radio4">★</label><!--
+                            --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                            --><label class="puntua"for="radio5">★</label>
+                          </p>
+                          <div class="cajaComentarios">Caja donde se mostraran los Comentarios</div>
+                        </form>
+                        <br/>
+                        <textarea class="comentarios" name="textareaComentarios" rows="0" cols="0" placeholder="Escribe tu comentario..." ></textarea>
+                        <br/>
+                        <input type="submit" value="enviarComentario" name="Enviar" class="boton">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section class="galeria">
+            <div class="sesgoarriba"></div>
+            <div class="imagenes"><img src="../imagenes/fondo.jpg" alt=""></div>
+            <div class="imagenes"><img src="../imagenes/fondo.jpg" alt=""></div>
+            <div class="imagenes"><img src="../imagenes/fondo.jpg" alt="">
+                <div class="encima">
+                   <h2>CVJobs</h2>
+                    <div></div>
+                </div>
+            </div>
+            <div class="imagenes">
+                <img src="../imagenes/fondo.jpg" alt="">
+            </div>
+            <div class="imagenes"><img src="../imagenes/fondo.jpg" alt=""></div>
+            <div class="sesgoabajo-unico"></div>
+        </section>
+    </main>
+		<footer>
+				<div class="contenedor">
+					 <h2 class="titulo-footer">Eslogan de la empresa</h2>
+					 <h3 class="subtitulo-footer"></h3>
+					 <div class="footers">
+								<div class="footer1">
+									<form method="get" action="piePagina.html">
+											<button class="boton" name="nosotros" value="nosotros">
+												<!--<a href="piePagina.html" >Nosotros</a>-->
+													<input type="submit" value="Nosotros"  name="Nosotros" class="botonPie">
+											</button>
+											<button class="boton" name="seguridad" value="seguridad">
+												<!--<a href="piePagina.html" >Nosotros</a>-->
+													<input type="submit" value="seguridad"  name="seguridad" class="botonPie">
+											</button>
+											<button class="boton" name="ayuda" value="ayuda">
+												<!--<a href="piePagina.html" >Nosotros</a>-->
+													<input type="submit" value="ayuda"  name="ayuda" class="botonPie">
+											</button>
+									</form>
+
+									</form>
+								</div>
+								<div class="footer2">
+										<button class="rSocial">
+												<img src="../imagenes/facebookIcon.jpg" alt="Facebook" />
+										</button>
+										<button class="rSocial">
+												<img src="../imagenes/twitterIcon.png" alt="Twitter" />
+										</button>
+								</div>
+						</div>
+				</div>
+		</footer>
+	</body>
+</html>

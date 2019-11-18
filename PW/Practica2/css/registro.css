@@ -1,0 +1,59 @@
+/*Hoja de estilos para la vista registro.html*/
+.contenedor {
+ /* padding-top:10%;*/
+  padding-bottom:10%;
+  /* IMPORTANTE */
+  text-align: center;
+  background: linear-gradient(to bottom, #01a9c1, #f4f5f5);
+}
+
+.contenido{
+	background: linear-gradient(to bottom, #bad6db, #f4f5f5);
+	border-style: double;
+	/* IMPORTANTE */
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+.campoTexto{
+	 border-radius: 5px;
+}
+
+
+/*linea horizontal*/
+hr {
+  height: 1px;
+  width: 70%;
+  padding-top:1px;
+  background-color: black;
+  
+}
+
+.button{
+	padding: .3em;
+	text-decoration: none;
+	color: #FFF;
+	background: #253c4a;
+	border-top: 1px solid #7C7C7C;
+	border-right: 1px solid #7C7C7C;
+	border-bottom: 1px solid #9C9C9C;
+	border-radius: 10px;
+}
+
+.button:hover {
+	color:#24537a;
+}
+
+
+#derecha{
+	float: right;
+	width: 50%;
+}
+
+#izquierda{
+	float: left;
+	width: 50%;
+}
