@@ -8,21 +8,23 @@
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/inicio.css">
     <link rel="stylesheet" href="../css/headerFooter.css">
+    <script src="../javascript/funcionesInicio.js"></script>
 
 </head>
-<body>
+<body onload="getParams()">
 
     <header>
         <div class="textos">
             <div class="texto"><h1 class="titulo">CVJobs</h1></div>
             <div class="texto">
-
-            <form method="get" action="miPerfil.html">
-                <button class="boton" name="inicio" value="inicio">
-                    <a href="miPerfil.html"><img src="../imagenes/icon.png" alt="perfil"/></a>
-                </button>
-            </form>
-            <h3>Nombre Usuario</h3>
+              <div id="invitado">
+                <form method="get" action="miPerfil.html">
+                    <button class="boton" name="inicio" value="inicio">
+                        <a href="miPerfil.html"><img src="../imagenes/icon.png" alt="perfil"/></a>
+                    </button>
+                </form>
+                <h3>Nombre Usuario</h3>
+              </div>
             </div>
         </div>
         <div class="sesgoabajo"></div>

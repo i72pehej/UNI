@@ -35,6 +35,82 @@
     margin-top: 24px;
 }
 
+/* //////////////////////////////////////////////////////////////////////////////// */
+
+
+
+/* Style the header with a background and some padding */
+.header_logo {
+  /* background: white; */
+  /* border: 1px solid black; */
+  overflow: hidden;
+  padding: 0.5em;
+  padding-left: 5em;
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Style the header links */
+.header_logo a {
+  float: left;
+  color: black;
+}
+
+.header_logo img {
+  max-width: 100%;
+  height: auto;
+  width: 100px;
+}
+
+/* Float the link section to the right */
+.header_portada {
+  float: right;
+  padding-top: 1em;
+  padding-right: 5em;
+  /* background-color: green; */
+}
+
+.header_portada a {
+  margin: 1px;
+}
+
+.header_portada a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.botonAdornado {
+  border: 1px solid dodgerblue;
+  border-radius: 2px;
+}
+
+a:link {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.enlace a {
+  /* background-color: lightblue; */
+  color: blue;
+  padding: 10px 20px;
+  text-align: center;
+  margin-left: 1.2em;
+}
+
+/* Change the background color on mouse-over */
+.enlace a:hover {
+  background-color: #ddd;
+  color: darkblue;
+}
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////// */
+
 .galeria{
     width:100%;
     height:500px;
@@ -156,14 +232,4 @@
 
 .cliente img{
     width:100%;
-}
-
-/* /////////////////////////////////////////// */
-
-.header_portada {
-  display: inline-block;
-}
-
-.texto {
-  width: 70%;
 }
