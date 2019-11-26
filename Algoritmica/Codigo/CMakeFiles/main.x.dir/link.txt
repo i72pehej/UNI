@@ -1,1 +1,0 @@
-/usr/local/opt/gcc-5.3.0-32/bin/c++    -rdynamic CMakeFiles/main.x.dir/main.cpp.o CMakeFiles/main.x.dir/algorithm.cpp.o CMakeFiles/main.x.dir/digitalcurve.cpp.o CMakeFiles/main.x.dir/suppressioncollinearpointsmethod.cpp.o CMakeFiles/main.x.dir/point.cpp.o CMakeFiles/main.x.dir/line.cpp.o CMakeFiles/main.x.dir/dynamicprogrammingmethod.cpp.o  -o main.x 

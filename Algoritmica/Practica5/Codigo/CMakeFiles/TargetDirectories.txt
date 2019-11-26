@@ -1,0 +1,3 @@
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica5/Codigo/CMakeFiles/rebuild_cache.dir
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica5/Codigo/CMakeFiles/main.x.dir
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica5/Codigo/CMakeFiles/edit_cache.dir
