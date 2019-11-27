@@ -65,6 +65,8 @@ vector
 -
 limits
 -
+algorithm
+-
 algorithm.hpp
 /home/julen/i72pehej/Uni_3/Algoritmica/Practica5/Codigo/algorithm.hpp
 digitalcurve.hpp
