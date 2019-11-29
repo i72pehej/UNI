@@ -4,7 +4,7 @@ package ejbd;
 import java.sql.*;
 import java.util.Hashtable;
 
-// Sería recomendable tener una clase DAO que guardara los métodos comunes (p.ej. getConnection()) y 
+// Sería recomendable tener una clase DAO que guardara los métodos comunes (p.ej. getConnection()) y
 // de la que heredase esta clase y el resto de DAOs
 public class UserDAO {
   // Método que establece la conexión con la base de datos
@@ -15,16 +15,16 @@ public class UserDAO {
 	Connection con=null;
 	try {
 	  Class.forName("com.mysql.jdbc.Driver");
-	  // Introducir correctamente el nombre y datos de conexión - Idealmente, estos datos se 
+	  // Introducir correctamente el nombre y datos de conexión - Idealmente, estos datos se
 	  // indican en un fichero de propiedades
 	  con= DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/basedatos","usuario","password");
-	// Importante capturar 
+	// Importante capturar
 	} catch(Exception e) {
 	  System.out.println(e);
 	}
 	return con;
   }
-  
+
   // Método para insertar una fila
   // En ningún caso es recomendable el paso por parámetro de los valores individuales
   // Se recomienda utilizar el UserBean o una clase envoltorio User que tenga estas propiedades
@@ -47,7 +47,7 @@ public class UserDAO {
 	// El invocante siempre debería tener información del resultado de la sentencia SQL
 	return status;
 }
-  
+
 // Método para actualizar un usuario
 public static int update(int id, String last, String first, int age){
 	int status=0;
@@ -66,11 +66,11 @@ public static int update(int id, String last, String first, int age){
 
 // Para la consulta, se ha tomado una estructura Hash (columna-tabla, valor)
 public static Hashtable<String,String> queryById (int id) {
-	Statement stmt = null; 
+	Statement stmt = null;
 	Hashtable<String,String> resul = null;
 	try {
 		Connection con=getConnection();
-		// En consultas, se hace uso de un Statement 
+		// En consultas, se hace uso de un Statement
 		stmt = con.createStatement();
 	    ResultSet rs = stmt.executeQuery("select last, first, age from User where id = " + id);
 	    while (rs.next()) {
@@ -81,18 +81,18 @@ public static Hashtable<String,String> queryById (int id) {
 	        resul.put("id", Integer.toString(id));
 	        resul.put("last", last);
 	        resul.put("first", first);
-	        resul.put("age", Integer.toString(age));        
+	        resul.put("age", Integer.toString(age));
 	        System.out.println(id + "\t" + last +
 	                               "\t" + first + "\t" + age);
 	    }
 	    // Se debe tener precaución con cerrar las conexiones, uso de auto-commit, etc.
-	    if (stmt != null) 
-	    	stmt.close(); 
+	    if (stmt != null)
+	    	stmt.close();
 	} catch (Exception e) {
 		System.out.println(e);
-	} 
+	}
 	return resul;
-} 
+}
 
 public static int delete(int id){
 	int status=0;

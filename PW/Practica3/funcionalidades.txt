@@ -1,0 +1,25 @@
+  Registro.html -> Comprobar persona registrada / Registrar persona
+
+  InicioSesion.html -> Comprobar persona registrada / ?¿?¿?Contraseña olvidada?¿?¿?
+
+  persona.html -> Listar persona
+
+  header - footer -> Añadir Header-Footer
+
+  miPerfil.html -> Mostrar / Editar / Comentarios / Borrar cuenta
+
+  CV.html -> Crear / Ver / Editar / Borrar
+
+
+
+
+
+
+  es.uco.pw.miapp.data.dao.[NOMBRE]
+  es.uco.pw.miapp.dysplay.bean.[NOMBRE]
+
+  jsp.usebean   id="Customer"
+                class=""
+                scope=["session (hasta que el usuario cierra sesion)"/"request (hasta que cambia de vista)"]
+
+  Conocer si está logged: <% if([].getusername!=null) [...] %> -> Logged
