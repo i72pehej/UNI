@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.cpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.cpp
 funciones8Reinas.hpp
-/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.hpp
 
-/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.hpp
 iostream
 -
 cstdio
@@ -19,4 +19,16 @@ cstdlib
 -
 vector
 -
+
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/main8Reinas.cpp
+iostream
+-
+cstdio
+-
+cstdlib
+-
+vector
+-
+funciones8Reinas.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.hpp
 

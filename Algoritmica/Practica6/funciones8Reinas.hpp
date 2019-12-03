@@ -13,7 +13,7 @@ bool lugar(int k, std::vector<int> x);
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<int> > &matriz8Reinas);
+int backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<int> > &matriz8Reinas);
 
 ////////////////////////////////////////////////////////////////////////////////
 

@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/main8Reinas.x.dir/main8Reinas.o"
-  "CMakeFiles/main8Reinas.x.dir/funciones8Reinas.o"
+  "CMakeFiles/main8Reinas.x.dir/main8Reinas.cpp.o"
+  "CMakeFiles/main8Reinas.x.dir/funciones8Reinas.cpp.o"
   "main8Reinas.x.pdb"
   "main8Reinas.x"
 )
