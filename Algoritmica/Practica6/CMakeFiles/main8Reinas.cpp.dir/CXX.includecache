@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.cpp
+iostream
+-
+cstdio
+-
+cstdlib
+-
+vector
+-
+funciones8Reinas.hpp
+/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.hpp
+
+/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.hpp
+
