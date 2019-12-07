@@ -4,6 +4,7 @@
 CMakeFiles/main8Reinas.x.dir/funciones8Reinas.cpp.o: funciones8Reinas.cpp
 CMakeFiles/main8Reinas.x.dir/funciones8Reinas.cpp.o: funciones8Reinas.hpp
 
+CMakeFiles/main8Reinas.x.dir/main8Reinas.cpp.o: ClaseTiempo.cpp
 CMakeFiles/main8Reinas.x.dir/main8Reinas.cpp.o: funciones8Reinas.hpp
 CMakeFiles/main8Reinas.x.dir/main8Reinas.cpp.o: main8Reinas.cpp
 

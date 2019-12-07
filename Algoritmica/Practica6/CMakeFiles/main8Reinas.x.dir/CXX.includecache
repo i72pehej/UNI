@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/ClaseTiempo.cpp
+cassert
+-
+ctime
+-
+cstdio
+-
+cstring
+-
+iostream
+-
+stdint.h
+-
+
 /home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.cpp
 funciones8Reinas.hpp
 /home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.hpp
@@ -31,4 +45,6 @@ vector
 -
 funciones8Reinas.hpp
 /home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.hpp
+ClaseTiempo.cpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/ClaseTiempo.cpp
 

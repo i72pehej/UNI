@@ -19,6 +19,23 @@ void imprimeMatriz8Reinas(std::vector< std::vector<int> > matriz8Reinas) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+// // Se almacenan en un fichero de texto los valores de N y Tiempos correspondientes
+// void guardaEnFicheroMatriz(std::vector<double> &nEle, std::vector<double> &times, std::vector<double> &timesEst) {
+//   // Abre el fichero para añadir al final
+//   std::fstream ficheroTiempos("tiemposMatriz.txt", std::ios::app);
+//
+//   if (ficheroTiempos.is_open()) {
+//     for (size_t i = 0; i < nEle.size(); ++i) {
+//       ficheroTiempos << nEle.at(i) << " " << times.at(i) << " " << timesEst.at(i) << '\n';
+//     }
+//   }
+//   else {std::cout << "\n\n\nERROR al abrir el fichero." << '\n';}
+//
+//   ficheroTiempos.close();
+// }
+
+////////////////////////////////////////////////////////////////////////////////
+
 bool lugar(int k, std::vector<int> x) {
   for (int i = 1; i < k; i++) {
     if ((x[i] == x[k]) || (std::abs(x[i] - x[k]) == std::abs(i - k))) {
@@ -35,7 +52,7 @@ int backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vect
   int cont = 0, imprimir = 0; // Contador y variable para imprimir las soluciones
 
   std::cout << "¿Desea imprimir las soluciones?" << '\n';
-  std::cout << "[0] --- NO (Por defecto)" << '\n';
+  std::cout << "[0] --- NO" << '\n';
   std::cout << "[1] --- SI" << '\n';
   std::cout << "\n\nOPCION: ";
   std::cin >> imprimir;
@@ -86,6 +103,56 @@ int backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vect
 
   system("clear");
   return cont;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<int> > &matriz8Reinas) {
+  int cont = 0, imprimir = 0; // Contador y variable para imprimir las soluciones
+  int columna;  // Variable auxiliar para almacenar la columna
+  std::vector<int> ok(n + 1); // Vector donde se guarda la posicion de una reina no amenazada
+
+
+  // Inicializamos la solucion a 0
+  for (int i = 1; i < n; i++) {
+    x[i] = 0;
+  }
+
+  // Se han colocado k-1 reinas y se buscan todas las posiciones para la k-esima
+  for (int k = 1; k < n; k++) {
+    cont = 0;
+
+    // Almacena todas las posiciones posibles de la reina k en el vector x[]
+    for (int j = 1; j < n; j++) {
+      x[k] = j; // Se prueba la reina k en la columna j
+
+      // Si se puede colocar en la columna
+      if (lugar(k, x) == true) {
+        cont++; // Se halla una solucion
+        ok[cont] = j;  // Se guarda la posicion encontrada
+      }
+    }
+
+    // Salir en caso de no encontrar ninguna posicion para la reina
+    if (cont == 0) {
+      return cont;
+    }
+
+    // Se puede colocar la reina k y se selecciona una posicion aleatoria
+    // columna = ok[uniforme(1, cont)];
+    columna = ok[(rand() % cont) + 1];
+    x[k] = columna;
+  }
+
+  // if (cont = 0) {
+  //   exito = false;  // No hay solucion
+  // }
+  // else {
+  //   exito = true; // Hay solucion
+  // }
+
+  system("clear");
+  return cont;  // Si no hay solucion (cont=0), si hay (cont!=0)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
