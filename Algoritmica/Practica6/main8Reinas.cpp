@@ -79,12 +79,18 @@ int main(int argc, char const *argv[]) {
         k = 1;  // Primera reina en fila 1
         x[k] = 0; // Primera reina en columna 0
 
+        x = repetirLasVegas(n, k, x);
 
-        while (success != true) {
-          success = lasVegas8Reinas(n, k, x, m);
+        // while (success != true) {
+        //   // success = lasVegas8Reinas(n, k, x, m);
+        //   success = lasVegas8Reinas(n, k, x);
+        // }
+
+        for (size_t i = 1; i < x.size(); i++) {
+          std::cout <<"AAA->" <<x[i] << '\n';
         }
 
-        std::cout << "\n\tHay " << success << " exito :).\n" << '\n';
+
         imprimeMatriz8Reinas(m);
 
         std::cout << "\n\nPULSE INTRO PARA CONTINUAR . . ." << '\n';

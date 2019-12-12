@@ -19,6 +19,22 @@ void imprimeMatriz8Reinas(std::vector< std::vector<int> > matriz8Reinas) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+std::vector<int> repetirLasVegas(int n, int k, std::vector<int> x) {
+  bool exito;
+
+  // while(exito != true) {
+  //   exito = lasVegas8Reinas(n, k, x, exito);
+  // }
+
+  do {
+    exito = lasVegas8Reinas(n, k, x, exito);
+  } while(exito != true);
+
+  return x;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 // // Se almacenan en un fichero de texto los valores de N y Tiempos correspondientes
 // void guardaEnFicheroMatriz(std::vector<double> &nEle, std::vector<double> &times, std::vector<double> &timesEst) {
 //   // Abre el fichero para añadir al final
@@ -36,7 +52,7 @@ void imprimeMatriz8Reinas(std::vector< std::vector<int> > matriz8Reinas) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool lugar(int k, std::vector<int> x) {
+bool lugarBacktracking(int k, std::vector<int> x) {
   for (int i = 1; i < k; i++) {
     if ((x[i] == x[k]) || (std::abs(x[i] - x[k]) == std::abs(i - k))) {
       return false;
@@ -63,7 +79,7 @@ int backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vect
     x[k] += 1;  // Se desplaza la reina a la siguiente columna
 
     // Mientras no se salga del tablero y sea amenazada por una reina anterior
-    while ((x[k] <= n) && (lugar(k, x) == false)) {
+    while ((x[k] <= n) && (lugarBacktracking(k, x) == false)) {
       x[k] += 1;  // Se desplaza a la siguiente columna
     }
 
@@ -107,35 +123,45 @@ int backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vect
 
 ////////////////////////////////////////////////////////////////////////////////
 
-int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<int> > &matriz8Reinas) {
+bool lugarLasVegas(int n, int k, std::vector<int> x) {
+  for (int i = 1; i <= n; i++) {
+    if ((x[i] == x[k]) || (std::abs(x[i] - x[k]) == std::abs(i - k))) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+bool lasVegas8Reinas(int n, int k, std::vector<int> &x, bool &exito) {
+// int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<int> > &matriz8Reinas) {
   int cont = 0, imprimir = 0; // Contador y variable para imprimir las soluciones
   int columna;  // Variable auxiliar para almacenar la columna
 
-  bool exito = false; // Variable que controla la repeticion de LAS VEGAS
+  // bool exito = false; // Variable que controla la repeticion de LAS VEGAS
 
   std::vector<int> ok(n + 1); // Vector donde se guarda la posicion de una reina no amenazada
 
 
   // Inicializamos la solucion a 0
-  for (int i = 1; i < n; i++) {
+  for (int i = 1; i <= n; i++) {
     x[i] = 0;
   }
 
   // Se han colocado k-1 reinas y se buscan todas las posiciones para la k-esima
-  for (int k = 1; k < n; k++) {
+  for (int k = 1; k <= n; k++) {
     cont = 0;
 
     // Almacena todas las posiciones posibles de la reina k en el vector x[]
-    for (int j = 1; j < n; j++) {
+    for (int j = 1; j <= n; j++) {
       x[k] = j; // Se prueba la reina k en la columna j
 
       // Si se puede colocar en la columna
-      if (lugar(k, x) == true) {
+      if (lugarLasVegas(n, k, x) == true) {
         cont++; // Se halla una solucion
         ok[cont] = j;  // Se guarda la posicion encontrada
-
-        // matriz8Reinas[k][j] = 1;
-
       }
     }
 
@@ -148,8 +174,6 @@ int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<i
     // columna = ok[uniforme(1, cont)];
     columna = ok[(rand() % cont) + 1];
     x[k] = columna;
-
-    matriz8Reinas[k][columna] = 1;
   }
 
   if (cont = 0) {
@@ -160,7 +184,7 @@ int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<i
   }
 
   system("clear");
-  return exito;  // Si no hay solucion (cont=0), si hay (cont!=0)
+  return exito;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
