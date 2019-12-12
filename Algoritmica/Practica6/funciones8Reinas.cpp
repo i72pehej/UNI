@@ -110,6 +110,9 @@ int backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vect
 int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<int> > &matriz8Reinas) {
   int cont = 0, imprimir = 0; // Contador y variable para imprimir las soluciones
   int columna;  // Variable auxiliar para almacenar la columna
+
+  bool exito = false; // Variable que controla la repeticion de LAS VEGAS
+
   std::vector<int> ok(n + 1); // Vector donde se guarda la posicion de una reina no amenazada
 
 
@@ -130,29 +133,34 @@ int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<i
       if (lugar(k, x) == true) {
         cont++; // Se halla una solucion
         ok[cont] = j;  // Se guarda la posicion encontrada
+
+        // matriz8Reinas[k][j] = 1;
+
       }
     }
 
     // Salir en caso de no encontrar ninguna posicion para la reina
     if (cont == 0) {
-      return cont;
+      return EXIT_FAILURE;
     }
 
     // Se puede colocar la reina k y se selecciona una posicion aleatoria
     // columna = ok[uniforme(1, cont)];
     columna = ok[(rand() % cont) + 1];
     x[k] = columna;
+
+    matriz8Reinas[k][columna] = 1;
   }
 
-  // if (cont = 0) {
-  //   exito = false;  // No hay solucion
-  // }
-  // else {
-  //   exito = true; // Hay solucion
-  // }
+  if (cont = 0) {
+    exito = false;  // No hay solucion
+  }
+  else {
+    exito = true; // Hay solucion
+  }
 
   system("clear");
-  return cont;  // Si no hay solucion (cont=0), si hay (cont!=0)
+  return exito;  // Si no hay solucion (cont=0), si hay (cont!=0)
 }
 
 ////////////////////////////////////////////////////////////////////////////////

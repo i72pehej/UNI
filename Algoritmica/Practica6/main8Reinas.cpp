@@ -18,9 +18,10 @@ int main(int argc, char const *argv[]) {
   int n; // Numero de reinas
   int k;  // Fila
   bool salir = false; // Opcion para salir del programa
+  bool success = false; // Variable que controla la repeticion de LAS VEGAS
 
 
-  while (!salir) {
+  // while (!salir) {
     system("clear");
 
     std::cout << "Seleccione un metodo" << '\n';
@@ -78,16 +79,21 @@ int main(int argc, char const *argv[]) {
         k = 1;  // Primera reina en fila 1
         x[k] = 0; // Primera reina en columna 0
 
-        soluciones = lasVegas8Reinas(n, k, x, m);
 
-        std::cout << "\n\tHay " << soluciones << " soluciones.\n" << '\n';
+        while (success != true) {
+          success = lasVegas8Reinas(n, k, x, m);
+        }
+
+        std::cout << "\n\tHay " << success << " exito :).\n" << '\n';
+        imprimeMatriz8Reinas(m);
 
         std::cout << "\n\nPULSE INTRO PARA CONTINUAR . . ." << '\n';
         std::cin.ignore();
       }
       break;
     }
-  }
+  // }
 
+  system("clear");
   return 0;
 }
