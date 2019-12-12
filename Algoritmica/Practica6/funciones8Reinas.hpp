@@ -21,18 +21,5 @@ void imprimeMatriz8Reinas(std::vector< std::vector<int> > matriz8Reinas);
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<int> > &matriz8Reinas);
-bool lasVegas8Reinas(int n, int k, std::vector<int> &x, bool &exito);
-
-////////////////////////////////////////////////////////////////////////////////
-
-// void guardaEnFicheroMatriz(std::vector<double> &nEle, std::vector<double> &times, std::vector<double> &timesEst);
-
-////////////////////////////////////////////////////////////////////////////////
-
-std::vector<int> repetirLasVegas(int n, int k, std::vector<int> x);
-
-////////////////////////////////////////////////////////////////////////////////
-
 
 #endif

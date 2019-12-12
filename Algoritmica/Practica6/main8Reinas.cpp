@@ -4,6 +4,8 @@
 #include <vector>
 
 #include "funciones8Reinas.hpp"
+#include "funciones8ReinasLasVegas.cpp"
+
 #include "ClaseTiempo.cpp"
 
 
@@ -16,6 +18,7 @@ int main(int argc, char const *argv[]) {
   int soluciones; // Numero de soluciones al metodo
   int n; // Numero de reinas
   int k;  // Fila
+
   bool salir = false; // Opcion para salir del programa
   bool success = false; // Variable que controla la repeticion de LAS VEGAS
 
@@ -74,13 +77,15 @@ int main(int argc, char const *argv[]) {
         std::cout << '\n';
         std::cin.ignore();
 
+        int intentos = 0; // Numero de veces que se intenta LAS VEGAS
+
         std::vector<int> x(n + 1); // Columna
         std::vector< std::vector<int> > m(n + 1, std::vector<int>(n + 1));  // Matriz de soluciones
 
         k = 1;  // Primera reina en fila 1
         x[k] = 0; // Primera reina en columna 0
 
-        x = repetirLasVegas(n, k, x); // Se rellena el vector de soluciones
+        x = repetirLasVegas(n, k, x, intentos); // Se rellena el vector de soluciones
 
         // Se introduce un 1 en las posiciones de las reinas en la matriz
         for (size_t i = 1; i < m.size(); i++) {
@@ -88,6 +93,8 @@ int main(int argc, char const *argv[]) {
         }
 
         imprimeMatriz8Reinas(m);
+
+        std::cout << "\nSolucion hallada en " << intentos << " intentos." << '\n';
 
         std::cout << "\n\nPULSE INTRO PARA CONTINUAR . . ." << '\n';
         std::cin.ignore();
