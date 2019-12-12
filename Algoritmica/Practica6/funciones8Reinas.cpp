@@ -22,10 +22,6 @@ void imprimeMatriz8Reinas(std::vector< std::vector<int> > matriz8Reinas) {
 std::vector<int> repetirLasVegas(int n, int k, std::vector<int> x) {
   bool exito;
 
-  // while(exito != true) {
-  //   exito = lasVegas8Reinas(n, k, x, exito);
-  // }
-
   do {
     exito = lasVegas8Reinas(n, k, x, exito);
   } while(exito != true);
@@ -52,7 +48,7 @@ std::vector<int> repetirLasVegas(int n, int k, std::vector<int> x) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool lugarBacktracking(int k, std::vector<int> x) {
+bool lugar(int k, std::vector<int> x) {
   for (int i = 1; i < k; i++) {
     if ((x[i] == x[k]) || (std::abs(x[i] - x[k]) == std::abs(i - k))) {
       return false;
@@ -79,7 +75,7 @@ int backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vect
     x[k] += 1;  // Se desplaza la reina a la siguiente columna
 
     // Mientras no se salga del tablero y sea amenazada por una reina anterior
-    while ((x[k] <= n) && (lugarBacktracking(k, x) == false)) {
+    while ((x[k] <= n) && (lugar(k, x) == false)) {
       x[k] += 1;  // Se desplaza a la siguiente columna
     }
 
@@ -123,18 +119,6 @@ int backtracking8Reinas(int n, int k, std::vector<int> x, std::vector< std::vect
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool lugarLasVegas(int n, int k, std::vector<int> x) {
-  for (int i = 1; i <= n; i++) {
-    if ((x[i] == x[k]) || (std::abs(x[i] - x[k]) == std::abs(i - k))) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
 bool lasVegas8Reinas(int n, int k, std::vector<int> &x, bool &exito) {
 // int lasVegas8Reinas(int n, int k, std::vector<int> x, std::vector< std::vector<int> > &matriz8Reinas) {
   int cont = 0, imprimir = 0; // Contador y variable para imprimir las soluciones
@@ -146,7 +130,7 @@ bool lasVegas8Reinas(int n, int k, std::vector<int> &x, bool &exito) {
 
 
   // Inicializamos la solucion a 0
-  for (int i = 1; i <= n; i++) {
+  for (int i = 1; i < n; i++) {
     x[i] = 0;
   }
 
@@ -159,7 +143,7 @@ bool lasVegas8Reinas(int n, int k, std::vector<int> &x, bool &exito) {
       x[k] = j; // Se prueba la reina k en la columna j
 
       // Si se puede colocar en la columna
-      if (lugarLasVegas(n, k, x) == true) {
+      if (lugar(k, x) == true) {
         cont++; // Se halla una solucion
         ok[cont] = j;  // Se guarda la posicion encontrada
       }
@@ -167,7 +151,7 @@ bool lasVegas8Reinas(int n, int k, std::vector<int> &x, bool &exito) {
 
     // Salir en caso de no encontrar ninguna posicion para la reina
     if (cont == 0) {
-      return EXIT_FAILURE;
+      break;
     }
 
     // Se puede colocar la reina k y se selecciona una posicion aleatoria
@@ -176,7 +160,7 @@ bool lasVegas8Reinas(int n, int k, std::vector<int> &x, bool &exito) {
     x[k] = columna;
   }
 
-  if (cont = 0) {
+  if (cont == 0) {
     exito = false;  // No hay solucion
   }
   else {

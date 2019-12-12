@@ -11,7 +11,6 @@ int main(int argc, char const *argv[]) {
   srand(time(NULL));
 
   Clock time; // Inicia temporizador
-  time.start();
 
   int opcion; // Opcion para elegir el metodo
   int soluciones; // Numero de soluciones al metodo
@@ -21,7 +20,7 @@ int main(int argc, char const *argv[]) {
   bool success = false; // Variable que controla la repeticion de LAS VEGAS
 
 
-  // while (!salir) {
+  while (!salir) {
     system("clear");
 
     std::cout << "Seleccione un metodo" << '\n';
@@ -41,6 +40,8 @@ int main(int argc, char const *argv[]) {
       break;
 
       case 1: { // BACTRACKING
+        time.start(); // Inicia el contador
+
         std::cout << "Introduzca el numero de reinas: ";
         std::cin >> n;
         std::cout << '\n';
@@ -79,17 +80,12 @@ int main(int argc, char const *argv[]) {
         k = 1;  // Primera reina en fila 1
         x[k] = 0; // Primera reina en columna 0
 
-        x = repetirLasVegas(n, k, x);
+        x = repetirLasVegas(n, k, x); // Se rellena el vector de soluciones
 
-        // while (success != true) {
-        //   // success = lasVegas8Reinas(n, k, x, m);
-        //   success = lasVegas8Reinas(n, k, x);
-        // }
-
-        for (size_t i = 1; i < x.size(); i++) {
-          std::cout <<"AAA->" <<x[i] << '\n';
+        // Se introduce un 1 en las posiciones de las reinas en la matriz
+        for (size_t i = 1; i < m.size(); i++) {
+          m[i][x[i]] = 1;
         }
-
 
         imprimeMatriz8Reinas(m);
 
@@ -98,7 +94,7 @@ int main(int argc, char const *argv[]) {
       }
       break;
     }
-  // }
+  }
 
   system("clear");
   return 0;
