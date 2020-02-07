@@ -6,11 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.cpp
-funciones8Reinas.hpp
-/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/ClaseTiempo.cpp
+cassert
+-
+ctime
+-
+cstdio
+-
+cstring
+-
+iostream
+-
+stdint.h
+-
 
-/home/i72pehej/Uni3ero/Algoritmica/Practica6/funciones8Reinas.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.cpp
+funciones8Reinas.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.hpp
+
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.hpp
 iostream
 -
 cstdio
@@ -19,4 +33,34 @@ cstdlib
 -
 vector
 -
+
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8ReinasLasVegas.cpp
+funciones8ReinasLasVegas.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8ReinasLasVegas.hpp
+
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8ReinasLasVegas.hpp
+iostream
+-
+cstdio
+-
+cstdlib
+-
+vector
+-
+
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/main8Reinas.cpp
+iostream
+-
+cstdio
+-
+cstdlib
+-
+vector
+-
+funciones8Reinas.hpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8Reinas.hpp
+funciones8ReinasLasVegas.cpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/funciones8ReinasLasVegas.cpp
+ClaseTiempo.cpp
+/home/julen/i72pehej/Uni_3/Algoritmica/Practica6/ClaseTiempo.cpp
 

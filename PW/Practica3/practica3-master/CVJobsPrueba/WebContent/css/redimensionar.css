@@ -1,0 +1,59 @@
+/*Hoja de estilos para ajustar las vistas al tamaño de pantalla*/
+@media screen and (max-width:900px){
+    .card{
+        width:48%;
+    }
+    #chatbox{
+        width:250px;
+    }
+    
+    #usermsg{
+       width:170px;
+    }
+}
+
+@media screen and (max-width:620px){
+    header .textos{
+        margin-top: 50px;
+    }
+
+    header .titulo{
+        font-size:75px;
+    }
+    
+    .none{display:none;}
+    .imagenes{
+        flex-grow: 1;
+    }
+    
+    .card{
+        width:98%;
+    }
+    
+    .especial{
+        display:none;
+    }
+
+    
+}
+
+@media screen and (max-width:380px){
+    header .textos{
+        margin-top:20px;
+    }
+    
+    header .titulo{
+        font-size:65px;
+    }
+    
+    header .subtitulo{
+        font-size:25px;
+        margin-bottom:32px;
+    }
+    
+    .eslogan{
+        font-size:20px;
+    }
+    
+    
+}
